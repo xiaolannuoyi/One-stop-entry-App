@@ -9,6 +9,22 @@ const logger = require('koa-logger')
 const index = require('./routes/index')
 const users = require('./routes/users')
 
+//引入mongoose
+const mongoose = require('mongoose');
+//引入koa2-cors，解决前后端跨域问题
+var cors = require('koa2-cors');
+app.use(cors());
+//数据结构表存入数据库
+require('./lib/dbHelper')
+//连接数据库
+mongoose.connect(
+  `mongodb://localhost:27017/hr`
+);
+mongoose.connection.on('open', function () {
+  console.log('数据库连接成功!');
+});
+
+
 // error handler
 onerror(app)
 
