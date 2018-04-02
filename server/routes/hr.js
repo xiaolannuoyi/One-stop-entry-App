@@ -5,8 +5,10 @@ const router = require('koa-router')()
 const HrManager = require('../controllers/hr-controller/hr-manager')
 // import HrManager from '../controllers/hr-controller/hr-manager'
 router.prefix('/hr')
-
+router.get('/', function (ctx, next) {
+    ctx.body = 'hrhrhrhr'
+  })
 router.post('/regist', HrManager.regist);
-
+router.get('/login', HrManager.login);
 module.exports = router
 // export default router;

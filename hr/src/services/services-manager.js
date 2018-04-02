@@ -4,9 +4,14 @@ axios.defaults.baseURL = 'http://localhost:3000/';
 
 let servicesManager = {
   hrRegist(data) {
-      console.log("server",data);
-      
     return axios.post('/hr/regist', data);
+  },
+  hrLogin(data) {
+    return axios({
+      method: 'get',
+      url: 'hr/login',
+      params: data
+    });
   },
 };
 

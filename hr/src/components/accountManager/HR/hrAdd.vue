@@ -40,7 +40,7 @@
         this.hrData.Password = this.hrData.Name;
         this.hrData.Address.toString();
         ServiceManager.hrRegist(this.hrData).then(data => {
-          // console.log(data)
+          console.log(data)
           if (data.data.code == 200) {
             this.$vux.toast.show({
               text: '注册成功',

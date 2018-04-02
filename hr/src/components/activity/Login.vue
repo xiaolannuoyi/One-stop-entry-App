@@ -1,10 +1,10 @@
 <template>
   <div>
     <group title="">
-      <x-input title="工号" ref="account" v-model="account" placeholder="请输入工号" keyboard="number"></x-input>
+      <x-input title="工号" ref="account" v-model="formData.Account" placeholder="请输入工号" keyboard="number"></x-input>
     </group>
     <group title="">
-      <x-input title="密码" ref="password" v-model="password" placeholder="请输入密码" type="password" :min="6" :max="16"></x-input>
+      <x-input title="密码" ref="password" v-model="formData.Password" placeholder="请输入密码" type="password" ></x-input>
     </group>
     <x-button type="primary" @click.native="login">primary</x-button>
   </div>
@@ -12,6 +12,8 @@
 
 <script>
 import { XInput, Group, XButton, Cell, } from 'vux'
+import ServiceManager from '@/services/services-manager';
+
 export default {
   components: {
     XInput,
@@ -21,13 +23,29 @@ export default {
   },
   data() {
     return {
-      account:"",
-      password:"",
+      formData: {
+        Account: '',
+        Password: ''
+      }
     }
   },
   methods:{
       login(){
-          this.$router.push('/home');
+          ServiceManager.hrLogin(this.formData).then(data => {
+          console.log(data)
+          if (data.data.code == 200) {
+            this.$vux.toast.show({
+              text: '登录成功',
+              type: 'success'
+            });
+            this.$router.push('/home');
+          } else {
+            this.$vux.toast.show({
+              text: '登录失败，请重试',
+              type: 'success'
+            });
+          }
+        });
       }
   },
 }
