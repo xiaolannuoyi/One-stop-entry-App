@@ -13,8 +13,10 @@
 <script>
 import { XInput, Group, XButton, Cell, } from 'vux'
 import ServiceManager from '@/services/services-manager';
+import store from '@/store/store.js'
 
 export default {
+  store,
   components: {
     XInput,
     XButton,
@@ -38,6 +40,8 @@ export default {
               text: '登录成功',
               type: 'success'
             });
+            this.$store.state.HrInfo = data.data.result;//返回数据存入store
+            console.log("store",this.$store.state.HrInfo)
             this.$router.push('/home');
           } else {
             this.$vux.toast.show({

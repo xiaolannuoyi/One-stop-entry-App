@@ -10,5 +10,6 @@ router.get('/', function (ctx, next) {
   })
 router.post('/regist', HrManager.regist);
 router.get('/login', HrManager.login);
+router.get('/findHr', HrManager.findHr);
 module.exports = router
 // export default router;

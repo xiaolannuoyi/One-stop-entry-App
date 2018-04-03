@@ -13,6 +13,13 @@ let servicesManager = {
       params: data
     });
   },
+  findHr(data) {
+    return axios({
+      method: 'get',
+      url: 'hr/findHr',
+      params: data
+    });
+  }
 };
 
 export default servicesManager;

@@ -39,6 +39,23 @@ class HrOpt {
         });
     });
   }
+  /**
+   * 查看所有信息
+   * 查询数据
+   */
+  findHr(data) {
+    console.log("data=============",data)
+    return new Promise((resolve, reject) => {
+      HrModel.find(data)
+        .then(hr => {
+          console.log('查询结果', JSON.stringify(hr, null, 2));
+          resolve(hr);
+        })
+        .catch(() => {
+          reject();
+        });
+    });
+  }
 
 }
 module.exports = new HrOpt;

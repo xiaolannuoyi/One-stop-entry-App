@@ -4,8 +4,8 @@
     <x-header :left-options="{showBack: false}">主页</x-header>
     <!-- content -->
     <group>
-        <cell title="HR账号管理" link="/accountManager/HR/hr"></cell>
-        <cell title="入职者账号管理" link="/accountManager/HR/hr"></cell>
+        <cell title="HR账号管理" link="/hr"></cell>
+        <cell title="入职者账号管理" link="/hr"></cell>
     </group>
     <!-- footer -->
     <footer-tab></footer-tab>

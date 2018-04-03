@@ -4,15 +4,12 @@
     <x-header :left-options="{showBack: true}">HR账号管理</x-header>
     <!-- content -->
     <tab :scroll-threshold="5">
-      <tab-item selected @on-item-click="see">查看</tab-item>
-      <tab-item @on-item-click="add">添加</tab-item>
+      <tab-item selected @click.native="$router.replace('/hr/hrSee')">查看</tab-item>
+      <tab-item @click.native="$router.replace('/hr/hrAdd')">添加</tab-item>
     </tab>
     <swiper :show-dots="false" style="min-height:90vh;">
-        <swiper-item v-if="show">
-          <hr-see></hr-see>
-        </swiper-item>
-        <swiper-item v-else >
-          <hr-add></hr-add>
+        <swiper-item >
+          <router-view></router-view>
         </swiper-item>
     </swiper>
   </div>
@@ -35,12 +32,6 @@ export default {
       }
   },
   methods:{
-      see(){
-        this.show=true;
-      },
-      add(){
-        this.show=false;
-      }
   }
 }
 </script>

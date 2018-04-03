@@ -6,6 +6,7 @@ import Company from '@/components/activity/Company'
 import Check from '@/components/activity/Check'
 import UserData from '@/components/activity/UserData'
 import Hr from '@/components/accountManager/HR/hr'
+import HrSee from '@/components/accountManager/HR/hrSee'
 import HrAdd from '@/components/accountManager/HR/hrAdd'
 Vue.use(Router)
 
@@ -16,7 +17,21 @@ export default new Router({
     {path: '/company',component: Company},
     {path: '/check',component: Check},
     {path: '/userdata',component: UserData},
-    {path: '/accountManager/HR/hr',component: Hr},
-    {path: '/accountManager/HR/hrAdd',component: HrAdd},
+    {
+      path: '/hr',
+      component: Hr,
+      redirect: '/hr/hrSee',
+      children: [
+        {
+          path:'hrSee',
+          name: 'HrSee',
+          component: HrSee
+        },
+        {
+          path: 'hrAdd',
+          name: 'HrAdd',
+          component: HrAdd
+        }]
+    },
   ]
 })
