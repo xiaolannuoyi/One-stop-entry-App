@@ -38,7 +38,24 @@ class HrManager {
    * 查看所有hr 返回信息
    */
   async findHr(ctx, next) {
-    await HrOpt.findHr(ctx.query).then(data => {
+    await HrOpt.findHr().then(data => {
+      ctx.response.body = {
+        code:200,
+        msg:"查询成功",
+        result:data
+      }
+    }).catch(() => {
+      ctx.response.body = {
+        msg:"查询错误"
+      }
+    });
+  }
+  /**
+   * 查看id 对应的hr信息 
+   */
+  async findHrOne(ctx, next) {
+    console.log("ctx.params.hrId",ctx.params.hrId);
+    await HrOpt.findHrOne({_id:ctx.params.hrId}).then(data => {
       ctx.response.body = {
         code:200,
         msg:"查询成功",

@@ -26,8 +26,6 @@ export default {
   },
   data(){
       return{
-          showContent004:false,
-          showContent003:false,
           show:true,
       }
   },

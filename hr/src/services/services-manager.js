@@ -14,12 +14,21 @@ let servicesManager = {
     });
   },
   findHr(data) {
+    console.log("前端传入data",data);
+    
     return axios({
       method: 'get',
       url: 'hr/findHr',
-      params: data
+      params: data,     
     });
-  }
+  },
+
+  findHrOne(data) {
+    return axios({
+      method: 'get',
+      url: 'hr/findHrOne/' + data
+    });
+  },
 };
 
 export default servicesManager;

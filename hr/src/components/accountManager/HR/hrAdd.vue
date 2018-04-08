@@ -37,7 +37,7 @@
     },
     methods:{
       hrRegist(){
-        this.hrData.Password = this.hrData.Name;
+        this.hrData.Password = this.hrData.Account;
         this.hrData.Address.toString();
         ServiceManager.hrRegist(this.hrData).then(data => {
           console.log(data)

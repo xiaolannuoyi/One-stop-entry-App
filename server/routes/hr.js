@@ -11,5 +11,23 @@ router.get('/', function (ctx, next) {
 router.post('/regist', HrManager.regist);
 router.get('/login', HrManager.login);
 router.get('/findHr', HrManager.findHr);
+router.get('/findHrOne/:hrId', HrManager.findHrOne);
+
+
+// 1
+// user/login/:account/:password
+
+// user/login/ljy/123
+
+// ctx.params.account
+// ctx.params.password
+
+// 2
+// user/login
+
+// user/login?account=ljy
+
+// ctx.query.account
+// router.get('/findHrOne/:id', HrManager.findHrOne);
 module.exports = router
 // export default router;

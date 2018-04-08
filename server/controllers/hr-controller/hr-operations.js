@@ -44,6 +44,27 @@ class HrOpt {
    * 查询数据
    */
   findHr(data) {
+    console.log("data=============",JSON.stringify(data))
+    if(JSON.stringify(data) == "{}"){ 
+      console.log(7);
+    }else{
+      console.log(JSON.stringify(data))
+    }
+    
+
+    return new Promise((resolve, reject) => {
+      HrModel.find(data)
+        .then(hr => {
+          console.log('查询结果', JSON.stringify(hr, null, 2));
+          resolve(hr);
+        })
+        .catch(() => {
+          reject();
+        });
+    });
+  }
+
+  findHrOne(data) {
     console.log("data=============",data)
     return new Promise((resolve, reject) => {
       HrModel.find(data)

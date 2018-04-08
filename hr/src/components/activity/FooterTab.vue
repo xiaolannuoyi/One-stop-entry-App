@@ -1,24 +1,31 @@
 <template>
-  <div class="footer">
-    <tabbar>
-      <tabbar-item link="/home" selected>
-        <img slot="icon"  src="">
-        <span slot="label">主页</span>
-      </tabbar-item>
-      <tabbar-item link="/userdata">
-        <img slot="icon" src="">
-        <span slot="label">填写</span>
-      </tabbar-item>
-      <tabbar-item show-dot link="/check">
-        <img slot="icon" src="">
-        <span slot="label">审核</span>
-      </tabbar-item>
-      <tabbar-item link="/company">
-        <img slot="icon" src="">
-        <span slot="label">公司</span>
-      </tabbar-item>
-    </tabbar>
+  <div>
+    <div>
+      <router-view></router-view>
+    </div>
+    <div class="footer">
+      <tabbar>
+        <tabbar-item link="/home/main" selected>
+          <img slot="icon"  src="">
+          <span slot="label">主页</span>
+        </tabbar-item>
+        <tabbar-item link="/home/userdata">
+          <img slot="icon" src="">
+          <span slot="label">填写</span>
+        </tabbar-item>
+        <tabbar-item show-dot link="/home/check">
+          <img slot="icon" src="">
+          <span slot="label">审核</span>
+        </tabbar-item>
+        <tabbar-item link="/home/company">
+          <img slot="icon" src="">
+          <span slot="label">公司</span>
+        </tabbar-item>
+      </tabbar>
+    </div>
+
   </div>
+  
 </template>
 
 <script>
