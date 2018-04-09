@@ -12,6 +12,8 @@ router.post('/regist', HrManager.regist);
 router.get('/login', HrManager.login);
 router.get('/findHr', HrManager.findHr);
 router.get('/findHrOne/:hrId', HrManager.findHrOne);
+router.post('/hrEdit', HrManager.hrEdit);
+router.post('/hrDel', HrManager.hrDel);
 
 
 // 1

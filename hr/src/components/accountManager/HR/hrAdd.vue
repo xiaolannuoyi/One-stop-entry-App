@@ -1,14 +1,14 @@
 <template>
   <div>
-    <group title="justify" label-width="5.5em" label-margin-right="2em" label-align="justify">
-      <x-input title="工号" placeholder="请输入工号" v-model="hrData.Account" type="number"></x-input>    
-      <x-input title="姓名" placeholder="请输入姓名" v-model="hrData.Name" ></x-input>
-      <x-input title="手机号码" placeholder="请输入手机号码" v-model="hrData.Tel" keyboard="number" is-type="china-mobile" :max="11"></x-input>
+    <group>
+      <x-input title="工号" ref="Account" v-model="hrData.Account" type="number" :required="true"></x-input>    
+      <x-input title="姓名"  ref="Name" v-model="hrData.Name" :required="true"></x-input>
+      <x-input title="手机号码" ref="Tel" v-model="hrData.Tel" keyboard="number" is-type="china-mobile" :max="11" :required="true"></x-input>
       <popup-picker title="负责区域" :data="hraddresslist" v-model="hrData.Address" value-text-align="left"></popup-picker>
       <x-switch title="管理员权限" :value-map="['0', '1']" v-model="hrData.IsAdmin"></x-switch>
     </group>
     <group>
-      <x-button type="primary" @click.native="hrRegist">primary</x-button>
+      <x-button type="primary" :disabled="canGo || btndisable" @click.native="hrRegist">primary</x-button>
     </group>
     
   </div>
@@ -33,7 +33,18 @@
           IsAdmin: '',//是否为管理者 0 :false; 1: true
         },
         hraddresslist:[['北京', '上海', '广州']],
+        btndisable: true,
       }
+    },
+    computed:{
+      canGo() {
+        if(this.hrData.Account !='' && this.hrData.Name !="" && this.hrData.Tel !=''&&
+          this.$refs.Account.valid && this.$refs.Name.valid && this.$refs.Tel.valid){
+            this.btndisable=false;
+        }else{
+            this.btndisable=true;
+        }
+      },
     },
     methods:{
       hrRegist(){
@@ -46,6 +57,7 @@
               text: '注册成功',
               type: 'success'
             });
+            this.$router.replace('/hr');
           }else{
             this.$vux.toast.show({
               text: '注册失败',

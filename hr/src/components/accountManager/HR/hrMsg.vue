@@ -1,12 +1,12 @@
 <template>
   <div>
     <!-- header -->
-    <x-header :left-options="{showBack: false}">用户信息</x-header>
+    <x-header @on-click-back="back">用户信息</x-header>
     <!-- content -->
     <group>
-      <x-input title="工号" :disabled="disabled" v-model="hrData.Account" type="number"></x-input>    
-      <x-input title="姓名"  :disabled="disabled" v-model="hrData.Name" ></x-input>
-      <x-input title="手机号码" :disabled="disabled" v-model="hrData.Tel" keyboard="number" is-type="china-mobile" :max="11"></x-input>
+      <x-input title="工号" :disabled="disabled" ref="Account" v-model="hrData.Account" type="number" :required="true"></x-input>    
+      <x-input title="姓名"  :disabled="disabled" ref="Name" v-model="hrData.Name" :required="true"></x-input>
+      <x-input title="手机号码" :disabled="disabled" ref="Tel" v-model="hrData.Tel" keyboard="number" is-type="china-mobile" :max="11" :required="true"></x-input>
       <popup-picker title="负责区域" :disabled="disabled" :data="hraddresslist" v-model="hrData.Address" value-text-align="left"></popup-picker>
       <x-switch title="管理员权限" :disabled="disabled" :value-map="['0', '1']" v-model="hrData.IsAdmin"></x-switch>
     </group>
@@ -15,49 +15,130 @@
           <x-button type="warn" @click.native="del">删除</x-button>
         </flexbox-item>
         <flexbox-item>
-          <x-button type="primary" @click.native="editd">编辑</x-button>
+          <x-button type="primary" @click.native="edit" v-if="editNum==1">编辑</x-button>
+          <x-button type="primary" @click.native="Submit" :disabled="canGo || btndisable" v-else>提交</x-button>
         </flexbox-item>
     </flexbox>
+
+    <div v-transfer-dom>
+      <confirm v-model="show" title="确认删除" @on-confirm="onConfirm">
+        <p style="text-align:center;">删除不可恢复</p>
+      </confirm>
+    </div>
   </div>
 </template>
 
 <script>
-import { Group, Cell, XHeader, CellBox, XInput,PopupPicker,XSwitch,XButton,Flexbox, FlexboxItem,} from 'vux'
+import { Group, Cell, XHeader, CellBox, XInput,PopupPicker,XSwitch,XButton,Flexbox, FlexboxItem,Confirm,TransferDomDirective as TransferDom} from 'vux'
 import ServiceManager from '@/services/services-manager';
 
 
 export default {
   components: {
-    Group,Cell, XHeader,CellBox,XInput,PopupPicker,XSwitch,XButton,Flexbox, FlexboxItem,
+    Group,Cell, XHeader,CellBox,XInput,PopupPicker,XSwitch,XButton,Flexbox, FlexboxItem,Confirm
+  },
+  directives: {
+    TransferDom
   },
   data () {
       return {
         disabled:true,
         hrData:{
-          Account: '111',//工号
-          Password:'111',//密码，默认为姓名全称
-          Name:'111',//姓名
-          Tel: '11111',//电话
-          Address: ['北京'],//负责地区
-          IsAdmin: '1',//是否为管理者 0 :false; 1: true
+          Account:"" ,//工号
+          Name: "",//姓名
+          Tel: "",//电话
+          Address: [ ],//负责地区
+          IsAdmin: "",//是否为管理者 0 :false; 1: true
         },
         hraddresslist:[['北京', '上海', '广州']],
+        editNum:1,
+        show:false,
+        btndisable:true,
       }
     },
     mounted(){
       this.getData()
     },
+    computed:{
+      canGo() {
+        if(this.hrData.Account !='' && this.hrData.Name !="" && this.hrData.Tel !=''&&
+          this.$refs.Account.valid && this.$refs.Name.valid && this.$refs.Tel.valid){
+            this.btndisable=false;
+        }else{
+            this.btndisable=true;
+        }
+      },
+    },
     methods:{
-         getData(){
+        back(){
+          this.$router.replace("/hr");
+        },
+        getData(){
           console.log("router",this.$route.params)
           ServiceManager.findHrOne(this.$route.params.id).then(data => {
           console.log("data",data)
           if(data.data.code == 200){
               let result = data.data.result;
+              this.hrData.Account = result.Account;
+              this.hrData.Name = result.Name;
+              this.hrData.Tel = result.Tel.toString();
+              this.hrData.Address.push(result.Address);
+              this.hrData.IsAdmin = result.IsAdmin.toString();
               console.log("result",result);
+              console.log("this.hrdata",this.hrData);
             }
           })
+        },
+        del(){
+          this.show=true;
+          
+        },
+        onConfirm(){
+          ServiceManager.hrDel(this.$route.params.id).then(data => {
+            console.log("del",data);
+            
+            
+            if (data.data.code == 200) {
+              this.$vux.toast.show({
+                text: '删除成功',
+                type: 'success'
+              });
+              this.$router.replace('/hr');
+            } else {
+              this.$vux.toast.show({
+                text: '删除失败，请重试',
+                type: 'success'
+              });
+            }
+          });
+        },
+        edit(){
+          this.disabled = false;
+          this.editNum++;
+          console.log("this.edit",this.editNum);
+        },
+        Submit(){
+          this.editNum =1
+          this.disabled = true;
+          console.log("this.edit",this.editNum);
+          ServiceManager.hrEdit(this.$route.params.id,this.hrData).then(data => {
+            console.log("edit",data);
+            if (data.data.code == 200) {
+              this.$vux.toast.show({
+                text: '编辑成功',
+                type: 'success'
+              });
+              this.$router.push('/hr');
+            } else {
+              this.$vux.toast.show({
+                text: '编辑失败，请重试',
+                type: 'success'
+              });
+            }
+
+          });
         }
+
     }
 }
 </script>

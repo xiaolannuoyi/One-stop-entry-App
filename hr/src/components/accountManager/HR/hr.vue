@@ -1,7 +1,7 @@
 <template>
   <div>
     <!-- header -->
-    <x-header :left-options="{showBack: true}">HR账号管理</x-header>
+    <x-header :left-options="{showBack: true}" @on-click-back="back">HR账号管理</x-header>
     <!-- content -->
     <tab :scroll-threshold="5">
       <tab-item selected @click.native="$router.replace('/hr/hrSee')">查看</tab-item>
@@ -30,6 +30,9 @@ export default {
       }
   },
   methods:{
+    back(){
+      this.$router.replace("/home");
+    }
   }
 }
 </script>

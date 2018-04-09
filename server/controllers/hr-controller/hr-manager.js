@@ -67,6 +67,44 @@ class HrManager {
       }
     });
   }
+  /**
+   * 修改 hr 信息
+   */
+  async hrEdit(ctx, next) {
+    console.log("1111111111");
+    
+    // console.log("ctx.query",ctx.request.body.id);
+    // ctx.response.body = ctx.request.body;
+    await HrOpt.hrEdit(ctx.request.body.id,ctx.request.body.data).then(data => {
+      ctx.response.body = {
+        code:200,
+        msg:"查询成功",
+        result:data
+      }
+    }).catch(() => {
+      ctx.response.body = {
+        msg:"查询错误"
+      }
+    });
+  }
+  /**
+   * 删除 hr 信息
+   */
+  async hrDel(ctx, next) {
+    console.log("ctx.request.body",ctx.request.body);
+    
+    await HrOpt.hrDel(ctx.request.body).then(data => {
+      ctx.response.body = {
+        code:200,
+        msg:"查询成功",
+        result:data
+      }
+    }).catch(() => {
+      ctx.response.body = {
+        msg:"查询错误"
+      }
+    });
+  }
 
 }
 module.exports =  new HrManager

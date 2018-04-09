@@ -29,6 +29,26 @@ let servicesManager = {
       url: 'hr/findHrOne/' + data
     });
   },
+
+  hrEdit(id,data) {
+    console.log(id,data)
+    return axios({
+      method: 'post',
+      url: '/hr/hrEdit',
+      data: {id,data},
+    });
+  },
+
+  hrDel(data){
+    console.log(data)
+    return axios({
+      method: 'post',
+      url: '/hr/hrDel',
+      data: {
+        id: data
+      },
+    });
+  }
 };
 
 export default servicesManager;
