@@ -5,6 +5,9 @@ import FastClick from 'fastclick'
 import App from './App'
 import router from './router'
 import store from './store/store'//引入vuex，store
+import { ToastPlugin } from 'vux'; //引入toast组件
+
+Vue.use(ToastPlugin);
 
 FastClick.attach(document.body)
 

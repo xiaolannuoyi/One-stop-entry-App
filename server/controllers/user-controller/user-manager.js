@@ -18,7 +18,22 @@ class UserManager {
       }
     });
   }
-
+    /**
+   * 登录返回信息
+   */
+  async login(ctx, next) {
+    await UserOpt.login(ctx.query).then(data => {
+      ctx.response.body = {
+        code:200,
+        msg:"登录成功",
+        result:data
+      }
+    }).catch(() => {
+      ctx.response.body = {
+        msg:"用户名密码错误"
+      }
+    });
+  }
     /**
    * 查看所有user 返回信息
    */

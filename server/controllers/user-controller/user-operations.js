@@ -18,6 +18,27 @@ class UserOpt {
         });
     });
   }
+  /**
+   * 登录
+   * 查询数据
+   */
+  login(data) {
+    console.log("data=============",data)
+    return new Promise((resolve, reject) => {
+      UserModel.findOne({ Tel: data.Tel })
+        .then(User => {
+          console.log('查询结果', JSON.stringify(User, null, 2));
+          if (User.Password == data.Password) {
+            resolve(User);
+          } else {
+            reject();
+          }
+        })
+        .catch(() => {
+          reject();
+        });
+    });
+  }
     /**
    * 查看所有信息
    * 查询数据

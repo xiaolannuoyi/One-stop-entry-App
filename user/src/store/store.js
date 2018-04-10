@@ -3,3 +3,14 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 //使用我们vuex，引入之后用Vue.use进行引用
 Vue.use(Vuex);
+
+const state = {
+    UserInfo:{},//user个人信息
+ }
+ 
+ const mutations={
+ }
+
+ export default new Vuex.Store({
+     state,mutations
+ });
