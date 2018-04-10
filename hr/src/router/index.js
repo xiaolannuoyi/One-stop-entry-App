@@ -7,10 +7,16 @@ import Home from '@/components/activity/Home'
 import Company from '@/components/activity/Company'
 import Check from '@/components/activity/Check'
 import UserData from '@/components/activity/UserData'
+
 import Hr from '@/components/accountManager/HR/hr'
 import HrSee from '@/components/accountManager/HR/hrSee'
 import HrAdd from '@/components/accountManager/HR/hrAdd'
 import HrMsg from '@/components/accountManager/HR/hrMsg'
+
+import User from '@/components/accountManager/User/user'
+import UserSee from '@/components/accountManager/User/userSee'
+import UserAdd from '@/components/accountManager/User/userAdd'
+import UserMsg from '@/components/accountManager/User/userMsg'
 Vue.use(Router)
 
 export default new Router({
@@ -61,6 +67,27 @@ export default new Router({
       path: '/hr/hrMsg/:id',
       name: 'HrMsg',
       component: HrMsg,
+    },
+    {
+      path: '/user',
+      component: User,
+      redirect: '/user/userSee',
+      children: [
+        {
+          path:'userSee',
+          name: 'UserSee',
+          component: UserSee
+        },
+        {
+          path: 'userAdd',
+          name: 'UserAdd',
+          component: UserAdd
+        }]
+    },
+    {
+      path: '/user/userMsg/:id',
+      name: 'UserMsg',
+      component: UserMsg,
     },
   ]
 })

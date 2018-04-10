@@ -4,11 +4,18 @@
     <x-header @on-click-back="back">用户信息</x-header>
     <!-- content -->
     <group>
-      <x-input title="工号" :disabled="disabled" ref="Account" v-model="hrData.Account" type="number" :required="true"></x-input>    
-      <x-input title="姓名"  :disabled="disabled" ref="Name" v-model="hrData.Name" :required="true"></x-input>
-      <x-input title="手机号码" :disabled="disabled" ref="Tel" v-model="hrData.Tel" keyboard="number" is-type="china-mobile" :max="11" :required="true"></x-input>
-      <popup-picker title="负责区域" :disabled="disabled" :data="hraddresslist" v-model="hrData.Address" value-text-align="right"></popup-picker>
-      <x-switch title="管理员权限" :disabled="disabled" :value-map="['0', '1']" v-model="hrData.IsAdmin"></x-switch>
+      <x-input title="姓名" :disabled="disabled" ref="Name" v-model="userData.Name" :required="true"></x-input>
+      <x-input title="手机号码" :disabled="disabled" ref="Tel" v-model="userData.Tel" keyboard="number" is-type="china-mobile" :max="11" :required="true"></x-input>
+      <popup-picker title="地点" :disabled="disabled" :data="addresslist" v-model="userData.Address" value-text-align="right"></popup-picker>
+      <popup-picker title="部门" :disabled="disabled" :data="Departmentlist" v-model="userData.Department" value-text-align="right"></popup-picker>
+      <calendar title="入职时间" :readonly="disabled" ref="EntryTime" v-model="userData.EntryTime" 
+      :start-date="startDate"
+      :end-date="endDate"
+      :show-last-month="showLastMonth=false"
+      :show-next-month="showNextMonth=false"
+      :return-six-rows="return6Rows=false"
+      :disable-past="disablePast=false"
+      :disable-weekend="disableWeekend=true"></calendar>
     </group>
     <flexbox>
         <flexbox-item>
@@ -29,28 +36,33 @@
 </template>
 
 <script>
-import { Group, Cell, XHeader, CellBox, XInput,PopupPicker,XSwitch,XButton,Flexbox, FlexboxItem,Confirm,TransferDomDirective as TransferDom} from 'vux'
+import { Group, Cell, XHeader, CellBox, XInput,PopupPicker,XSwitch,XButton,Flexbox, FlexboxItem,Confirm,Calendar,TransferDomDirective as TransferDom} from 'vux'
 import ServiceManager from '@/services/services-manager';
 
 
 export default {
   components: {
-    Group,Cell, XHeader,CellBox,XInput,PopupPicker,XSwitch,XButton,Flexbox, FlexboxItem,Confirm
+    Group,Cell, XHeader,CellBox,XInput,PopupPicker,XSwitch,XButton,Flexbox, FlexboxItem,Confirm,Calendar
   },
   directives: {
     TransferDom
   },
   data () {
       return {
-        disabled:true,
-        hrData:{
-          Account:"" ,//工号
+        userData: {
           Name: "",//姓名
           Tel: "",//电话
-          Address: [ ],//负责地区
-          IsAdmin: "",//是否为管理者 0 :false; 1: true
+          Password: "",//密码，默认为电话后六位
+          Address: [],//工作地区
+          Department:[],//部门
+          EntryTime:"",//入职时间
         },
-        hraddresslist:[['北京', '上海', '广州']],
+        addresslist: [["北京","上海"]],
+        Departmentlist:[["java","php"]],
+        btndisable: true,
+        startDate:"",
+        endDate:"",
+        disabled:true,
         editNum:1,
         show:false,
         btndisable:true,
@@ -61,8 +73,8 @@ export default {
     },
     computed:{
       canGo() {
-        if(this.hrData.Account !='' && this.hrData.Name !="" && this.hrData.Tel !=''&&
-          this.$refs.Account.valid && this.$refs.Name.valid && this.$refs.Tel.valid){
+        if(this.userData.Name !='' && this.userData.Tel !="" && this.userData.EntryTime !=''&&
+          this.$refs.Name.valid && this.$refs.Tel.valid){
             this.btndisable=false;
         }else{
             this.btndisable=true;
@@ -71,39 +83,36 @@ export default {
     },
     methods:{
         back(){
-          this.$router.replace("/hr");
+          this.$router.replace("/user");
         },
         getData(){
           console.log("router",this.$route.params)
-          ServiceManager.findHrOne(this.$route.params.id).then(data => {
+          ServiceManager.findUserOne(this.$route.params.id).then(data => {
           console.log("data",data)
           if(data.data.code == 200){
               let result = data.data.result;
-              this.hrData.Account = result.Account;
-              this.hrData.Name = result.Name;
-              this.hrData.Tel = result.Tel.toString();
-              this.hrData.Address.push(result.Address);
-              this.hrData.IsAdmin = result.IsAdmin.toString();
+              this.userData.Name = result.Name;
+              this.userData.Tel = result.Tel.toString();
+              this.userData.Address.push(result.Address);
+              this.userData.Department.push(result.Department);
+              this.userData.EntryTime = result.EntryTime;
               console.log("result",result);
-              console.log("this.hrdata",this.hrData);
+              console.log("this.userdata",this.userData);
             }
           })
         },
         del(){
           this.show=true;
-          
         },
         onConfirm(){
-          ServiceManager.hrDel(this.$route.params.id).then(data => {
+          ServiceManager.UserDel(this.$route.params.id).then(data => {
             console.log("del",data);
-            
-            
             if (data.data.code == 200) {
               this.$vux.toast.show({
                 text: '删除成功',
                 type: 'success'
               });
-              this.$router.replace('/hr');
+              this.$router.replace('/user');
             } else {
               this.$vux.toast.show({
                 text: '删除失败，请重试',
@@ -121,14 +130,14 @@ export default {
           this.editNum =1
           this.disabled = true;
           console.log("this.edit",this.editNum);
-          ServiceManager.hrEdit(this.$route.params.id,this.hrData).then(data => {
+          ServiceManager.UserEdit(this.$route.params.id,this.userData).then(data => {
             console.log("edit",data);
             if (data.data.code == 200) {
               this.$vux.toast.show({
                 text: '编辑成功',
                 type: 'success'
               });
-              this.$router.replace('/hr');
+              this.$router.replace('/user');
             } else {
               this.$vux.toast.show({
                 text: '编辑失败，请重试',

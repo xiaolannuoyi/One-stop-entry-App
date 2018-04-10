@@ -6,7 +6,7 @@ const onerror = require('koa-onerror')
 const bodyparser = require('koa-bodyparser')
 const logger = require('koa-logger')
 const index = require('./routes/index')
-const users = require('./routes/users')
+const user = require('./routes/user')
 const hr = require('./routes/hr')
 //引入mongoose
 const mongoose = require('mongoose');
@@ -49,7 +49,7 @@ app.use(async (ctx, next) => {
 
 // routes
 app.use(index.routes(), index.allowedMethods())
-app.use(users.routes(), users.allowedMethods())
+app.use(user.routes(), user.allowedMethods())
 app.use(hr.routes(), hr.allowedMethods())
 // error-handling
 app.on('error', (err, ctx) => {

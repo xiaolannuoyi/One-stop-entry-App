@@ -3,6 +3,7 @@ import axios from 'axios';
 axios.defaults.baseURL = 'http://localhost:3000/';
 
 let servicesManager = {
+  //hr-----------------
   hrRegist(data) {
     return axios.post('/hr/regist', data);
   },
@@ -48,7 +49,44 @@ let servicesManager = {
         id: data
       },
     });
+  },
+  //user---------------------------
+  userRegist(data) {
+    return axios.post('/user/regist', data);
+  },
+  findUser(data) {
+    return axios({
+      method: 'get',
+      url: '/user/findUser',
+      params: data,     
+    });
+  },
+  findUserOne(data) {
+    return axios({
+      method: 'get',
+      url: '/user/findUserOne/' + data
+    });
+  },
+  UserEdit(id,data) {
+    console.log(id,data)
+    return axios({
+      method: 'post',
+      url: '/user/UserEdit',
+      data: {id,data},
+    });
+  },
+
+  UserDel(data){
+    console.log(data)
+    return axios({
+      method: 'post',
+      url: '/user/UserDel',
+      data: {
+        id: data
+      },
+    });
   }
+  
 };
 
 export default servicesManager;

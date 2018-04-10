@@ -89,7 +89,7 @@ class HrOpt {
         }
       }).then(() => {
           HrModel.findById(id).then(hr => {
-            console.log('更新医生信息结果', JSON.stringify(hr, null, 2));
+            console.log('修改hr数据', JSON.stringify(hr, null, 2));
             hr.__v = undefined;
             resolve(hr);
           });

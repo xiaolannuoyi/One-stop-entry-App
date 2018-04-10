@@ -5,7 +5,7 @@
     <!-- content -->
     <group>
         <cell title="HR账号管理" link="/hr"></cell>
-        <cell title="入职者账号管理" link="/hr"></cell>
+        <cell title="入职者账号管理" link="/user"></cell>
     </group>
   </div>
 </template>
