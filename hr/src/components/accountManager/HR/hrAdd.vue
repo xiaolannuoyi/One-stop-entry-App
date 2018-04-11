@@ -59,7 +59,7 @@
             this.$router.replace('/hr');
           }else{
             this.$vux.toast.show({
-              text: '注册失败',
+              text: '该账号已存在',
               type: 'warn'
             });
           }

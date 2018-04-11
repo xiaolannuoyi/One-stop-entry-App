@@ -9,13 +9,19 @@ class HrOpt {
    */
   regist(data) {
     return new Promise((resolve, reject) => {
-      HrModel.create(data)
-        .then(hr => {
-          resolve(hr);
-        })
-        .catch(() => {
-          reject('fail');
-        });
+      HrModel.findOne({Account: data.Account}).then(result=> {
+        if(result) {
+          resolve('已存在');
+        } else {
+          HrModel.create(data)
+          .then(hr => {
+            resolve(hr);
+          })
+          .catch(() => {
+            reject('fail');
+          });
+        }
+      })
     });
   }
   /**
