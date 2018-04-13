@@ -3,8 +3,7 @@ const UserMessageManager = require('../controllers/UserMessage-controller/UserMe
 
 router.prefix('/UserMessage')
 
-// router.post('/UserOfferState', UserMessageManager.UserOfferState);
 router.post('/UserOfferState', UserMessageManager.UserOfferState);
-
+router.post('/ChangePassword', UserMessageManager.ChangePassword);
 
 module.exports = router

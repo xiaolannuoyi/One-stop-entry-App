@@ -12,12 +12,21 @@ let servicesManager = {
     });
   },
   // 接受或拒绝
-  UserOfferState(id,data) {
-    console.log("qianduan ",id,data)
+  UserOfferState(id,state) {
+    console.log("qianduan ",id,state)
     return axios({
       method: 'post',
       url: '/UserMessage/UserOfferState',
-      data: {id,data}
+      data: {id,state}
+    });
+  },
+  // 修改登录密码
+  ChangePassword(id,password) {
+    console.log("qianduan ",id,password)
+    return axios({
+      method: 'post',
+      url: '/UserMessage/ChangePassword',
+      data: {id,password}
     });
   },
   

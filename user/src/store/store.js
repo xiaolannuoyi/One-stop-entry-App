@@ -6,6 +6,7 @@ Vue.use(Vuex);
 
 const state = {
     UserInfo:{},//user个人信息
+    offerStateFlag:false,//offer 弹框显示标志
  }
  
  const mutations={

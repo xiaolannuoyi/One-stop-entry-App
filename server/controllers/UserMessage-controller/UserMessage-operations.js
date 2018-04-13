@@ -5,14 +5,29 @@ class UserMessageOpt {
   //offer 接受，拒绝
   UserOfferState(data){
     return new Promise((resolve, reject) => {
-      console.log("data.State",data.data);
-      
       UserModel.findByIdAndUpdate(data.id,{
         $set: {
-          State: data.data,
+          State: data.state,
         }
-      }).then(State => {
-          resolve(State);
+      }).then(user => {
+          resolve(user);
+        })
+        .catch(() => {
+          reject('fail');
+        });
+    });
+  }
+
+  //修改密码
+  ChangePassword(data){
+    console.log(data.password)
+    return new Promise((resolve, reject) => {
+      UserModel.findByIdAndUpdate(data.id,{
+        $set: {
+          Password: data.password,
+        }
+      }).then(user => {
+          resolve(user);
         })
         .catch(() => {
           reject('fail');

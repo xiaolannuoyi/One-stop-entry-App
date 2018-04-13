@@ -38,7 +38,7 @@ export default {
     TransferDom
   },
   mounted() {
-    if(this.UserInfo.State == 0 || this.UserInfo.State == 2){
+    if(this.$store.state.offerStateFlag && ( this.UserInfo.State == 0 || this.UserInfo.State == 2) ){
       this.show = true;
     }else{
       this.show = false;        
