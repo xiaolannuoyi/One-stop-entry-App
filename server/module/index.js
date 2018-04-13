@@ -4,7 +4,7 @@ const Schema = require('mongoose').Schema;
 module.exports = {
     hr: {
         Account: Number,//工号
-        Password: String,//密码，默认为工号
+        Password: String,//密码，默认为工号 6-16位 
         Name: String,//姓名
         Tel: Number,//电话
         Address: String,//负责地区
@@ -14,7 +14,7 @@ module.exports = {
     user: {
         Name: String,//姓名
         Tel: Number,//电话
-        Password: String,//密码，默认为电话后六位
+        Password: String,//密码，默认为电话后六位 6-16位
         Address: String,//工作地区
         Department:String,//部门
         EntryTime:String,//入职时间

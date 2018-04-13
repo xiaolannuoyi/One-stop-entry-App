@@ -9,5 +9,6 @@ router.get('/findUser', UserManager.findUser);
 router.get('/findUserOne/:UserId', UserManager.findUserOne);
 router.post('/UserEdit', UserManager.UserEdit);
 router.post('/UserDel', UserManager.UserDel);
+router.post('/UserResetPassword', UserManager.UserResetPassword);
 
 module.exports = router

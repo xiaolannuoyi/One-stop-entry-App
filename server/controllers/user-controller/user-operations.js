@@ -115,6 +115,25 @@ class UserOpt {
         });
     });
   }
+    //重置密码
+    UserResetPassword(data){
+      console.log(data.password)
+      return new Promise((resolve, reject) => {
+        UserModel.findByIdAndUpdate(data.id,{
+          $set: {
+            Password: data.password,
+          }
+        }).then( ()=> {
+            UserModel.findById(data.id).then(User => {
+            console.log('U改user数据', JSON.stringify(User, null, 2));
+            resolve(User);
+          });
+          })
+          .catch(() => {
+            reject('fail');
+          });
+      });
+    }
   
 }
 module.exports = new UserOpt;

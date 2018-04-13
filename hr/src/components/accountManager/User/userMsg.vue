@@ -17,6 +17,9 @@
       :disable-past="disablePast=false"
       :disable-weekend="disableWeekend=true"></calendar>
     </group>
+    <group>
+      <x-button type="warn" @click.native="ResetPasswordShow = true">重置密码</x-button>
+    </group>
     <flexbox>
         <flexbox-item>
           <x-button type="warn" @click.native="del">删除</x-button>
@@ -30,6 +33,14 @@
     <div v-transfer-dom>
       <confirm v-model="show" title="确认删除" @on-confirm="onConfirm">
         <p style="text-align:center;">删除不可恢复</p>
+      </confirm>
+    </div>
+
+       <confirm v-model="ResetPasswordShow"
+      title="重置密码"
+      @on-cancel="ResetPasswordShow = false"
+      @on-confirm="ConfirmResetPassword">
+        <p style="text-align:center;">密码重置为手机号后六位，确定重置密码么。</p>
       </confirm>
     </div>
   </div>
@@ -49,6 +60,7 @@ export default {
   },
   data () {
       return {
+        ResetPasswordShow:false,
         userData: {
           Name: "",//姓名
           Tel: "",//电话
@@ -146,7 +158,27 @@ export default {
             }
 
           });
+        },
+        ConfirmResetPassword(){
+          let password = this.userData.Tel.slice(5);
+          console.log(password);
+          
+          ServiceManager.hrResetPassword(this.$route.params.id,password).then(data => {
+            console.log(data)
+            if (data.data.code == 200) {
+              this.$vux.toast.show({
+                text: '重置密码成功',
+                type: 'success'
+              });
+            } else {
+              this.$vux.toast.show({
+                text: '重置密码失败，请重试',
+                type: 'success'
+              });
+            }
+          });
         }
+
 
     }
 }

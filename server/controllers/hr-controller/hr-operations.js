@@ -123,5 +123,24 @@ class HrOpt {
     });
   }
 
+  //重置密码
+  hrResetPassword(data){
+    console.log(data.password)
+    return new Promise((resolve, reject) => {
+      HrModel.findByIdAndUpdate(data.id,{
+        $set: {
+          Password: data.password,
+        }
+      }).then( ()=> {
+          HrModel.findById(data.id).then(hr => {
+          console.log('修改hr数据', JSON.stringify(hr, null, 2));
+          resolve(hr);
+        });
+        })
+        .catch(() => {
+          reject('fail');
+        });
+    });
+  }
 }
 module.exports = new HrOpt;

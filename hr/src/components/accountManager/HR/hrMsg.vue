@@ -10,6 +10,9 @@
       <popup-picker title="负责区域" :disabled="disabled" :data="hraddresslist" v-model="hrData.Address" value-text-align="right"></popup-picker>
       <x-switch title="管理员权限" :disabled="disabled" :value-map="['0', '1']" v-model="hrData.IsAdmin"></x-switch>
     </group>
+    <group>
+      <x-button type="warn" @click.native="ResetPasswordShow = true">重置密码</x-button>
+    </group>
     <flexbox>
         <flexbox-item>
           <x-button type="warn" @click.native="del">删除</x-button>
@@ -23,6 +26,15 @@
     <div v-transfer-dom>
       <confirm v-model="show" title="确认删除" @on-confirm="onConfirm">
         <p style="text-align:center;">删除不可恢复</p>
+      </confirm>
+    </div>
+
+    <div v-transfer-dom>
+      <confirm v-model="ResetPasswordShow"
+      title="重置密码"
+      @on-cancel="ResetPasswordShow = false"
+      @on-confirm="ConfirmResetPassword">
+        <p style="text-align:center;">密码重置为手机号后六位，确定重置密码么。</p>
       </confirm>
     </div>
   </div>
@@ -43,6 +55,7 @@ export default {
   data () {
       return {
         disabled:true,
+        ResetPasswordShow:false,
         hrData:{
           Account:"" ,//工号
           Name: "",//姓名
@@ -96,8 +109,6 @@ export default {
         onConfirm(){
           ServiceManager.hrDel(this.$route.params.id).then(data => {
             console.log("del",data);
-            
-            
             if (data.data.code == 200) {
               this.$vux.toast.show({
                 text: '删除成功',
@@ -136,6 +147,23 @@ export default {
               });
             }
 
+          });
+        },
+        ConfirmResetPassword(){
+          let password = this.hrData.Account;
+          ServiceManager.hrResetPassword(this.$route.params.id,password).then(data => {
+            console.log(data)
+            if (data.data.code == 200) {
+              this.$vux.toast.show({
+                text: '重置密码成功',
+                type: 'success'
+              });
+            } else {
+              this.$vux.toast.show({
+                text: '重置密码失败，请重试',
+                type: 'success'
+              });
+            }
           });
         }
 

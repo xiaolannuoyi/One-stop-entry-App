@@ -102,6 +102,17 @@ class UserManager {
       }
     });
   }
+    //重置密码 UserResetPassword
+    async UserResetPassword(ctx, next) {
+      await UserOpt.UserResetPassword(ctx.request.body).then(data => {
+        console.log("data",data)
+        ctx.response.body = {
+            code:200,
+            msg:"ok",
+            result:data
+        }
+      });
+    }
  
 }
 module.exports =  new UserManager

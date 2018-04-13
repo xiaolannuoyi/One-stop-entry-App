@@ -12,7 +12,7 @@ router.get('/findHr', HrManager.findHr);
 router.get('/findHrOne/:hrId', HrManager.findHrOne);
 router.post('/hrEdit', HrManager.hrEdit);
 router.post('/hrDel', HrManager.hrDel);
-
+router.post('/hrResetPassword', HrManager.hrResetPassword);
 
 // 1
 // user/login/:account/:password

@@ -50,6 +50,15 @@ let servicesManager = {
       },
     });
   },
+  //hr重置密码
+  hrResetPassword(id,password){
+      console.log("qianduan ",id,password)
+      return axios({
+        method: 'post',
+        url: '/hr/hrResetPassword',
+        data: {id,password}
+      });
+  },
   //user---------------------------
   userRegist(data) {
     return axios.post('/user/regist', data);
@@ -85,7 +94,18 @@ let servicesManager = {
         id: data
       },
     });
-  }
+  },
+
+    //User重置密码
+    UserResetPassword(id,password){
+      console.log("qianduan ",id,password)
+      return axios({
+        method: 'post',
+        url: '/user/UserResetPassword',
+        data: {id,password}
+      });
+  },
+  
   
 };
 

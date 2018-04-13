@@ -114,6 +114,17 @@ class HrManager {
       }
     });
   }
+  //重置密码 hrResetPassword
+  async hrResetPassword(ctx, next) {
+    await HrOpt.hrResetPassword(ctx.request.body).then(data => {
+      console.log("data",data)
+      ctx.response.body = {
+          code:200,
+          msg:"ok",
+          result:data
+      }
+    });
+  }
 
 }
 module.exports = new HrManager
