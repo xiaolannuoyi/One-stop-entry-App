@@ -1,4 +1,4 @@
-const UserOpt = require('./user-operations')
+const UserOpt = require('./User-operations')
 /**
  * User 管理类
  * 

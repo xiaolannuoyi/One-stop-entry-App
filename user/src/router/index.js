@@ -7,6 +7,9 @@ import Company from '@/components/activity/Company'
 import Check from '@/components/activity/Check'
 import UserData from '@/components/activity/UserData'
 
+// 信息
+
+import changePassword from '@/components/userdata/message/changePassword'
 import preMsg from '@/components/userdata/message/preMsg'
 import mod from '@/components/userdata/message/mod'
 Vue.use(Router)
@@ -39,6 +42,7 @@ export default new Router({
           component: UserData
         }]
     },
+    {path: '/userdata/message/changePassword',component: changePassword},
     {path: '/userdata/message/mod',component: mod},
     {path: '/userdata/message/preMsg',component: preMsg},
   ]

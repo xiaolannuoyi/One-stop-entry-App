@@ -5,9 +5,11 @@ const json = require('koa-json')
 const onerror = require('koa-onerror')
 const bodyparser = require('koa-bodyparser')
 const logger = require('koa-logger')
+
 const index = require('./routes/index')
 const user = require('./routes/user')
 const hr = require('./routes/hr')
+const userMessage = require('./routes/userMessage')
 //引入mongoose
 const mongoose = require('mongoose');
 //引入koa2-cors，解决前后端跨域问题
@@ -51,6 +53,7 @@ app.use(async (ctx, next) => {
 app.use(index.routes(), index.allowedMethods())
 app.use(user.routes(), user.allowedMethods())
 app.use(hr.routes(), hr.allowedMethods())
+app.use(userMessage.routes(), userMessage.allowedMethods())
 // error-handling
 app.on('error', (err, ctx) => {
   console.error('server error', err, ctx)
