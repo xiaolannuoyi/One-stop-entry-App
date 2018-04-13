@@ -9,8 +9,11 @@ class UserMessageOpt {
         $set: {
           State: data.state,
         }
-      }).then(user => {
-          resolve(user);
+      }).then(() => {
+          UserModel.findById(data.id).then(User => {
+            console.log('修改User数据', JSON.stringify(User, null, 2));
+            resolve(User);
+          });
         })
         .catch(() => {
           reject('fail');
@@ -26,8 +29,11 @@ class UserMessageOpt {
         $set: {
           Password: data.password,
         }
-      }).then(user => {
-          resolve(user);
+      }).then(() => {
+        UserModel.findById(data.id).then(User => {
+            console.log('修改User数据', JSON.stringify(User, null, 2));
+            resolve(User);
+          });
         })
         .catch(() => {
           reject('fail');
