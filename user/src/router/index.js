@@ -12,6 +12,7 @@ import changePassword from '@/components/userdata/message/changePassword'
 
 import Step from '@/components/userdata/message/step'
 import PreBaseInfo from '@/components/userdata/message/preBaseInfo'
+import BankCards from '@/components/userdata/message/bankCards'
 import PreWorkInfo from '@/components/userdata/message/preWorkInfo'
 
 import mod from '@/components/userdata/message/mod'
@@ -56,6 +57,11 @@ export default new Router({
           path: 'preBaseInfo',
           name: 'PreBaseInfo',
           component: PreBaseInfo
+        },
+        {
+          path: 'bankCards',
+          name: 'bankCards',
+          component: BankCards
         },
         {
           path: 'preWorkInfo',

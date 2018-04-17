@@ -38,6 +38,15 @@ let servicesManager = {
       data: {id,preBaseInfo}
     });
   },
+  //提交工资卡信息
+  submitBankcard(id,Bankcard) {
+    console.log(" ",id,Bankcard)
+    return axios({
+      method: 'post',
+      url: '/UserMessage/step/submitBankcard',
+      data: {id,Bankcard}
+    });
+  },
   
 };
 

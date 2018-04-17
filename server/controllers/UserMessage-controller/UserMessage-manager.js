@@ -55,5 +55,26 @@ class UserMessageManager {
     }
     });
   }
+
+    /**
+   * 工资卡信息
+   */
+  async submitBankcard(ctx, next) {
+    // console.log("2222222222222222")
+    // ctx.response.body = ctx.request.body;
+    await UserMessageOpt.submitBankcard(ctx.request.body).then(data => {
+      console.log("data",data)
+      ctx.response.body = {
+          code:200,
+          msg:"ok",
+          result:data
+      }
+    }).catch(err => {
+      ctx.response.body = {
+        code:300,
+        msg:err,
+    }
+    });
+  }
 }
 module.exports =  new UserMessageManager

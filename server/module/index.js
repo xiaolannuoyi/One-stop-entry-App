@@ -26,7 +26,12 @@ module.exports = {
             type: Schema.ObjectId,
             ref: 'preBaseInfo' ,
             default:null
-        }
+        },
+        bankcard:{
+            type: Schema.ObjectId,
+            ref: 'bankcard' ,
+            default:null
+        },
       },
       //个人信息
       preBaseInfo:{
@@ -130,4 +135,27 @@ module.exports = {
             default:null,
         }, //生日
     },
+    //银行卡信息
+    bankcard:{
+        sPfaccount:{
+            type: String,
+            default:null,
+        },//账户名
+        sPfid:{
+            type: Number,
+            default:null,
+        },//身份证号码
+        sPfcardNum:{
+            type: Number,
+            default:null,
+        },//卡号
+        sPfopenban:{
+            type: String,
+            default:null,
+        },//开户行名称
+        sPfopCity:{
+            type: String,
+            default:null,
+        },//开户城市
+    }
 }

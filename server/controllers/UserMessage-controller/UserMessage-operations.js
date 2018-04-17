@@ -1,6 +1,7 @@
 let dbHelper = require('../../lib/dbHelper');
 let UserModel = dbHelper.getModel('user');
 let PreBaseInfoModel = dbHelper.getModel('preBaseInfo');
+let bankcardModel = dbHelper.getModel('bankcard');
 
 class UserMessageOpt {
   //offer 接受，拒绝
@@ -62,7 +63,7 @@ class UserMessageOpt {
                 }
               }).then(back3=>{
                 console.log('1提交成功', JSON.stringify(back3, null, 2));
-                resolve("1提交成功");
+                resolve("个人信息提交成功");
 
 
               }).catch(() => {
@@ -84,7 +85,71 @@ class UserMessageOpt {
                   }).then(back5=>{
                     
                     console.log('2提交成功', JSON.stringify(back5, null, 2));                    
-                    resolve("2提交成功");
+                    resolve("个人信息更新成功");
+    
+                  }).catch(() => {
+                    reject('fail3');
+                  });
+                  
+                }).catch(() => {
+                  reject('fail4');
+                });
+
+            }).catch(() => {
+              reject('fail5');
+            });
+
+          }
+        }).catch(() => {
+          reject('fail6');
+        });
+         
+      });
+    }
+
+     //工资卡信息提交
+    /**
+     * 
+     * @param {*}
+     *  data :{
+     * id,Bankcard
+     * }
+     */
+    submitBankcard(data){
+      return new Promise((resolve, reject) => {
+        UserModel.findById(data.id).then(back => {
+          console.log("back",back)
+          if(back.preBaseInfo==null){
+            bankcardModel.create(data.Bankcard).then( back2 =>{
+              UserModel.findByIdAndUpdate(data.id,{
+                $set:{
+                  bankcard: back2._id
+                }
+              }).then(back3=>{
+                console.log('1提交成功', JSON.stringify(back3, null, 2));
+                resolve("工资卡信息提交成功");
+
+
+              }).catch(() => {
+                reject('fail1');
+              });
+              
+            }).catch(() => {
+              reject('fail2');
+            });
+          }else{
+            console.log(222222222222)
+            bankcardModel.findByIdAndRemove({_id:back.preBaseInfo}).then(()=>{
+              
+                bankcardModel.create(data.Bankcard).then( back4 =>{
+                  UserModel.findByIdAndUpdate(data.id,{
+                    $set:{
+                      bankcard: back4._id
+                    }
+                  }).then(back5=>{
+                    
+                    console.log('2提交成功', JSON.stringify(back5, null, 2));                    
+                    resolve("工资卡信息更新成功");
     
                   }).catch(() => {
                     reject('fail3');
