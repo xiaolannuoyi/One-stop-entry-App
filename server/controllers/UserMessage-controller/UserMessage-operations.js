@@ -2,6 +2,7 @@ let dbHelper = require('../../lib/dbHelper');
 let UserModel = dbHelper.getModel('user');
 let PreBaseInfoModel = dbHelper.getModel('preBaseInfo');
 let bankcardModel = dbHelper.getModel('bankcard');
+let workInfoModel = dbHelper.getModel('workInfo');
 
 class UserMessageOpt {
   //offer 接受，拒绝
@@ -126,8 +127,16 @@ class UserMessageOpt {
                   bankcard: back2._id
                 }
               }).then(back3=>{
-                console.log('1提交成功', JSON.stringify(back3, null, 2));
-                resolve("工资卡信息提交成功");
+                bankcardModel.findById(back3.bankcard).then(bank4=>{
+                  console.log('1提交成功', JSON.stringify(bank4, null, 2));
+                  resolve({
+                    data:bank4,
+                    msg:"工资卡信息提交成功"
+                  });
+                }).catch(() => {
+                  reject('fail1');
+                });
+                
 
 
               }).catch(() => {
@@ -141,16 +150,23 @@ class UserMessageOpt {
             console.log(222222222222)
             bankcardModel.findByIdAndRemove({_id:back.preBaseInfo}).then(()=>{
               
-                bankcardModel.create(data.Bankcard).then( back4 =>{
+                bankcardModel.create(data.Bankcard).then( back5 =>{
                   UserModel.findByIdAndUpdate(data.id,{
                     $set:{
-                      bankcard: back4._id
+                      bankcard: back5._id
                     }
-                  }).then(back5=>{
+                  }).then(back6=>{
                     
-                    console.log('2提交成功', JSON.stringify(back5, null, 2));                    
-                    resolve("工资卡信息更新成功");
-    
+                    bankcardModel.findById(back6.bankcard).then(bank7=>{
+                      console.log('1提交成功', JSON.stringify(bank7, null, 2));
+                      resolve({
+                        data:bank7,
+                        msg:"工资卡信息更新成功"
+                      });
+                    }).catch(() => {
+                      reject('fail1');
+                    });
+                    
                   }).catch(() => {
                     reject('fail3');
                   });
@@ -169,6 +185,23 @@ class UserMessageOpt {
         });
          
       });
+    }
+
+    /**
+     * 工作经历
+     */
+    submitpreWorkInfo(data){
+      return new Promise((resolve, reject) =>{
+        workInfoModel.create(data).then( work =>{
+          console.log("work",work);
+          
+          resolve(work);
+        }).catch(() => {
+          reject('fail');
+        });
+      })
+      
+       
     }
 }
 module.exports = new UserMessageOpt;

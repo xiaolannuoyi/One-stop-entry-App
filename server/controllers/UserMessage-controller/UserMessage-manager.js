@@ -66,8 +66,27 @@ class UserMessageManager {
       console.log("data",data)
       ctx.response.body = {
           code:200,
-          msg:"ok",
-          result:data
+          msg: data.msg,
+          result : data.data
+      }
+    }).catch(err => {
+      ctx.response.body = {
+        code:300,
+        msg:err,
+    }
+    });
+  }
+  
+    /**
+   * 工作经历
+   */
+  async submitpreWorkInfo(ctx, next) {
+    await UserMessageOpt.submitpreWorkInfo(ctx.request.body).then(data => {
+      console.log("data",data)
+      ctx.response.body = {
+          code:200,
+          msg: 'ok',
+          result : data
       }
     }).catch(err => {
       ctx.response.body = {

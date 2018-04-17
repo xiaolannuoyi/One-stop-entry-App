@@ -14,7 +14,6 @@
 
 <script>
 import ServiceManager from '@/services/services-manager';
-import preSelectorlist from 'static/models/preSelector.js'
 import { Group,XInput,XButton,Cell } from 'vux'
 import store from '@/store/store.js'
 
@@ -25,14 +24,20 @@ export default {
     },
     data(){
         return{
-            ZSbankcard:{
-                sPfaccount:'',//账户名
-                sPfid:'',//身份证号码
-                sPfcardNum:'',//卡号
-                sPfopenban:'',//开户行名称
-                sPfopCity:''//开户城市
-            }
+            // ZSbankcard:{
+            //     sPfaccount:'',//账户名
+            //     sPfid:'',//身份证号码
+            //     sPfcardNum:'',//卡号
+            //     sPfopenban:'',//开户行名称
+            //     sPfopCity:''//开户城市
+            // }
         }
+    },
+    computed: {
+        ZSbankcard() {
+            console.log(this.$store.state.bankcard);
+            return this.$store.state.bankcard;
+        },
     },
     methods:{
         confirm(){
@@ -46,15 +51,15 @@ export default {
                 console.log(data)
                 if (data.data.code == 200) {
                     this.$vux.toast.show({
-                    text: data.data.result,
+                    text: data.data.msg,
                     type: 'success'
                     });
-                    // this.$store.state.UserInfo = data.data.result;//返回数据存入store
-                    // console.log("store",this.$store.state.UserInfo)
+                    this.$store.state.bankcard = data.data.result;//返回数据存入store
+                    console.log("bankcard",this.$store.state.bankcard)
                     // this.$router.replace('/home/userdata');
                 } else {
                     this.$vux.toast.show({
-                    text : data.data.result,
+                    text : data.data.msg,
                     type: 'warning'
                     });
                 }

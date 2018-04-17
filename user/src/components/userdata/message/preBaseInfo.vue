@@ -49,41 +49,47 @@ export default {
     data(){
         return{
             address:ChinaAddressV4Data,
-            preBaseInfo:{
-                email:'',
-                urgentPeo:'',//紧急联系人
-                secuArea:'',//缴纳社保地区
+            // preBaseInfo:{
+            //     email:'',
+            //     urgentPeo:'',//紧急联系人
+            //     secuArea:'',//缴纳社保地区
 
-                tel:'',                
-                idCard:'',//身份ID n
-                sex:'', //性别 
-                nation:'',//民族
-                location:'', //国籍
-                plocitical:'', //政治面貌
-                marital:'',//婚姻状况
-                eduHighest:'',//最高学历
-                bgSurvey:'',//背景调查
-                urgentTel:'',//紧急联系方式
-                bodyState:'',//身体状况
-                medical:'',//既往病史
-                hered:'',//重大疾病以及遗传病
-                hkType:'',//户口性质
-                secuRi:'',//是否缴纳过社保 
+            //     tel:'',                
+            //     idCard:'',//身份ID n
+            //     sex:'', //性别 
+            //     nation:'',//民族
+            //     location:'', //国籍
+            //     plocitical:'', //政治面貌
+            //     marital:'',//婚姻状况
+            //     eduHighest:'',//最高学历
+            //     bgSurvey:'',//背景调查
+            //     urgentTel:'',//紧急联系方式
+            //     bodyState:'',//身体状况
+            //     medical:'',//既往病史
+            //     hered:'',//重大疾病以及遗传病
+            //     hkType:'',//户口性质
+            //     secuRi:'',//是否缴纳过社保 
 
 
                 
-                oriPlace:[], //籍贯                
-                nowAdress:[],//现住址
-                hkAdress:[],//户口所在地
+            //     oriPlace:[], //籍贯                
+            //     nowAdress:[],//现住址
+            //     hkAdress:[],//户口所在地
 
-                graduDate:'',//毕业日期
-                workDate:'',//工作日期
-                birthDay:'', //生日
+            //     graduDate:'',//毕业日期
+            //     workDate:'',//工作日期
+            //     birthDay:'', //生日
 
-            },
+            // },
             preSelector:preSelectorlist
         }
     
+    },
+    computed: {
+        preBaseInfo() {
+            console.log(this.$store.state.preBaseInfo);
+            return this.$store.state.preBaseInfo;
+        },
     },
     methods:{
         confirm(){

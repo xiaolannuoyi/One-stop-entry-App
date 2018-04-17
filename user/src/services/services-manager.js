@@ -47,6 +47,15 @@ let servicesManager = {
       data: {id,Bankcard}
     });
   },
+  //提交工作信息
+  submitpreWorkInfo(preWorkInfo) {
+    console.log(" ",preWorkInfo)
+    return axios({
+      method: 'post',
+      url: '/UserMessage/step/submitpreWorkInfo',
+      data: preWorkInfo
+    });
+  },
   
 };
 

@@ -33,8 +33,8 @@ module.exports = {
             default:null
         },
       },
-      //个人信息
-      preBaseInfo:{
+    //个人信息
+    preBaseInfo:{
         email:{
             type: String,
             default:null,
@@ -157,5 +157,79 @@ module.exports = {
             type: String,
             default:null,
         },//开户城市
-    }
+    },
+    //工作经历
+    workInfo:{
+        company:{//公司名称
+            type: String,
+            default:null,
+        },
+        Startdate:{//开始时间
+            type: Date,
+            default:null,
+        },
+        Enddate:{//结束时间
+            type: Date,
+            default:null,
+        },
+        post:{//工作岗位
+            type: String,
+            default:null,
+        },
+        user:{
+            type: Schema.ObjectId,
+            ref: 'user'
+        }
+       
+    },
+    // "id":16,
+    //       "sEndtime": "2016-8",
+    //       "sMyposit": "软件开发",
+    //       "sName": "北京赞同",
+    //       "sProname": "胡晓群",
+    //       "sProphone": "17602131193",
+    //       "sProvider": "经理",
+    //       "sStartdate": "2015-7"
+    // //
+    // {
+    //     "title":"家庭成员",
+    //     "icon":"static/image/category/family-info.png",
+    //     "show":false,
+    //      "id":"homeMem",
+    //     "valueType":"table",
+    //     "vueType":"HomeInfo",
+    //     "template":"homeMan",
+    //     "value":[]
+    //   },
+    //   {
+    //     "title":"资格证书",
+    //     "icon":"static/image/category/diploma-info.png",
+    //     "show":false,
+    //      "id":"qualifica",
+    //     "valueType":"table",
+    //     "vueType":"QualifyInfo",
+    //     "template":"qualifica",
+    //     "value":[]
+    //   },
+    //   {
+    //     "title":"教育背景",
+    //     "icon":"static/image/category/edu-info.png",
+    //     "show":false,
+    //      "id":"eduBg",
+    //     "valueType":"table",
+    //     "vueType":"EduBg",
+    //     "template":"eduBg",
+    //     "value":[]
+    //   },
+    //   {
+    //     "title":"上传资料",
+    //     "icon":"static/image/category/pictures-info.png",
+    //     "show":false,
+    //      "id":"",
+    //      "isShowChecked":false,
+    //     "valueType":"link",
+    //     "vueType":"EntryApply",
+    //     "template":"",
+    //     "value":[]
+    //   }
 }

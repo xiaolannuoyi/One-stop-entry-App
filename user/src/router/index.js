@@ -14,6 +14,7 @@ import Step from '@/components/userdata/message/step'
 import PreBaseInfo from '@/components/userdata/message/preBaseInfo'
 import BankCards from '@/components/userdata/message/bankCards'
 import PreWorkInfo from '@/components/userdata/message/preWorkInfo'
+import PreAddWorkInfo from '@/components/userdata/message/preAddWorkInfo'
 
 import mod from '@/components/userdata/message/mod'
 Vue.use(Router)
@@ -65,8 +66,12 @@ export default new Router({
         },
         {
           path: 'preWorkInfo',
-          name: 'PreWorkInfo',
-          component: PreWorkInfo
+          component: PreWorkInfo,
+        },
+        {
+          path: 'preAddWorkInfo',
+          name: 'preAddWorkInfo',
+          component: PreAddWorkInfo
         }
       ]
     },
