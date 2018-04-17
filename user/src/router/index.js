@@ -8,15 +8,18 @@ import Check from '@/components/activity/Check'
 import UserData from '@/components/activity/UserData'
 
 // 信息
-
 import changePassword from '@/components/userdata/message/changePassword'
-import preMsg from '@/components/userdata/message/preMsg'
+
+import Step from '@/components/userdata/message/step'
+import PreBaseInfo from '@/components/userdata/message/preBaseInfo'
+import PreWorkInfo from '@/components/userdata/message/preWorkInfo'
+
 import mod from '@/components/userdata/message/mod'
 Vue.use(Router)
 
 export default new Router({
   routes: [
-    {path: '/',component: Login},
+    { path: '/', component: Login },
     {
       path: '/home',
       component: FooterTab,
@@ -28,7 +31,7 @@ export default new Router({
           component: Home
         },
         {
-          path:'company',
+          path: 'company',
           name: 'Company',
           component: Company
         },
@@ -36,14 +39,30 @@ export default new Router({
           path: 'check',
           name: 'Check',
           component: Check
-        },{
+        }, {
           path: 'userData',
           name: 'UserData',
           component: UserData
         }]
     },
-    {path: '/userdata/message/changePassword',component: changePassword},
-    {path: '/userdata/message/mod',component: mod},
-    {path: '/userdata/message/preMsg',component: preMsg},
+    { path: '/userdata/message/changePassword', component: changePassword },
+    { path: '/userdata/message/mod', component: mod },
+    {
+      path: '/userdata/message/step',
+      component: Step,
+      redirect: '/userdata/message/step/preBaseInfo',
+      children: [
+        {
+          path: 'preBaseInfo',
+          name: 'PreBaseInfo',
+          component: PreBaseInfo
+        },
+        {
+          path: 'preWorkInfo',
+          name: 'PreWorkInfo',
+          component: PreWorkInfo
+        }
+      ]
+    },
   ]
 })

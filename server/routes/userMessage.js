@@ -5,5 +5,6 @@ router.prefix('/UserMessage')
 
 router.post('/UserOfferState', UserMessageManager.UserOfferState);
 router.post('/ChangePassword', UserMessageManager.ChangePassword);
+router.post('/step/submitPreBaseInfo', UserMessageManager.submitPreBaseInfo);
 
 module.exports = router

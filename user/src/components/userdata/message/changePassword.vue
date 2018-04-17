@@ -1,7 +1,7 @@
 <template>
   <div>
     <!-- header -->
-    <x-header :left-options="{showBack: false}">修改密码</x-header>
+    <x-header :left-options="{showBack: true}">修改密码</x-header>
     <!-- content -->
     <group>
       <x-input title="旧密码" type="text" placeholder="请输入旧密码" :max="6" ref="oldps" v-model="oldpassword" :equal-with="storeOldpassword"></x-input>

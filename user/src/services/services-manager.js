@@ -29,6 +29,15 @@ let servicesManager = {
       data: {id,password}
     });
   },
+  // 提交个人信息
+  submitPreBaseInfo(id,preBaseInfo) {
+    console.log(" ",id,preBaseInfo)
+    return axios({
+      method: 'post',
+      url: '/UserMessage/step/submitPreBaseInfo',
+      data: {id,preBaseInfo}
+    });
+  },
   
 };
 

@@ -1,0 +1,147 @@
+<template>
+  <div>
+    <group>
+      <x-input title="身份ID" v-model="preBaseInfo.idCard"></x-input>
+      <x-input title="移动电话" v-model="preBaseInfo.tel"></x-input>      
+      <selector title="性别" v-model="preBaseInfo.sex" :options="preSelector.sex" direction="rtl"></selector>
+      <datetime  title="生日" v-model="preBaseInfo.birthDay"></datetime>
+      <selector title="民族" v-model="preBaseInfo.nation" :options="preSelector.nation" direction="rtl"></selector>
+      <selector title="国籍" v-model="preBaseInfo.location" :options="preSelector.location" direction="rtl"></selector>
+      <x-address title="籍贯" v-model="preBaseInfo.oriPlace" :list="address" ></x-address>
+      <selector title="政治面貌" v-model="preBaseInfo.plocitical" :options="preSelector.plocitical" direction="rtl"></selector>
+      <selector title="婚姻状况" v-model="preBaseInfo.marital" :options="preSelector.marital" direction="rtl"></selector>
+      <selector title="最高学历" v-model="preBaseInfo.eduHighest" :options="preSelector.eduHighest" direction="rtl"></selector>
+      <datetime  title="毕业日期" v-model="preBaseInfo.graduDate"></datetime>
+      <datetime  title="工作日期" v-model="preBaseInfo.workDate"></datetime>
+      <selector title="背景调查" v-model="preBaseInfo.bgSurvey" :options="preSelector.bgSurvey" direction="rtl"></selector>
+      <x-address title="现住址" v-model="preBaseInfo.nowAdress" :list="address" ></x-address>
+
+      <selector title="身体状况" v-model="preBaseInfo.bodyState" :options="preSelector.bodyState" direction="rtl"></selector>
+      <selector title="既往病史" v-model="preBaseInfo.medical" :options="preSelector.medical" direction="rtl"></selector>
+      <selector title="重大疾病以及遗传病" v-model="preBaseInfo.hered" :options="preSelector.hered" direction="rtl"></selector>
+
+      <selector title="户口性质" v-model="preBaseInfo.hkType" :options="preSelector.hkType" direction="rtl"></selector>
+      <x-address title="户口所在地" v-model="preBaseInfo.hkAdress" :list="address" ></x-address>
+      <selector title="是否缴纳过社保" v-model="preBaseInfo.secuRi" :options="preSelector.secuRi" direction="rtl"></selector>
+      <selector title="缴纳社保地区" v-model="preBaseInfo.secuArea" :options="preSelector.secuArea" direction="rtl"></selector>
+    
+      <x-input title="紧急联系人" v-model="preBaseInfo.urgentPeo"></x-input>
+      <x-input title="紧急联系方式" v-model="preBaseInfo.urgentTel"></x-input>
+
+        <x-button type="primary" @click.native="confirm">提交</x-button>
+      
+    </group>
+    
+  </div>
+</template>
+
+<script>
+import ServiceManager from '@/services/services-manager';
+import preSelectorlist from 'static/models/preSelector.js'
+import { Group,Selector,XInput,XAddress,Datetime,XButton, ChinaAddressV4Data } from 'vux'
+import store from '@/store/store.js'
+
+export default {
+    store,
+    components: {
+        Group,Selector,XInput,XAddress,Datetime,XButton
+    },
+    data(){
+        return{
+            address:ChinaAddressV4Data,
+            preBaseInfo:{
+                email:'',
+                urgentPeo:'',//紧急联系人
+                secuArea:'',//缴纳社保地区
+
+                tel:'',                
+                idCard:'',//身份ID n
+                sex:'', //性别 
+                nation:'',//民族
+                location:'', //国籍
+                plocitical:'', //政治面貌
+                marital:'',//婚姻状况
+                eduHighest:'',//最高学历
+                bgSurvey:'',//背景调查
+                urgentTel:'',//紧急联系方式
+                bodyState:'',//身体状况
+                medical:'',//既往病史
+                hered:'',//重大疾病以及遗传病
+                hkType:'',//户口性质
+                secuRi:'',//是否缴纳过社保 
+
+
+                
+                oriPlace:[], //籍贯                
+                nowAdress:[],//现住址
+                hkAdress:[],//户口所在地
+
+                graduDate:'',//毕业日期
+                workDate:'',//工作日期
+                birthDay:'', //生日
+
+            },
+            preSelector:preSelectorlist
+        }
+    
+    },
+    methods:{
+        confirm(){
+            console.log(this.preBaseInfo);
+            console.log(this.$store.state.UserInfo._id);
+            // 类型转换
+            let predata ={}
+            predata.email=this.preBaseInfo.email ;
+            predata.urgentPeo=this.preBaseInfo.urgentPeo ;//紧急联系人
+            predata.secuArea=this.preBaseInfo.secuArea ;//缴纳社保地区
+
+            predata.tel = Number(this.preBaseInfo.tel) ;
+            predata.idCard = Number(this.preBaseInfo.idCard) ;//身份ID n
+            predata.sex = Number(this.preBaseInfo.sex) ; //性别 
+            predata.nation = Number(this.preBaseInfo.nation) ;//民族
+            predata.location = Number(this.preBaseInfo.location) ; //国籍
+            predata.plocitical = Number(this.preBaseInfo.plocitical) ; //政治面貌
+            predata.marital = Number(this.preBaseInfo.marital) ;//婚姻状况
+            predata.eduHighest = Number(this.preBaseInfo.eduHighest) ;//最高学历
+            predata.bgSurvey = Number(this.preBaseInfo.bgSurvey) ;//背景调查
+            predata.urgentTel = Number(this.preBaseInfo.urgentTel) ;//紧急联系方式
+            predata.bodyState = Number(this.preBaseInfo.bodyState) ;//身体状况
+            predata.medical = Number(this.preBaseInfo.medical) ;//既往病史
+            predata.hered = Number(this.preBaseInfo.hered) ;//重大疾病以及遗传病
+            predata.hkType = Number(this.preBaseInfo.hkType) ;//户口性质
+            predata.secuRi = Number(this.preBaseInfo.secuRi) ;//是否缴纳过社保 
+
+            predata.oriPlace = this.preBaseInfo.oriPlace ; //籍贯
+            predata.nowAdress = this.preBaseInfo.nowAdress ;//现住址
+            predata.hkAdress = this.preBaseInfo.hkAdress ;//户口所在地
+
+            predata.graduDate=new Date(this.preBaseInfo.graduDate).getTime() ;//毕业日期
+            predata.workDate=new Date(this.preBaseInfo.workDate).getTime() ;//工作日期
+            predata.birthDay=new Date(this.preBaseInfo.birthDay).getTime() ; //生日
+            console.log(predata);
+            
+             ServiceManager.submitPreBaseInfo(this.$store.state.UserInfo._id,predata).then(data => {
+                console.log(data)
+                if (data.data.code == 200) {
+                    this.$vux.toast.show({
+                    text: '修改密码成功',
+                    type: 'success'
+                    });
+                    // this.$store.state.UserInfo = data.data.result;//返回数据存入store
+                    // console.log("store",this.$store.state.UserInfo)
+                    // this.$router.replace('/home/userdata');
+                } else {
+                    this.$vux.toast.show({
+                    text: '修改密码失败，请重试',
+                    type: 'success'
+                    });
+                }
+            });
+        }
+    }
+}
+</script>
+
+<style>
+
+</style>

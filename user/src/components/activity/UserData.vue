@@ -5,7 +5,7 @@
     <!-- content -->
     <group>
         <cell title="修改密码" link="/userdata/message/changePassword"></cell>
-        <cell title="个人信息" link="/userdata/message/preMsg"></cell>
+        <cell title="个人信息" link="/userdata/message/step"></cell>
         <cell title="资料上传" link="/userdata/imagefile/IDCard"></cell>
     </group>
    </div> 
