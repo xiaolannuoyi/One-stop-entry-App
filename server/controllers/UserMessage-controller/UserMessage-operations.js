@@ -3,6 +3,9 @@ let UserModel = dbHelper.getModel('user');
 let PreBaseInfoModel = dbHelper.getModel('preBaseInfo');
 let bankcardModel = dbHelper.getModel('bankcard');
 let workInfoModel = dbHelper.getModel('workInfo');
+let HomeInfoModel = dbHelper.getModel('homeInfo');
+let EduBgModel = dbHelper.getModel('eduBg');
+let QualifyInfoModel = dbHelper.getModel('qualifyInfo');
 
 class UserMessageOpt {
   //offer 接受，拒绝
@@ -202,6 +205,53 @@ class UserMessageOpt {
       })
       
        
+    }
+
+    /**
+     * 家庭成员
+     */
+    submitpreHomeInfo(data){
+      return new Promise((resolve, reject) =>{
+        HomeInfoModel.create(data).then( home =>{
+          console.log("home",home);
+          
+          resolve(home);
+        }).catch(() => {
+          reject('fail');
+        });
+      })
+      
+    }
+    
+    /**
+     * 教育背景
+     */
+    submitEduBgInfo(data){
+      return new Promise((resolve, reject) =>{
+        EduBgModel.create(data).then( edubg =>{
+          console.log("edubg",edubg);
+          
+          resolve(edubg);
+        }).catch(() => {
+          reject('fail');
+        });
+      })
+      
+    }
+    
+    /**
+     * 荣誉证书
+     */
+    submitQualifyInfo(data){
+      return new Promise((resolve, reject) =>{
+        QualifyInfoModel.create(data).then( Qualify =>{
+          console.log("Qualify",Qualify);
+          resolve(Qualify);
+        }).catch(() => {
+          reject('fail');
+        });
+      })
+      
     }
 }
 module.exports = new UserMessageOpt;

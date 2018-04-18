@@ -95,5 +95,61 @@ class UserMessageManager {
     }
     });
   }
+
+  
+    /**
+   * 家庭成员
+   */
+  async submitpreHomeInfo(ctx, next) {
+    await UserMessageOpt.submitpreHomeInfo(ctx.request.body).then(data => {
+      console.log("data",data)
+      ctx.response.body = {
+          code:200,
+          msg: 'ok',
+          result : data
+      }
+    }).catch(err => {
+      ctx.response.body = {
+        code:300,
+        msg:err,
+    }
+    });
+  }
+      /**
+   * 教育背景
+   */
+  async submitEduBgInfo(ctx, next) {
+    await UserMessageOpt.submitEduBgInfo(ctx.request.body).then(data => {
+      console.log("data",data)
+      ctx.response.body = {
+          code:200,
+          msg: 'ok',
+          result : data
+      }
+    }).catch(err => {
+      ctx.response.body = {
+        code:300,
+        msg:err,
+    }
+    });
+  }
+      /**
+   * 荣誉证书
+   */
+  async submitQualifyInfo(ctx, next) {
+    await UserMessageOpt.submitQualifyInfo(ctx.request.body).then(data => {
+      console.log("data",data)
+      ctx.response.body = {
+          code:200,
+          msg: 'ok',
+          result : data
+      }
+    }).catch(err => {
+      ctx.response.body = {
+        code:300,
+        msg:err,
+    }
+    });
+  }
 }
 module.exports =  new UserMessageManager

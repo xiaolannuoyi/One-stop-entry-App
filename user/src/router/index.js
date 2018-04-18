@@ -16,6 +16,15 @@ import BankCards from '@/components/userdata/message/bankCards'
 import PreWorkInfo from '@/components/userdata/message/preWorkInfo'
 import PreAddWorkInfo from '@/components/userdata/message/preAddWorkInfo'
 
+import HomeInfo from '@/components/userdata/message/HomeInfo'
+import AddHomeInfo from '@/components/userdata/message/addHomeInfo'
+
+import QualifyInfo from '@/components/userdata/message/qualifyInfo'
+import AddQualifyInfo from '@/components/userdata/message/addqualifyInfo'
+
+import EduBg from '@/components/userdata/message/EduBg'
+import AddEduBg from '@/components/userdata/message/addEduBg'
+
 import mod from '@/components/userdata/message/mod'
 Vue.use(Router)
 
@@ -66,12 +75,43 @@ export default new Router({
         },
         {
           path: 'preWorkInfo',
+          name: 'preWorkInfo',
           component: PreWorkInfo,
         },
         {
           path: 'preAddWorkInfo',
           name: 'preAddWorkInfo',
           component: PreAddWorkInfo
+        },
+        {
+          path: 'homeInfo',
+          name: 'homeInfo',
+          component: HomeInfo
+        },
+        {
+          path: 'addHomeInfo',
+          name: 'addHomeInfo',
+          component: AddHomeInfo
+        },
+        {
+          path: 'qualifyInfo',
+          name: 'qualifyInfo',
+          component: QualifyInfo
+        },
+        {
+          path: 'addQualifyInfo',
+          name: 'addQualifyInfo',
+          component: AddQualifyInfo
+        },
+        {
+          path: 'eduBg',
+          name: 'eduBg',
+          component: EduBg
+        },
+        {
+          path: 'addEduBg',
+          name: 'addEduBg',
+          component: AddEduBg
         }
       ]
     },

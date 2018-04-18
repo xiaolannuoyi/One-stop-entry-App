@@ -44,18 +44,18 @@ export default {
           num:2
         },
         {
-          title:"基本信息",
-          path:"preBaseInfo",
+          title:"家庭信息",
+          path:"homeInfo",
           num:3
         },
         {
-          title:"基本信息",
-          path:"preBaseInfo",
+          title:"荣誉证书",
+          path:"qualifyInfo",
           num:4
         },
         {
-          title:"基本信息",
-          path:"preBaseInfo",
+          title:"教育背景",
+          path:"eduBg",
           num:5
         },
       ]

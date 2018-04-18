@@ -56,7 +56,33 @@ let servicesManager = {
       data: preWorkInfo
     });
   },
-  
+  //提交家庭信息
+  submitpreHomeInfo(preHomeInfo) {
+    console.log(" ",preHomeInfo)
+    return axios({
+      method: 'post',
+      url: '/UserMessage/step/submitpreHomeInfo',
+      data: preHomeInfo
+    });
+  },
+  //提交教育背景
+  submitEduBgInfo(EduBgInfo) {
+    console.log(" ",EduBgInfo)
+    return axios({
+      method: 'post',
+      url: '/UserMessage/step/submitEduBgInfo',
+      data: EduBgInfo
+    });
+  },
+  //提交荣誉证书
+  submitpreQualifyInfo(QualifyInfo) {
+    console.log(" ",QualifyInfo)
+    return axios({
+      method: 'post',
+      url: '/UserMessage/step/submitQualifyInfo',
+      data: QualifyInfo
+    });
+  },
 };
 
 export default servicesManager;

@@ -1,16 +1,12 @@
 <template>
   <div>
     <group>
-        <x-input title="工作单位" v-model="preWorkInfo.company"></x-input>
-        <datetime  title="开始日期" v-model="preWorkInfo.Startdate"></datetime>
-        <datetime  title="结束日期" v-model="preWorkInfo.Enddate"></datetime>
-        <x-input title="工作岗位" v-model="preWorkInfo.post"></x-input>  
-        <x-input title="证明人" v-model="preWorkInfo.post"></x-input>  
-        <x-input title="证明人岗位" v-model="preWorkInfo.post"></x-input>  
-        <x-input title="证明人联系方式" v-model="preWorkInfo.post"></x-input>  
+        <x-input title="姓名" v-model="preHomeInfo.name"></x-input>
+        <x-input title="与本人关系" v-model="preHomeInfo.Relation"></x-input>  
+        <x-input title="工作单位" v-model="preHomeInfo.company"></x-input>
+        <x-input title="联系方式" v-model="preHomeInfo.Company "></x-input>
 
         <x-button type="primary" @click.native="confirm">提交</x-button>
-          
     </group>
   </div>
 </template>
@@ -27,14 +23,11 @@ export default {
     },
     data(){
         return{
-            preWorkInfo:{
-                company:'',
-                Startdate:'',
-                Enddate:'',
-                post:'',
-                Provider:'',
-                Proname:'',
-                Prophone:'',
+            preHomeInfo:{
+                name:'',
+                Relation:'',
+                Company:'',
+                Contact:''
             }
         }
     
@@ -47,16 +40,13 @@ export default {
     },
     methods:{
         confirm(){
-            let prework= {}
-            prework.company=this.preWorkInfo.company;
-            prework.Startdate=new Date(this.preWorkInfo.Startdate).getTime();
-            prework.Enddate=new Date(this.preWorkInfo.Enddate).getTime();
-            prework.post=this.preWorkInfo.post;
-            prework.Provider=this.preWorkInfo.Provider;
-            prework.Proname=this.preWorkInfo.Proname;
-            prework.Prophone=Number(this.preWorkInfo.Prophone);
-            prework.user=this.$store.state.UserInfo._id;
-            ServiceManager.submitpreWorkInfo(prework).then(data => {
+            let preHome= {}
+            preHome.name = this.preHomeInfo.company;
+            preHome.Relation = this.preHomeInfo.Relation;
+            preHome.Company = this.preHomeInfo.Company;
+            preHome.Contact = Number(this.preHomeInfo.Contact);
+            preHome.user=this.$store.state.UserInfo._id;
+            ServiceManager.submitpreHomeInfo(preHome).then(data => {
                 console.log(data)
                 if (data.data.code == 200) {
                     this.$vux.toast.show({

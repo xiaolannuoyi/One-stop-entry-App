@@ -176,60 +176,92 @@ module.exports = {
             type: String,
             default:null,
         },
+        Provider:{//证明人职位
+            type: String,
+            default:null,
+        },
+        Proname:{//证明人
+            type: String,
+            default:null,
+        },
+        Prophone:{//联系方式(证明人)
+            type: Number,
+            default:null,
+        },
         user:{
             type: Schema.ObjectId,
             ref: 'user'
         }
        
     },
-    // "id":16,
-    //       "sEndtime": "2016-8",
-    //       "sMyposit": "软件开发",
-    //       "sName": "北京赞同",
-    //       "sProname": "胡晓群",
-    //       "sProphone": "17602131193",
-    //       "sProvider": "经理",
-    //       "sStartdate": "2015-7"
-    // //
-    // {
-    //     "title":"家庭成员",
-    //     "icon":"static/image/category/family-info.png",
-    //     "show":false,
-    //      "id":"homeMem",
-    //     "valueType":"table",
-    //     "vueType":"HomeInfo",
-    //     "template":"homeMan",
-    //     "value":[]
-    //   },
-    //   {
-    //     "title":"资格证书",
-    //     "icon":"static/image/category/diploma-info.png",
-    //     "show":false,
-    //      "id":"qualifica",
-    //     "valueType":"table",
-    //     "vueType":"QualifyInfo",
-    //     "template":"qualifica",
-    //     "value":[]
-    //   },
-    //   {
-    //     "title":"教育背景",
-    //     "icon":"static/image/category/edu-info.png",
-    //     "show":false,
-    //      "id":"eduBg",
-    //     "valueType":"table",
-    //     "vueType":"EduBg",
-    //     "template":"eduBg",
-    //     "value":[]
-    //   },
-    //   {
-    //     "title":"上传资料",
-    //     "icon":"static/image/category/pictures-info.png",
-    //     "show":false,
-    //      "id":"",
-    //      "isShowChecked":false,
-    //     "valueType":"link",
-    //     "vueType":"EntryApply",
-    //     "template":"",
-    //     "value":[]
-    //   }
+    //家庭成员
+    homeInfo:{
+        cname:{
+            type: String,
+            default:null,
+        },//姓名
+        Relation:{
+            type: String,
+            default:null,
+        },//与本人关系
+        Company:{
+            type: String,
+            default:null,
+        },//工作单位
+        Contact:{
+            type: Number,
+            default:null,
+        },//联系方式
+        user:{
+            type: Schema.ObjectId,
+            ref: 'user'
+        }
+    },
+    //学历信息
+    eduBg:{
+        Startdate:{
+            type: Date,
+            default:null,
+        },//开始日期
+        Enddate:{
+            type: Date,
+            default:null,
+        },//结束日期
+        Schoolname:{
+            type: String,
+            default:null,
+        },//学校名称
+        College:{
+            type: String,
+            default:null,
+        },//院系
+        Major:{
+            type: String,
+            default:null,
+        },//专业
+        Education:{
+            type: String,
+            default:null,
+        },//学历
+        user:{
+            type: Schema.ObjectId,
+            ref: 'user'
+        }
+    },
+    //资格证书
+    qualifyInfo:{
+        Getdate:{
+            type: Date,
+            default:null,
+        },//获得年月
+        Name:{
+            type: String,
+            default:null,
+        },//证书名称
+        user:{
+            type: Schema.ObjectId,
+            ref: 'user'
+        }
+    }
+
 }
