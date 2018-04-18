@@ -123,15 +123,15 @@ module.exports = {
         },//户口所在地
 
         graduDate:{
-            type: Date,
+            type: String,
             default:null,
         },//毕业日期
         workDate:{
-            type: Date,
+            type: String,
             default:null,
         },//工作日期
         birthDay:{
-            type: Date,
+            type: String,
             default:null,
         }, //生日
     },
@@ -165,11 +165,11 @@ module.exports = {
             default:null,
         },
         Startdate:{//开始时间
-            type: Date,
+            type: String,
             default:null,
         },
         Enddate:{//结束时间
-            type: Date,
+            type: String,
             default:null,
         },
         post:{//工作岗位
@@ -220,11 +220,11 @@ module.exports = {
     //学历信息
     eduBg:{
         Startdate:{
-            type: Date,
+            type: String,
             default:null,
         },//开始日期
         Enddate:{
-            type: Date,
+            type: String,
             default:null,
         },//结束日期
         Schoolname:{
@@ -251,7 +251,7 @@ module.exports = {
     //资格证书
     qualifyInfo:{
         Getdate:{
-            type: Date,
+            type: String,
             default:null,
         },//获得年月
         Name:{

@@ -13,8 +13,10 @@ import changePassword from '@/components/userdata/message/changePassword'
 import Step from '@/components/userdata/message/step'
 import PreBaseInfo from '@/components/userdata/message/preBaseInfo'
 import BankCards from '@/components/userdata/message/bankCards'
-import PreWorkInfo from '@/components/userdata/message/preWorkInfo'
-import PreAddWorkInfo from '@/components/userdata/message/preAddWorkInfo'
+
+import PreWorkInfo from '@/components/userdata/message/work/preWorkInfo'
+import PreAddWorkInfo from '@/components/userdata/message/work/preAddWorkInfo'
+import EditWorkInfo from '@/components/userdata/message/work/EditWorkInfo'
 
 import HomeInfo from '@/components/userdata/message/HomeInfo'
 import AddHomeInfo from '@/components/userdata/message/addHomeInfo'
@@ -82,6 +84,11 @@ export default new Router({
           path: 'preAddWorkInfo',
           name: 'preAddWorkInfo',
           component: PreAddWorkInfo
+        },
+        {
+          path: 'EditWorkInfo/:index',
+          name: 'EditWorkInfo',
+          component: EditWorkInfo
         },
         {
           path: 'homeInfo',

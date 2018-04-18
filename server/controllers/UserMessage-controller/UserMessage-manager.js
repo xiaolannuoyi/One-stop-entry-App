@@ -151,5 +151,40 @@ class UserMessageManager {
     }
     });
   }
+  //-----------删除----------------
+  //删除工作经历
+  async delWorkInfo(ctx, next) {
+    await UserMessageOpt.delWorkInfo(ctx.request.body).then(data => {
+      console.log("data",data)
+      ctx.response.body = {
+          code:200,
+          msg: 'ok',
+          result : data
+      }
+    }).catch(err => {
+      ctx.response.body = {
+        code:300,
+        msg:err,
+    }
+    });
+  }
+  
+  //-----------编辑----------------
+  //编辑工作经历
+  async editpreWorkInfo(ctx, next) {
+    await UserMessageOpt.editpreWorkInfo(ctx.request.body).then(data => {
+      console.log("data",data)
+      ctx.response.body = {
+          code:200,
+          msg: 'ok',
+          result : data
+      }
+    }).catch(err => {
+      ctx.response.body = {
+        code:300,
+        msg:err,
+    }
+    });
+  }
 }
 module.exports =  new UserMessageManager

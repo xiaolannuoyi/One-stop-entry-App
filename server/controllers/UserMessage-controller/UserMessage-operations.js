@@ -253,5 +253,52 @@ class UserMessageOpt {
       })
       
     }
+    //------------删除--------------------
+    //删除工作经历
+    delWorkInfo(data){
+      return new Promise((resolve, reject) =>{
+        workInfoModel.findByIdAndRemove(data._id).then( () =>{
+          workInfoModel.find({user:data.user}).then( newwork =>{
+            resolve(newwork)
+          }).catch(() => {
+            reject('fail');
+          });
+
+        }).catch(() => {
+          reject('fail');
+        });
+      })
+      
+    }
+    
+     //------------编辑--------------------
+     //编辑工作经历
+    
+    editpreWorkInfo(data){
+      return new Promise((resolve, reject) =>{
+        workInfoModel.findByIdAndUpdate(data._id,{
+          $set: {
+                company : data.company,
+                Startdate : data.Startdate,
+                Enddate : data.Enddate,
+                post : data.post,
+                Provider : data.Provider,
+                Proname : data.Proname,
+                Prophone : data.Prophone,
+            
+          }
+        }).then( () =>{
+          workInfoModel.find({user:data.user}).then( newwork =>{
+            resolve(newwork)
+          }).catch(() => {
+            reject('fail');
+          });
+
+        }).catch(() => {
+          reject('fail');
+        });
+      })
+      
+    }
 }
 module.exports = new UserMessageOpt;

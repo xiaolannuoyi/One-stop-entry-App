@@ -1,12 +1,13 @@
 <template>
   <div>
     <group>
-        <datetime  title="起始年月" v-model="preEduBg.Startdate"></datetime>
-        <datetime  title="截止年月" v-model="preEduBg.Enddate"></datetime>
-        <x-input title="学校" v-model="preEduBg.Schoolname"></x-input>  
-        <x-input title="院系" v-model="preEduBg.College"></x-input>  
-        <x-input title="专业" v-model="preEduBg.Major"></x-input>  
-        <x-input title="学历" v-model="preEduBg.Education"></x-input> 
+        <x-input title="工作单位" v-model="preWorkInfo.company"></x-input>
+        <datetime  title="开始日期" v-model="preWorkInfo.Startdate"></datetime>
+        <datetime  title="结束日期" v-model="preWorkInfo.Enddate"></datetime>
+        <x-input title="工作岗位" v-model="preWorkInfo.post"></x-input>  
+        <x-input title="证明人" v-model="preWorkInfo.Provider"></x-input>  
+        <x-input title="证明人岗位" v-model="preWorkInfo.Proname"></x-input>  
+        <x-input title="证明人联系方式" v-model="preWorkInfo.Prophone"></x-input>  
 
         <x-button type="primary" @click.native="confirm">提交</x-button>
           
@@ -26,13 +27,14 @@ export default {
     },
     data(){
         return{
-            preEduBg:{
+            preWorkInfo:{
+                company:'',
                 Startdate:'',
                 Enddate:'',
-                Schoolname:'',
-                College:'',
-                Major:'',
-                Education:''
+                post:'',
+                Provider:'',
+                Proname:'',
+                Prophone:'',
             }
         }
     
@@ -45,22 +47,23 @@ export default {
     },
     methods:{
         confirm(){
-            // let EduBg= {}
-            // EduBg.Startdate=this.preEduBg.Startdate;
-            // EduBg.Enddate=this.preEduBg.Enddate;
-            // EduBg.Schoolname=this.preEduBg.Schoolname;
-            // EduBg.College=this.preEduBg.College;
-            // EduBg.Major=this.preEduBg.Major;
-            // EduBg.Education=this.preEduBg.Education;
-            // EduBg.user=this.$store.state.UserInfo._id;
-            ServiceManager.submitEduBgInfo(this.preEduBg).then(data => {
+            let prework= {}
+            prework.company=this.preWorkInfo.company;
+            prework.Startdate=this.preWorkInfo.Startdate;
+            prework.Enddate=this.preWorkInfo.Enddate;
+            prework.post=this.preWorkInfo.post;
+            prework.Provider=this.preWorkInfo.Provider;
+            prework.Proname=this.preWorkInfo.Proname;
+            prework.Prophone=Number(this.preWorkInfo.Prophone);
+            prework.user=this.$store.state.UserInfo._id;
+            ServiceManager.submitpreWorkInfo(prework).then(data => {
                 console.log(data)
                 if (data.data.code == 200) {
                     this.$vux.toast.show({
                     text: '修改密码成功',
                     type: 'success'
                     });
-                    this.$store.state.workInfo = data.data.result;//返回数据存入store
+                    this.$store.state.workInfo.push(data.data.result);//返回数据存入store
                     console.log("workInfo",this.$store.state.workInfo)
                     this.$router.replace('/userdata/message/step/preWorkInfo');
                 } else {

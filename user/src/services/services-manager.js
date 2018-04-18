@@ -83,6 +83,29 @@ let servicesManager = {
       data: QualifyInfo
     });
   },
+
+// -------删除-----------------------------------------------
+
+  //删除某条工作经历
+  delWorkInfo(work) {
+    console.log(" ",work)
+    return axios({
+      method: 'post',
+      url: '/UserMessage/step/delWorkInfo',
+      data: work
+    });
+  },
+
+  //编辑工作经历
+  editpreWorkInfo(work) {
+    console.log(" ",work)
+    return axios({
+      method: 'post',
+      url: '/UserMessage/step/editpreWorkInfo',
+      data: work
+    });
+  },
+
 };
 
 export default servicesManager;

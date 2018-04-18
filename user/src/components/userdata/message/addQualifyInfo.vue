@@ -37,11 +37,11 @@ export default {
     },
     methods:{
         confirm(){
-            let preQualify= {}
-            preQualify.Name=this.preQualifyInfo.Name;
-            preQualify.Getdate=new Date(this.preQualifyInfo.Getdate).getTime();
+            // let preQualify= {}
+            // preQualify.Name=this.preQualifyInfo.Name;
+            // preQualify.Getdate=new Date(this.preQualifyInfo.Getdate).getTime();
             preQualify.user=this.$store.state.UserInfo._id;
-            ServiceManager.submitpreQualifyInfo(preQualify).then(data => {
+            ServiceManager.submitpreQualifyInfo(this.preQualifyInfo).then(data => {
                 console.log(data)
                 if (data.data.code == 200) {
                     this.$vux.toast.show({
