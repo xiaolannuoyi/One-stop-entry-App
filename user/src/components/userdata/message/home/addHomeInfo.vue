@@ -3,7 +3,7 @@
     <group>
         <x-input title="姓名" v-model="preHomeInfo.name"></x-input>
         <x-input title="与本人关系" v-model="preHomeInfo.Relation"></x-input>  
-        <x-input title="工作单位" v-model="preHomeInfo.company"></x-input>
+        <x-input title="工作单位" v-model="preHomeInfo.Company"></x-input>
         <x-input title="联系方式" v-model="preHomeInfo.Contact "></x-input>
 
         <x-button type="primary" @click.native="confirm">提交</x-button>

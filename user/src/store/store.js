@@ -11,6 +11,8 @@ const state = {
     bankcard:{},//工资卡信息
     workInfo:[],//工作经历
     homeInfo:[],//家庭成员
+    qualifyInfo:[],//资格证书
+    edubgInfo:[],//教育背景
  }
  
  const mutations={

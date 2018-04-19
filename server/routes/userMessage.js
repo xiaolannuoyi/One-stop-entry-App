@@ -14,9 +14,14 @@ router.post('/step/submitQualifyInfo', UserMessageManager.submitQualifyInfo);
 //----删除----------
 router.post('/step/delWorkInfo', UserMessageManager.delWorkInfo);
 router.post('/step/delHomeInfo', UserMessageManager.delHomeInfo);
+router.post('/step/delQualifyInfo', UserMessageManager.delQualifyInfo);
+router.post('/step/delEdubgInfo', UserMessageManager.delEdubgInfo);
 
 //编辑
 router.post('/step/editpreWorkInfo', UserMessageManager.editpreWorkInfo);
 router.post('/step/editpreHomeInfo', UserMessageManager.editpreHomeInfo);
+router.post('/step/editpreQualifyInfo', UserMessageManager.editpreQualifyInfo);
+router.post('/step/editEduBgInfo', UserMessageManager.editEduBgInfo);
+
 
 module.exports = router

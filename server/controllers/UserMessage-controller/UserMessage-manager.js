@@ -184,6 +184,39 @@ class UserMessageManager {
     }
     });
   }
+ 
+   //删除资格证书
+   async delQualifyInfo(ctx, next) {
+    await UserMessageOpt.delQualifyInfo(ctx.request.body).then(data => {
+      console.log("data",data)
+      ctx.response.body = {
+          code:200,
+          msg: 'ok',
+          result : data
+      }
+    }).catch(err => {
+      ctx.response.body = {
+        code:300,
+        msg:err,
+    }
+    });
+  }
+   // 删除教育背景
+   async delEdubgInfo(ctx, next) {
+    await UserMessageOpt.delEdubgInfo(ctx.request.body).then(data => {
+      console.log("data",data)
+      ctx.response.body = {
+          code:200,
+          msg: 'ok',
+          result : data
+      }
+    }).catch(err => {
+      ctx.response.body = {
+        code:300,
+        msg:err,
+    }
+    });
+  }
   //-----------编辑----------------
   //编辑工作经历
   async editpreWorkInfo(ctx, next) {
@@ -204,6 +237,38 @@ class UserMessageManager {
   //编辑家庭成员
   async editpreHomeInfo(ctx, next) {
     await UserMessageOpt.editpreHomeInfo(ctx.request.body).then(data => {
+      console.log("data",data)
+      ctx.response.body = {
+          code:200,
+          msg: 'ok',
+          result : data
+      }
+    }).catch(err => {
+      ctx.response.body = {
+        code:300,
+        msg:err,
+    }
+    });
+  }
+  //编辑资格证书
+  async editpreQualifyInfo(ctx, next) {
+    await UserMessageOpt.editpreQualifyInfo(ctx.request.body).then(data => {
+      console.log("data",data)
+      ctx.response.body = {
+          code:200,
+          msg: 'ok',
+          result : data
+      }
+    }).catch(err => {
+      ctx.response.body = {
+        code:300,
+        msg:err,
+    }
+    });
+  }
+  //编辑教育背景
+  async editEduBgInfo(ctx, next) {
+    await UserMessageOpt.editEduBgInfo(ctx.request.body).then(data => {
       console.log("data",data)
       ctx.response.body = {
           code:200,

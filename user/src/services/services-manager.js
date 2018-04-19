@@ -105,6 +105,7 @@ let servicesManager = {
       data: work
     });
   },
+
   //--------------
 //家庭
   delHomeInfo(home) {
@@ -115,7 +116,7 @@ let servicesManager = {
       data: home
     });
   },
-  //编辑工作经历
+  //编辑
   editpreHomeInfo(home) {
     console.log(" ",home)
     return axios({
@@ -124,7 +125,44 @@ let servicesManager = {
       data: home
     });
   },
-
+  //-----------------------
+  //编辑资格证书
+  editpreQualifyInfo(qualify) {
+    console.log(" ",qualify)
+    return axios({
+      method: 'post',
+      url: '/UserMessage/step/editpreQualifyInfo',
+      data: qualify
+    });
+  },
+    //删除某条资格证书
+    delQualifyInfo(qualify) {
+      console.log(" ",qualify)
+      return axios({
+        method: 'post',
+        url: '/UserMessage/step/delQualifyInfo',
+        data: qualify
+      });
+    },
+    //---------教育经历--------------
+  //编辑教育经历
+  editEduBgInfo(EduBg) {
+    console.log(" ",EduBg)
+    return axios({
+      method: 'post',
+      url: '/UserMessage/step/editEduBgInfo',
+      data: EduBg
+    });
+  },
+    //删除某条教育经历
+    delEdubgInfo(EduBg) {
+      console.log(" ",EduBg)
+      return axios({
+        method: 'post',
+        url: '/UserMessage/step/delEdubgInfo',
+        data: EduBg
+      });
+    },
 };
 
 export default servicesManager;

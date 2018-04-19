@@ -1,8 +1,12 @@
 <template>
   <div>
     <group>
-        <datetime  title="获得年月" v-model="preQualifyInfo.Getdate"></datetime>
-        <x-input title="证书名称" v-model="preQualifyInfo.Name"></x-input> 
+        <datetime  title="起始年月" v-model="preEduBg.Startdate"></datetime>
+        <datetime  title="截止年月" v-model="preEduBg.Enddate"></datetime>
+        <x-input title="学校" v-model="preEduBg.Schoolname"></x-input>  
+        <x-input title="院系" v-model="preEduBg.College"></x-input>  
+        <x-input title="专业" v-model="preEduBg.Major"></x-input>  
+        <x-input title="学历" v-model="preEduBg.Education"></x-input> 
 
         <x-button type="primary" @click.native="confirm">提交</x-button>
           
@@ -22,9 +26,13 @@ export default {
     },
     data(){
         return{
-            preQualifyInfo:{
-                Getdate:'',
-                Name:''
+            preEduBg:{
+                Startdate:'',
+                Enddate:'',
+                Schoolname:'',
+                College:'',
+                Major:'',
+                Education:''
             }
         }
     
@@ -33,15 +41,16 @@ export default {
     },
     methods:{
         confirm(){
-            ServiceManager.submitpreQualifyInfo(this.preQualifyInfo).then(data => {
+            ServiceManager.submitEduBgInfo(this.preEduBg).then(data => {
                 console.log(data)
                 if (data.data.code == 200) {
                     this.$vux.toast.show({
                     text: '修改密码成功',
                     type: 'success'
                     });
-                    this.$store.state.qualifyInfo.push(data.data.result);//返回数据存入store
-                    this.$router.replace('/userdata/message/step/QualifyInfo');
+                    this.$store.state.edubgInfo.push(data.data.result);//返回数据存入store
+                    console.log("edubgInfo",this.$store.state.edubgInfo)
+                    this.$router.replace('/userdata/message/step/eduBgInfo');
                 } else {
                     this.$vux.toast.show({
                     text: '修改密码失败，请重试',

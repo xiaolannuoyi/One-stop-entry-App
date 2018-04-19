@@ -26,43 +26,36 @@ export default {
     },
     data(){
         return{
-            preEduBg:{
-                Startdate:'',
-                Enddate:'',
-                Schoolname:'',
-                College:'',
-                Major:'',
-                Education:''
-            }
+            // preEduBg:{
+            //     Startdate:'',
+            //     Enddate:'',
+            //     Schoolname:'',
+            //     College:'',
+            //     Major:'',
+            //     Education:''
+            // }
         }
     
     },
     computed: {
-        // preBaseInfo() {
-        //     console.log(this.$store.state.preBaseInfo);
-        //     return this.$store.state.preBaseInfo;
-        // },
+        preEduBg() {
+            console.log("index",this.$route.params.index)
+             console.log("this.$store.state.workInfo",this.$store.state.edubgInfo[this.$route.params.index]);
+             return this.$store.state.edubgInfo[this.$route.params.index];
+        },
     },
     methods:{
         confirm(){
-            // let EduBg= {}
-            // EduBg.Startdate=this.preEduBg.Startdate;
-            // EduBg.Enddate=this.preEduBg.Enddate;
-            // EduBg.Schoolname=this.preEduBg.Schoolname;
-            // EduBg.College=this.preEduBg.College;
-            // EduBg.Major=this.preEduBg.Major;
-            // EduBg.Education=this.preEduBg.Education;
-            // EduBg.user=this.$store.state.UserInfo._id;
-            ServiceManager.submitEduBgInfo(this.preEduBg).then(data => {
+            ServiceManager.editEduBgInfo(this.preEduBg).then(data => {
                 console.log(data)
                 if (data.data.code == 200) {
                     this.$vux.toast.show({
                     text: '修改密码成功',
                     type: 'success'
                     });
-                    this.$store.state.workInfo = data.data.result;//返回数据存入store
-                    console.log("workInfo",this.$store.state.workInfo)
-                    this.$router.replace('/userdata/message/step/preWorkInfo');
+                    this.$store.state.edubgInfo = data.data.result;//返回数据存入store
+                    console.log("edubgInfo",this.$store.state.edubgInfo)
+                    this.$router.replace('/userdata/message/step/eduBgInfo');
                 } else {
                     this.$vux.toast.show({
                     text: '修改密码失败，请重试',

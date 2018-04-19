@@ -287,7 +287,37 @@ class UserMessageOpt {
       })
       
     }
+    //删除资格证书
+    delQualifyInfo(data){
+      return new Promise((resolve, reject) =>{
+        QualifyInfoModel.findByIdAndRemove(data._id).then( () =>{
+          QualifyInfoModel.find({user:data.user}).then( newqualify =>{
+            resolve(newqualify)
+          }).catch(() => {
+            reject('fail');
+          });
 
+        }).catch(() => {
+          reject('fail');
+        });
+      })
+      
+    }
+    //删除教育背景
+    delEdubgInfo(data){
+      return new Promise((resolve, reject) =>{
+        EduBgModel.findByIdAndRemove(data._id).then( () =>{
+          EduBgModel.find({user:data.user}).then( newedubg =>{
+            resolve(newedubg)
+          }).catch(() => {
+            reject('fail');
+          });
+        }).catch(() => {
+          reject('fail');
+        });
+      })
+      
+    }
      //------------编辑--------------------
      //编辑工作经历(返回所有)
     
@@ -302,7 +332,6 @@ class UserMessageOpt {
                 Provider : data.Provider,
                 Proname : data.Proname,
                 Prophone : data.Prophone,
-            
           }
         }).then( () =>{
           workInfoModel.find({user:data.user}).then( newwork =>{
@@ -333,6 +362,54 @@ class UserMessageOpt {
         }).then( () =>{
           HomeInfoModel.find({user:data.user}).then( newhome =>{
             resolve(newhome)
+          }).catch(() => {
+            reject('fail');
+          });
+
+        }).catch(() => {
+          reject('fail');
+        });
+      })
+      
+    }
+
+    //编辑资格证书
+    
+    editpreQualifyInfo(data){
+      return new Promise((resolve, reject) =>{
+        QualifyInfoModel.findByIdAndUpdate(data._id,{
+          $set: {
+                  Getdate:data.Getdate,
+                  Name:data.Name
+          }
+        }).then( () =>{
+          QualifyInfoModel.find({user:data.user}).then( newedubg =>{
+            resolve(newedubg)
+          }).catch(() => {
+            reject('fail');
+          });
+
+        }).catch(() => {
+          reject('fail');
+        });
+      })
+      
+    }
+    //编辑教育背景
+    editEduBgInfo(data){
+      return new Promise((resolve, reject) =>{
+        EduBgModel.findByIdAndUpdate(data._id,{
+          $set: {
+            Startdate:data.Startdate,
+            Enddate:data.Enddate,
+            Schoolname:data.Schoolname,
+            College:data.College,
+            Major:data.Major,
+            Education:data.Education
+          }
+        }).then( () =>{
+          EduBgModel.find({user:data.user}).then( newqualify =>{
+            resolve(newqualify)
           }).catch(() => {
             reject('fail');
           });

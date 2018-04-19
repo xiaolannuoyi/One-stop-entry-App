@@ -49,23 +49,14 @@ export default {
     },
     methods:{
         confirm(){
-            let prework= {}
-            prework.company=this.preWorkInfo.company;
-            prework.Startdate=this.preWorkInfo.Startdate;
-            prework.Enddate=this.preWorkInfo.Enddate;
-            prework.post=this.preWorkInfo.post;
-            prework.Provider=this.preWorkInfo.Provider;
-            prework.Proname=this.preWorkInfo.Proname;
-            prework.Prophone=Number(this.preWorkInfo.Prophone);
-            prework.user=this.$store.state.UserInfo._id;
-            ServiceManager.editpreWorkInfo(prework).then(data => {
+            ServiceManager.editpreWorkInfo(this.preWorkInfo).then(data => {
                 console.log(data)
                 if (data.data.code == 200) {
                     this.$vux.toast.show({
                     text: '修改密码成功',
                     type: 'success'
                     });
-                    this.$store.state.workInfo.push(data.data.result);//返回数据存入store
+                    this.$store.state.workInfo = data.data.result;//返回数据存入store
                     console.log("workInfo",this.$store.state.workInfo)
                     this.$router.replace('/userdata/message/step/preWorkInfo');
                 } else {

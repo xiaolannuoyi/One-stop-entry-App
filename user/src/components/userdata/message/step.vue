@@ -55,7 +55,7 @@ export default {
         },
         {
           title:"教育背景",
-          path:"eduBg",
+          path:"eduBgInfo",
           num:5
         },
       ]

@@ -24,9 +24,13 @@ import EdithomeInfo from '@/components/userdata/message/home/EditHomeInfo'
 //qualify
 import QualifyInfo from '@/components/userdata/message/qualify/qualifyInfo'
 import AddQualifyInfo from '@/components/userdata/message/qualify/addqualifyInfo'
+import EditQualifyInfo from '@/components/userdata/message/qualify/EditQualifyInfo'
+
 //edubg
-import EduBg from '@/components/userdata/message/edubg/EduBg'
-import AddEduBg from '@/components/userdata/message/edubg/addEduBg'
+import EduBgInfo from '@/components/userdata/message/edubg/EduBgInfo'
+import AddEduBgInfo from '@/components/userdata/message/edubg/addEduBgInfo'
+import EditEduBgInfo from '@/components/userdata/message/edubg/EditEduBgInfo'
+
 
 import mod from '@/components/userdata/message/mod'
 Vue.use(Router)
@@ -117,14 +121,24 @@ export default new Router({
           component: AddQualifyInfo
         },
         {
-          path: 'eduBg',
-          name: 'eduBg',
-          component: EduBg
+          path: 'EditQualifyInfo/:index',
+          name: 'EditQualifyInfo',
+          component: EditQualifyInfo
         },
         {
-          path: 'addEduBg',
-          name: 'addEduBg',
-          component: AddEduBg
+          path: 'eduBgInfo',
+          name: 'eduBgInfo',
+          component: EduBgInfo
+        },
+        {
+          path: 'addEduBgInfo',
+          name: 'addEduBgInfo',
+          component: AddEduBgInfo
+        },
+        {
+          path: 'EditEduBgInfo/:index',
+          name: 'EditEduBgInfo',
+          component: EditEduBgInfo
         }
       ]
     },

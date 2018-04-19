@@ -3,7 +3,7 @@
     <group>
         <x-input title="姓名" v-model="preHomeInfo.name"></x-input>
         <x-input title="与本人关系" v-model="preHomeInfo.Relation"></x-input>  
-        <x-input title="工作单位" v-model="preHomeInfo.company"></x-input>
+        <x-input title="工作单位" v-model="preHomeInfo.Company"></x-input>
         <x-input title="联系方式" v-model="preHomeInfo.Contact "></x-input>
 
         <x-button type="primary" @click.native="confirm">提交</x-button>
@@ -41,13 +41,7 @@ export default {
     },
     methods:{
         confirm(){
-            let preHome= {}
-            preHome.name = this.preHomeInfo.name;
-            preHome.Relation = this.preHomeInfo.Relation;
-            preHome.Company = this.preHomeInfo.Company;
-            preHome.Contact = Number(this.preHomeInfo.Contact);
-            preHome.user=this.$store.state.UserInfo._id;
-            ServiceManager.editpreHomeInfo(preHome).then(data => {
+            ServiceManager.editpreHomeInfo(this.preHomeInfo).then(data => {
                 console.log(data)
                 if (data.data.code == 200) {
                     this.$vux.toast.show({

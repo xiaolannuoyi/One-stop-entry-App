@@ -3,7 +3,6 @@
     <group>
         <datetime  title="获得年月" v-model="preQualifyInfo.Getdate"></datetime>
         <x-input title="证书名称" v-model="preQualifyInfo.Name"></x-input> 
-
         <x-button type="primary" @click.native="confirm">提交</x-button>
           
     </group>
@@ -22,25 +21,30 @@ export default {
     },
     data(){
         return{
-            preQualifyInfo:{
-                Getdate:'',
-                Name:''
-            }
+            // preQualifyInfo:{
+            //     Getdate:'',
+            //     Name:''
+            // }
         }
     
     },
     computed: {
+        preQualifyInfo() {
+            console.log("index",this.$route.params.index)
+             console.log("this.$store.state.qualifyInfo",this.$store.state.qualifyInfo[this.$route.params.index]);
+             return this.$store.state.qualifyInfo[this.$route.params.index];
+        },
     },
     methods:{
         confirm(){
-            ServiceManager.submitpreQualifyInfo(this.preQualifyInfo).then(data => {
+            ServiceManager.editpreQualifyInfo(this.preQualifyInfo).then(data => {
                 console.log(data)
                 if (data.data.code == 200) {
                     this.$vux.toast.show({
                     text: '修改密码成功',
                     type: 'success'
                     });
-                    this.$store.state.qualifyInfo.push(data.data.result);//返回数据存入store
+                    this.$store.state.qualifyInfo=data.data.result;//返回数据存入store
                     this.$router.replace('/userdata/message/step/QualifyInfo');
                 } else {
                     this.$vux.toast.show({
