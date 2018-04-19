@@ -196,7 +196,7 @@ module.exports = {
     },
     //家庭成员
     homeInfo:{
-        cname:{
+        name:{
             type: String,
             default:null,
         },//姓名

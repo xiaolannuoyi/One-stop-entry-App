@@ -13,7 +13,10 @@ router.post('/step/submitEduBgInfo', UserMessageManager.submitEduBgInfo);
 router.post('/step/submitQualifyInfo', UserMessageManager.submitQualifyInfo);
 //----删除----------
 router.post('/step/delWorkInfo', UserMessageManager.delWorkInfo);
+router.post('/step/delHomeInfo', UserMessageManager.delHomeInfo);
+
 //编辑
 router.post('/step/editpreWorkInfo', UserMessageManager.editpreWorkInfo);
+router.post('/step/editpreHomeInfo', UserMessageManager.editpreHomeInfo);
 
 module.exports = router

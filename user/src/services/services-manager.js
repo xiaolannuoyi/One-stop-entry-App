@@ -105,6 +105,25 @@ let servicesManager = {
       data: work
     });
   },
+  //--------------
+//家庭
+  delHomeInfo(home) {
+    console.log(" ",home)
+    return axios({
+      method: 'post',
+      url: '/UserMessage/step/delHomeInfo',
+      data: home
+    });
+  },
+  //编辑工作经历
+  editpreHomeInfo(home) {
+    console.log(" ",home)
+    return axios({
+      method: 'post',
+      url: '/UserMessage/step/editpreHomeInfo',
+      data: home
+    });
+  },
 
 };
 

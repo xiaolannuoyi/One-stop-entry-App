@@ -13,19 +13,20 @@ import changePassword from '@/components/userdata/message/changePassword'
 import Step from '@/components/userdata/message/step'
 import PreBaseInfo from '@/components/userdata/message/preBaseInfo'
 import BankCards from '@/components/userdata/message/bankCards'
-
+//work
 import PreWorkInfo from '@/components/userdata/message/work/preWorkInfo'
 import PreAddWorkInfo from '@/components/userdata/message/work/preAddWorkInfo'
 import EditWorkInfo from '@/components/userdata/message/work/EditWorkInfo'
-
-import HomeInfo from '@/components/userdata/message/HomeInfo'
-import AddHomeInfo from '@/components/userdata/message/addHomeInfo'
-
-import QualifyInfo from '@/components/userdata/message/qualifyInfo'
-import AddQualifyInfo from '@/components/userdata/message/addqualifyInfo'
-
-import EduBg from '@/components/userdata/message/EduBg'
-import AddEduBg from '@/components/userdata/message/addEduBg'
+//home
+import HomeInfo from '@/components/userdata/message/home/HomeInfo'
+import AddHomeInfo from '@/components/userdata/message/home/addHomeInfo'
+import EdithomeInfo from '@/components/userdata/message/home/EditHomeInfo'
+//qualify
+import QualifyInfo from '@/components/userdata/message/qualify/qualifyInfo'
+import AddQualifyInfo from '@/components/userdata/message/qualify/addqualifyInfo'
+//edubg
+import EduBg from '@/components/userdata/message/edubg/EduBg'
+import AddEduBg from '@/components/userdata/message/edubg/addEduBg'
 
 import mod from '@/components/userdata/message/mod'
 Vue.use(Router)
@@ -99,6 +100,11 @@ export default new Router({
           path: 'addHomeInfo',
           name: 'addHomeInfo',
           component: AddHomeInfo
+        },
+        {
+          path: 'EdithomeInfo/:index',
+          name: 'EdithomeInfo',
+          component: EdithomeInfo
         },
         {
           path: 'qualifyInfo',

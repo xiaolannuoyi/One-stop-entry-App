@@ -271,8 +271,25 @@ class UserMessageOpt {
       
     }
     
+    //删除家庭成员
+    delHomeInfo(data){
+      return new Promise((resolve, reject) =>{
+        HomeInfoModel.findByIdAndRemove(data._id).then( () =>{
+          HomeInfoModel.find({user:data.user}).then( newhome =>{
+            resolve(newhome)
+          }).catch(() => {
+            reject('fail');
+          });
+
+        }).catch(() => {
+          reject('fail');
+        });
+      })
+      
+    }
+
      //------------编辑--------------------
-     //编辑工作经历
+     //编辑工作经历(返回所有)
     
     editpreWorkInfo(data){
       return new Promise((resolve, reject) =>{
@@ -290,6 +307,32 @@ class UserMessageOpt {
         }).then( () =>{
           workInfoModel.find({user:data.user}).then( newwork =>{
             resolve(newwork)
+          }).catch(() => {
+            reject('fail');
+          });
+
+        }).catch(() => {
+          reject('fail');
+        });
+      })
+      
+    }
+    
+     //编辑家庭成员
+    
+     editpreHomeInfo(data){
+      return new Promise((resolve, reject) =>{
+        HomeInfoModel.findByIdAndUpdate(data._id,{
+          $set: {
+            name : data.name,
+            Relation : data.Relation,
+            Company : data.Company,
+            Contact : data.Contact,
+            
+          }
+        }).then( () =>{
+          HomeInfoModel.find({user:data.user}).then( newhome =>{
+            resolve(newhome)
           }).catch(() => {
             reject('fail');
           });

@@ -1,15 +1,15 @@
 <template>
   <div>
      <x-button type="primary" @click.native="confirm">新增</x-button>      
-    <div v-for="(item,i) in workInfo" :key="item.id">
-        <work-item :work="item" :index="i"></work-item>
+    <div v-for="(item,i) in homeInfo" :key="item.name">
+        <home-item :home="item" :index="i"></home-item>
     </div>
     
   </div>
 </template>
 
 <script>
-import workItem from "./workItem"
+import homeItem from "./homeItem"
 import ServiceManager from '@/services/services-manager';
 import { Group,XButton,Cell, CellBox, } from 'vux'
 import store from '@/store/store.js'
@@ -17,23 +17,23 @@ import store from '@/store/store.js'
 export default {
     store,
     components: {
-      Group,XButton,Cell, CellBox,workItem
+      Group,XButton,Cell, CellBox,homeItem
     },
     data(){
         return{
-             
+
         }
     
     },
     computed: {
-        workInfo() {
-            console.log(this.$store.state.workInfo);
-            return this.$store.state.workInfo;
+        homeInfo() {
+            console.log(this.$store.state.homeInfo);
+            return this.$store.state.homeInfo;
         },
     },
     methods:{
         confirm(){
-          this.$router.replace("/userdata/message/step/preAddWorkInfo")
+          this.$router.replace("/userdata/message/step/addHomeInfo")
         }
     }
 }

@@ -10,6 +10,7 @@ const state = {
     preBaseInfo:{},//个人信息
     bankcard:{},//工资卡信息
     workInfo:[],//工作经历
+    homeInfo:[],//家庭成员
  }
  
  const mutations={

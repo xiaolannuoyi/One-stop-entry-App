@@ -4,7 +4,7 @@
         <x-input title="姓名" v-model="preHomeInfo.name"></x-input>
         <x-input title="与本人关系" v-model="preHomeInfo.Relation"></x-input>  
         <x-input title="工作单位" v-model="preHomeInfo.company"></x-input>
-        <x-input title="联系方式" v-model="preHomeInfo.Company "></x-input>
+        <x-input title="联系方式" v-model="preHomeInfo.Contact "></x-input>
 
         <x-button type="primary" @click.native="confirm">提交</x-button>
     </group>
@@ -41,7 +41,7 @@ export default {
     methods:{
         confirm(){
             let preHome= {}
-            preHome.name = this.preHomeInfo.company;
+            preHome.name = this.preHomeInfo.name;
             preHome.Relation = this.preHomeInfo.Relation;
             preHome.Company = this.preHomeInfo.Company;
             preHome.Contact = Number(this.preHomeInfo.Contact);
@@ -53,9 +53,9 @@ export default {
                     text: '修改密码成功',
                     type: 'success'
                     });
-                    this.$store.state.workInfo = data.data.result;//返回数据存入store
-                    console.log("workInfo",this.$store.state.workInfo)
-                    this.$router.replace('/userdata/message/step/preWorkInfo');
+                    this.$store.state.homeInfo.push(data.data.result);//返回数据存入store
+                    console.log("homeInfo",this.$store.state.homeInfo)
+                    this.$router.replace('/userdata/message/step/homeInfo');
                 } else {
                     this.$vux.toast.show({
                     text: '修改密码失败，请重试',
