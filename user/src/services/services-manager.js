@@ -29,24 +29,66 @@ let servicesManager = {
       data: {id,password}
     });
   },
+  //------------------------------
+  // 查找个人信息
+  findPreBaseInfo(id) {
+    console.log(" ",id)
+    return axios({
+      method: 'post',
+      url: '/UserMessage/step/findPreBaseInfo',
+      data: {id}
+    });
+  },
   // 提交个人信息
-  submitPreBaseInfo(id,preBaseInfo) {
-    console.log(" ",id,preBaseInfo)
+  submitPreBaseInfo(preBaseInfo) {
+    console.log(" ",preBaseInfo)
     return axios({
       method: 'post',
       url: '/UserMessage/step/submitPreBaseInfo',
-      data: {id,preBaseInfo}
+      data: preBaseInfo
     });
   },
+  //编辑
+  editPreBaseInfo(preBaseInfo) {
+    console.log(" ",preBaseInfo)
+    return axios({
+      method: 'post',
+      url: '/UserMessage/step/editPreBaseInfo',
+      data: preBaseInfo
+    });
+  },
+
+//---------------工资卡信息--------------------
+
+ // 查找
+ findbankcard(id) {
+  console.log(" ",id)
+  return axios({
+    method: 'post',
+    url: '/UserMessage/step/findbankcard',
+    data: {id}
+  });
+},
   //提交工资卡信息
-  submitBankcard(id,Bankcard) {
-    console.log(" ",id,Bankcard)
+  submitBankcard(Bankcard) {
+    console.log(" ",Bankcard)
     return axios({
       method: 'post',
       url: '/UserMessage/step/submitBankcard',
-      data: {id,Bankcard}
+      data: Bankcard
     });
   },
+  editBankcard(Bankcard) {
+    console.log(" ",Bankcard)
+    return axios({
+      method: 'post',
+      url: '/UserMessage/step/editBankcard',
+      data: Bankcard
+    });
+  },
+
+//---------------工作信息------------------
+
   //提交工作信息
   submitpreWorkInfo(preWorkInfo) {
     console.log(" ",preWorkInfo)
@@ -56,6 +98,27 @@ let servicesManager = {
       data: preWorkInfo
     });
   },
+    //删除某条工作经历
+    delWorkInfo(work) {
+      console.log(" ",work)
+      return axios({
+        method: 'post',
+        url: '/UserMessage/step/delWorkInfo',
+        data: work
+      });
+    },
+  
+    //编辑工作经历
+    editpreWorkInfo(work) {
+      console.log(" ",work)
+      return axios({
+        method: 'post',
+        url: '/UserMessage/step/editpreWorkInfo',
+        data: work
+      });
+    },
+
+//-----------------家庭信息--------------------
   //提交家庭信息
   submitpreHomeInfo(preHomeInfo) {
     console.log(" ",preHomeInfo)
@@ -65,49 +128,8 @@ let servicesManager = {
       data: preHomeInfo
     });
   },
-  //提交教育背景
-  submitEduBgInfo(EduBgInfo) {
-    console.log(" ",EduBgInfo)
-    return axios({
-      method: 'post',
-      url: '/UserMessage/step/submitEduBgInfo',
-      data: EduBgInfo
-    });
-  },
-  //提交荣誉证书
-  submitpreQualifyInfo(QualifyInfo) {
-    console.log(" ",QualifyInfo)
-    return axios({
-      method: 'post',
-      url: '/UserMessage/step/submitQualifyInfo',
-      data: QualifyInfo
-    });
-  },
 
-// -------删除-----------------------------------------------
-
-  //删除某条工作经历
-  delWorkInfo(work) {
-    console.log(" ",work)
-    return axios({
-      method: 'post',
-      url: '/UserMessage/step/delWorkInfo',
-      data: work
-    });
-  },
-
-  //编辑工作经历
-  editpreWorkInfo(work) {
-    console.log(" ",work)
-    return axios({
-      method: 'post',
-      url: '/UserMessage/step/editpreWorkInfo',
-      data: work
-    });
-  },
-
-  //--------------
-//家庭
+  //删除家庭
   delHomeInfo(home) {
     console.log(" ",home)
     return axios({
@@ -125,7 +147,17 @@ let servicesManager = {
       data: home
     });
   },
-  //-----------------------
+
+//-------------荣誉证书---------------------------
+  //提交荣誉证书
+  submitpreQualifyInfo(QualifyInfo) {
+    console.log(" ",QualifyInfo)
+    return axios({
+      method: 'post',
+      url: '/UserMessage/step/submitQualifyInfo',
+      data: QualifyInfo
+    });
+  },
   //编辑资格证书
   editpreQualifyInfo(qualify) {
     console.log(" ",qualify)
@@ -144,25 +176,35 @@ let servicesManager = {
         data: qualify
       });
     },
-    //---------教育经历--------------
-  //编辑教育经历
-  editEduBgInfo(EduBg) {
-    console.log(" ",EduBg)
-    return axios({
-      method: 'post',
-      url: '/UserMessage/step/editEduBgInfo',
-      data: EduBg
-    });
-  },
-    //删除某条教育经历
-    delEdubgInfo(EduBg) {
+
+//-------------------------教育经历--------------
+    //提交教育背景
+    submitEduBgInfo(EduBgInfo) {
+      console.log(" ",EduBgInfo)
+      return axios({
+        method: 'post',
+        url: '/UserMessage/step/submitEduBgInfo',
+        data: EduBgInfo
+      });
+    },
+    //编辑教育经历
+    editEduBgInfo(EduBg) {
       console.log(" ",EduBg)
       return axios({
         method: 'post',
-        url: '/UserMessage/step/delEdubgInfo',
+        url: '/UserMessage/step/editEduBgInfo',
         data: EduBg
       });
     },
+      //删除某条教育经历
+      delEdubgInfo(EduBg) {
+        console.log(" ",EduBg)
+        return axios({
+          method: 'post',
+          url: '/UserMessage/step/delEdubgInfo',
+          data: EduBg
+        });
+      },
 };
 
 export default servicesManager;

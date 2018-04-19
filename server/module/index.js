@@ -22,16 +22,6 @@ module.exports = {
             type: Number,
             default:0, // 0: 注册，1:接受，2：拒绝，3：提交（等待审核），4：hr审核中，5：审核结束（审核结果）
         },
-        preBaseInfo:{
-            type: Schema.ObjectId,
-            ref: 'preBaseInfo' ,
-            default:null
-        },
-        bankcard:{
-            type: Schema.ObjectId,
-            ref: 'bankcard' ,
-            default:null
-        },
       },
     //个人信息
     preBaseInfo:{
@@ -134,6 +124,10 @@ module.exports = {
             type: String,
             default:null,
         }, //生日
+        user:{
+            type: Schema.ObjectId,
+            ref: 'user'
+        }
     },
     //银行卡信息
     bankcard:{
@@ -157,6 +151,10 @@ module.exports = {
             type: String,
             default:null,
         },//开户城市
+        user:{
+            type: Schema.ObjectId,
+            ref: 'user'
+        }
     },
     //工作经历
     workInfo:{

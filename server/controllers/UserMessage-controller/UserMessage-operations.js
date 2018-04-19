@@ -56,56 +56,14 @@ class UserMessageOpt {
      * }
      */
     submitPreBaseInfo(data){
+      console.log("1=====",data)
       return new Promise((resolve, reject) => {
-        UserModel.findById(data.id).then(back => {
-          console.log("back",back)
-          if(back.preBaseInfo==null){
-            PreBaseInfoModel.create(data.preBaseInfo).then( back2 =>{
-              UserModel.findByIdAndUpdate(data.id,{
-                $set:{
-                  preBaseInfo: back2._id
-                }
-              }).then(back3=>{
-                console.log('1提交成功', JSON.stringify(back3, null, 2));
-                resolve("个人信息提交成功");
-
-
-              }).catch(() => {
-                reject('fail1');
-              });
-              
-            }).catch(() => {
-              reject('fail2');
-            });
-          }else{
-            console.log(222222222222)
-            PreBaseInfoModel.findByIdAndRemove({_id:back.preBaseInfo}).then(()=>{
-              
-                PreBaseInfoModel.create(data.preBaseInfo).then( back4 =>{
-                  UserModel.findByIdAndUpdate(data.id,{
-                    $set:{
-                      preBaseInfo: back4._id
-                    }
-                  }).then(back5=>{
-                    
-                    console.log('2提交成功', JSON.stringify(back5, null, 2));                    
-                    resolve("个人信息更新成功");
-    
-                  }).catch(() => {
-                    reject('fail3');
-                  });
-                  
-                }).catch(() => {
-                  reject('fail4');
-                });
-
-            }).catch(() => {
-              reject('fail5');
-            });
-
-          }
+        PreBaseInfoModel.create(data).then(back => {
+      console.log("2====",back)
+          
+          resolve(back)
         }).catch(() => {
-          reject('fail6');
+          reject('fail');
         });
          
       });
@@ -120,71 +78,16 @@ class UserMessageOpt {
      * }
      */
     submitBankcard(data){
+      console.log("bank",data);
+      
       return new Promise((resolve, reject) => {
-        UserModel.findById(data.id).then(back => {
-          console.log("back",back)
-          if(back.preBaseInfo==null){
-            bankcardModel.create(data.Bankcard).then( back2 =>{
-              UserModel.findByIdAndUpdate(data.id,{
-                $set:{
-                  bankcard: back2._id
-                }
-              }).then(back3=>{
-                bankcardModel.findById(back3.bankcard).then(bank4=>{
-                  console.log('1提交成功', JSON.stringify(bank4, null, 2));
-                  resolve({
-                    data:bank4,
-                    msg:"工资卡信息提交成功"
-                  });
-                }).catch(() => {
-                  reject('fail1');
-                });
-                
-
-
-              }).catch(() => {
-                reject('fail1');
-              });
-              
-            }).catch(() => {
-              reject('fail2');
-            });
-          }else{
-            console.log(222222222222)
-            bankcardModel.findByIdAndRemove({_id:back.preBaseInfo}).then(()=>{
-              
-                bankcardModel.create(data.Bankcard).then( back5 =>{
-                  UserModel.findByIdAndUpdate(data.id,{
-                    $set:{
-                      bankcard: back5._id
-                    }
-                  }).then(back6=>{
-                    
-                    bankcardModel.findById(back6.bankcard).then(bank7=>{
-                      console.log('1提交成功', JSON.stringify(bank7, null, 2));
-                      resolve({
-                        data:bank7,
-                        msg:"工资卡信息更新成功"
-                      });
-                    }).catch(() => {
-                      reject('fail1');
-                    });
-                    
-                  }).catch(() => {
-                    reject('fail3');
-                  });
-                  
-                }).catch(() => {
-                  reject('fail4');
-                });
-
-            }).catch(() => {
-              reject('fail5');
-            });
-
-          }
+        bankcardModel.create(data).then(back => {
+        console.log("bank2",back);
+          
+          resolve(back)
+          
         }).catch(() => {
-          reject('fail6');
+          reject('fail');
         });
          
       });
@@ -253,7 +156,7 @@ class UserMessageOpt {
       })
       
     }
-    //------------删除--------------------
+//------------删除--------------------
     //删除工作经历
     delWorkInfo(data){
       return new Promise((resolve, reject) =>{
@@ -318,7 +221,76 @@ class UserMessageOpt {
       })
       
     }
-     //------------编辑--------------------
+//------------编辑--------------------
+     //个人信息编辑
+     editPreBaseInfo(data){
+      return new Promise((resolve, reject) => {
+        PreBaseInfoModel.findByIdAndUpdate(data._id,{
+          $set:{
+                email:data.email,
+                urgentPeo:data.urgentPeo,//紧急联系人
+                secuArea:data.secuArea,//缴纳社保地区
+                tel:data.tel,                
+                idCard:data.idCard,//身份ID n
+                sex:data.sex, //性别 
+                nation:data.nation,//民族
+                location:data.location, //国籍
+                plocitical:data.plocitical, //政治面貌
+                marital:data.marital,//婚姻状况
+                eduHighest:data.eduHighest,//最高学历
+                bgSurvey:data.bgSurvey,//背景调查
+                urgentTel:data.urgentTel,//紧急联系方式
+                bodyState:data.bodyState,//身体状况
+                medical:data.medical,//既往病史
+                hered:data.hered,//重大疾病以及遗传病
+                hkType:data.hkType,//户口性质
+                secuRi:data.secuRi,//是否缴纳过社保 
+                oriPlace:data.oriPlace, //籍贯                
+                nowAdress:data.nowAdress,//现住址
+                hkAdress:data.hkAdress,//户口所在地
+                graduDate:data.graduDate,//毕业日期
+                workDate:data.workDate,//工作日期
+                birthDay:data.birthDay //生日
+          }
+        }).then(() => {
+          PreBaseInfoModel.findById(data._id).then(back=>{
+            resolve(back)
+          }).catch(() => {
+            reject('fail');
+          });
+          
+        }).catch(() => {
+          reject('fail');
+        });
+         
+      });
+    }
+     //银行卡信息编辑
+     editBankcard(data){
+       
+      return new Promise((resolve, reject) =>{
+        bankcardModel.findByIdAndUpdate(data._id,{
+          $set: {
+                sPfaccount:data.sPfaccount,//账户名
+                sPfid:data.sPfid,//身份证号码
+                sPfcardNum:data.sPfcardNum,//卡号
+                sPfopenban:data.sPfopenban,//开户行名称
+                sPfopCity:data.sPfopCity//开户城市
+          }
+        }).then( () =>{
+          bankcardModel.findById(data._id).then( bankcard =>{
+            resolve(bankcard)
+          }).catch(() => {
+            reject('fail');
+          });
+
+        }).catch(() => {
+          reject('fail');
+        });
+      })
+      
+    }
+
      //编辑工作经历(返回所有)
     
     editpreWorkInfo(data){
@@ -420,5 +392,35 @@ class UserMessageOpt {
       })
       
     }
+//------------------------查-----------------------
+  //查找个人信息
+  findPreBaseInfo(data){
+    console.log("data",data.id);
+    
+    return new Promise((resolve, reject) =>{
+      PreBaseInfoModel.findOne({'user':data.id}).then( PreBaseInfo =>{
+        console.log(PreBaseInfo);
+        resolve(PreBaseInfo)
+      }).catch(() => {
+        reject('fail');
+      });
+    })
+    
+  }
+  
+  //查找个人信息
+  findbankcard(data){
+    console.log("data",data.id);
+    
+    return new Promise((resolve, reject) =>{
+      bankcardModel.findOne({'user':data.id}).then( bankcard =>{
+        console.log(bankcard);
+        resolve(bankcard)
+      }).catch(() => {
+        reject('fail');
+      });
+    })
+    
+  }
 }
 module.exports = new UserMessageOpt;

@@ -8,7 +8,8 @@
       <x-input title="开户行名称" v-model="ZSbankcard.sPfopenban" type="text"></x-input>
       <x-input title="开户城市" v-model="ZSbankcard.sPfopCity" type="text"></x-input>
     </group>
-     <x-button type="primary" @click.native="confirm">提交</x-button>
+     <x-button  v-if="ZSbankcard.user == null" type="primary" @click.native="confirm">提交</x-button>
+     <x-button v-else type="primary" @click.native="edit">编辑</x-button>     
   </div>
 </template>
 
@@ -39,15 +40,33 @@ export default {
             return this.$store.state.bankcard;
         },
     },
+    mounted(){
+        this.getbankcard();
+    },
     methods:{
+         getbankcard(){
+            this.$vux.loading.show({
+                text: 'Loading'
+            })
+            console.log("userid",this.$store.state.UserInfo._id);
+            
+             ServiceManager.findbankcard(this.$store.state.UserInfo._id).then(data => {
+                if(data.data.result ==null){
+                    console.log("null");
+                    this.$vux.loading.hide()
+                    return 
+                }else{
+                    console.log("yes");
+                    this.$store.state.bankcard = data.data.result;//返回数据存入store
+                    console.log("store",this.$store.state.bankcard)
+                    this.$vux.loading.hide()
+                }
+                
+            });
+        },
         confirm(){
-            let data = {};
-            data.sPfaccount = this.ZSbankcard.sPfaccount;//账户名
-            data.sPfid = this.ZSbankcard.sPfid;//身份证号码
-            data.sPfcardNum = this.ZSbankcard.sPfcardNum;//卡号
-            data.sPfopenban = this.ZSbankcard.sPfopenban;//开户行名称
-            data.sPfopCity = this.ZSbankcard.sPfopCity;//开户城市
-             ServiceManager.submitBankcard(this.$store.state.UserInfo._id,data).then(data  => {
+            this.ZSbankcard.user = this.$store.state.UserInfo._id
+             ServiceManager.submitBankcard(this.ZSbankcard).then(data  => {
                 console.log(data)
                 if (data.data.code == 200) {
                     this.$vux.toast.show({
@@ -56,7 +75,24 @@ export default {
                     });
                     this.$store.state.bankcard = data.data.result;//返回数据存入store
                     console.log("bankcard",this.$store.state.bankcard)
-                    // this.$router.replace('/home/userdata');
+                } else {
+                    this.$vux.toast.show({
+                    text : data.data.msg,
+                    type: 'warning'
+                    });
+                }
+            });
+        },
+        edit(){
+            ServiceManager.editBankcard(this.ZSbankcard).then(data  => {
+                console.log(data)
+                if (data.data.code == 200) {
+                    this.$vux.toast.show({
+                    text: data.data.msg,
+                    type: 'success'
+                    });
+                    this.$store.state.bankcard = data.data.result;//返回数据存入store
+                    console.log("bankcard",this.$store.state.bankcard)
                 } else {
                     this.$vux.toast.show({
                     text : data.data.msg,

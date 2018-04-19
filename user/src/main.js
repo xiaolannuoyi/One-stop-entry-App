@@ -6,7 +6,8 @@ import App from './App'
 import router from './router'
 import store from './store/store'//引入vuex，store
 import { ToastPlugin } from 'vux'; //引入toast组件
-
+import  { LoadingPlugin } from 'vux'
+Vue.use(LoadingPlugin)
 Vue.use(ToastPlugin);
 
 FastClick.attach(document.body)

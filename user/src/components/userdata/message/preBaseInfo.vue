@@ -28,7 +28,8 @@
       <x-input title="紧急联系人" v-model="preBaseInfo.urgentPeo"></x-input>
       <x-input title="紧急联系方式" v-model="preBaseInfo.urgentTel"></x-input>
 
-        <x-button type="primary" @click.native="confirm">提交</x-button>
+        <x-button  v-if="preBaseInfo.user == null" type="primary" @click.native="confirm">提交</x-button>
+        <x-button  v-else type="primary" @click.native="edit">编辑</x-button>
       
     </group>
     
@@ -45,6 +46,9 @@ export default {
     store,
     components: {
         Group,Selector,XInput,XAddress,Datetime,XButton
+    },
+    mounted(){
+        this.getpreBaseInfo();
     },
     data(){
         return{
@@ -87,55 +91,91 @@ export default {
     },
     computed: {
         preBaseInfo() {
-            console.log(this.$store.state.preBaseInfo);
             return this.$store.state.preBaseInfo;
         },
     },
     methods:{
-        confirm(){
-            console.log(this.preBaseInfo);
-            console.log(this.$store.state.UserInfo._id);
-            // 类型转换
-            let predata ={}
-            predata.email=this.preBaseInfo.email ;
-            predata.urgentPeo=this.preBaseInfo.urgentPeo ;//紧急联系人
-            predata.secuArea=this.preBaseInfo.secuArea ;//缴纳社保地区
-
-            predata.tel = Number(this.preBaseInfo.tel) ;
-            predata.idCard = Number(this.preBaseInfo.idCard) ;//身份ID n
-            predata.sex = Number(this.preBaseInfo.sex) ; //性别 
-            predata.nation = Number(this.preBaseInfo.nation) ;//民族
-            predata.location = Number(this.preBaseInfo.location) ; //国籍
-            predata.plocitical = Number(this.preBaseInfo.plocitical) ; //政治面貌
-            predata.marital = Number(this.preBaseInfo.marital) ;//婚姻状况
-            predata.eduHighest = Number(this.preBaseInfo.eduHighest) ;//最高学历
-            predata.bgSurvey = Number(this.preBaseInfo.bgSurvey) ;//背景调查
-            predata.urgentTel = Number(this.preBaseInfo.urgentTel) ;//紧急联系方式
-            predata.bodyState = Number(this.preBaseInfo.bodyState) ;//身体状况
-            predata.medical = Number(this.preBaseInfo.medical) ;//既往病史
-            predata.hered = Number(this.preBaseInfo.hered) ;//重大疾病以及遗传病
-            predata.hkType = Number(this.preBaseInfo.hkType) ;//户口性质
-            predata.secuRi = Number(this.preBaseInfo.secuRi) ;//是否缴纳过社保 
-
-            predata.oriPlace = this.preBaseInfo.oriPlace ; //籍贯
-            predata.nowAdress = this.preBaseInfo.nowAdress ;//现住址
-            predata.hkAdress = this.preBaseInfo.hkAdress ;//户口所在地
-
-            predata.graduDate=new Date(this.preBaseInfo.graduDate).getTime() ;//毕业日期
-            predata.workDate=new Date(this.preBaseInfo.workDate).getTime() ;//工作日期
-            predata.birthDay=new Date(this.preBaseInfo.birthDay).getTime() ; //生日
-            console.log(predata);
+        getpreBaseInfo(){
+            this.$vux.loading.show({
+                text: 'Loading'
+            })
+            console.log("userid",this.$store.state.UserInfo._id);
             
-             ServiceManager.submitPreBaseInfo(this.$store.state.UserInfo._id,predata).then(data => {
+             ServiceManager.findPreBaseInfo(this.$store.state.UserInfo._id).then(data => {
+                if(data.data.result ==null){
+                    console.log("null");
+                    this.$vux.loading.hide()
+                    return 
+                }else{
+                    console.log("yes");
+                    this.$store.state.preBaseInfo = data.data.result;//返回数据存入store
+                    console.log("store",this.$store.state.preBaseInfo)
+                    this.$vux.loading.hide()
+                }
+                
+            });
+        },
+        confirm(){
+            // console.log(this.preBaseInfo);
+            // console.log(this.$store.state.UserInfo._id);
+            // 类型转换
+            // let predata ={}
+            // predata.email=this.preBaseInfo.email ;
+            // predata.urgentPeo=this.preBaseInfo.urgentPeo ;//紧急联系人
+            // predata.secuArea=this.preBaseInfo.secuArea ;//缴纳社保地区
+
+            // predata.tel = Number(this.preBaseInfo.tel) ;
+            // predata.idCard = Number(this.preBaseInfo.idCard) ;//身份ID n
+            // predata.sex = Number(this.preBaseInfo.sex) ; //性别 
+            // predata.nation = Number(this.preBaseInfo.nation) ;//民族
+            // predata.location = Number(this.preBaseInfo.location) ; //国籍
+            // predata.plocitical = Number(this.preBaseInfo.plocitical) ; //政治面貌
+            // predata.marital = Number(this.preBaseInfo.marital) ;//婚姻状况
+            // predata.eduHighest = Number(this.preBaseInfo.eduHighest) ;//最高学历
+            // predata.bgSurvey = Number(this.preBaseInfo.bgSurvey) ;//背景调查
+            // predata.urgentTel = Number(this.preBaseInfo.urgentTel) ;//紧急联系方式
+            // predata.bodyState = Number(this.preBaseInfo.bodyState) ;//身体状况
+            // predata.medical = Number(this.preBaseInfo.medical) ;//既往病史
+            // predata.hered = Number(this.preBaseInfo.hered) ;//重大疾病以及遗传病
+            // predata.hkType = Number(this.preBaseInfo.hkType) ;//户口性质
+            // predata.secuRi = Number(this.preBaseInfo.secuRi) ;//是否缴纳过社保 
+
+            // predata.oriPlace = this.preBaseInfo.oriPlace ; //籍贯
+            // predata.nowAdress = this.preBaseInfo.nowAdress ;//现住址
+            // predata.hkAdress = this.preBaseInfo.hkAdress ;//户口所在地
+
+            // predata.graduDate=new Date(this.preBaseInfo.graduDate).getTime() ;//毕业日期
+            // predata.workDate=new Date(this.preBaseInfo.workDate).getTime() ;//工作日期
+            // predata.birthDay=new Date(this.preBaseInfo.birthDay).getTime() ; //生日
+            // console.log(predata);
+             this.preBaseInfo.user = this.$store.state.UserInfo._id;
+             ServiceManager.submitPreBaseInfo(this.preBaseInfo).then(data => {
                 console.log(data)
                 if (data.data.code == 200) {
                     this.$vux.toast.show({
                     text: '修改密码成功',
                     type: 'success'
                     });
-                    // this.$store.state.UserInfo = data.data.result;//返回数据存入store
-                    // console.log("store",this.$store.state.UserInfo)
-                    // this.$router.replace('/home/userdata');
+                    this.$store.state.preBaseInfo = data.data.result;//返回数据存入store
+                    console.log("store",this.$store.state.preBaseInfo)
+                } else {
+                    this.$vux.toast.show({
+                    text: '修改密码失败，请重试',
+                    type: 'success'
+                    });
+                }
+            });
+        },
+        edit(){
+             ServiceManager.editPreBaseInfo(this.preBaseInfo).then(data => {
+                console.log(data)
+                if (data.data.code == 200) {
+                    this.$vux.toast.show({
+                    text: '修改密码成功',
+                    type: 'success'
+                    });
+                    this.$store.state.preBaseInfo = data.data.result;//返回数据存入store
+                    console.log("store",this.$store.state.preBaseInfo)
                 } else {
                     this.$vux.toast.show({
                     text: '修改密码失败，请重试',

@@ -34,7 +34,7 @@ class UserMessageManager {
       }
     });
   }
-
+//------------------增-------------------------------
     /**
    * 提交个人信息
    */
@@ -62,12 +62,14 @@ class UserMessageManager {
   async submitBankcard(ctx, next) {
     // console.log("2222222222222222")
     // ctx.response.body = ctx.request.body;
+    console.log("=========",ctx.request.body);
+    
     await UserMessageOpt.submitBankcard(ctx.request.body).then(data => {
       console.log("data",data)
       ctx.response.body = {
           code:200,
-          msg: data.msg,
-          result : data.data
+          msg: 'ok',
+          result : data
       }
     }).catch(err => {
       ctx.response.body = {
@@ -151,7 +153,7 @@ class UserMessageManager {
     }
     });
   }
-  //-----------删除----------------
+//----------------------删除----------------
   //删除工作经历
   async delWorkInfo(ctx, next) {
     await UserMessageOpt.delWorkInfo(ctx.request.body).then(data => {
@@ -217,7 +219,39 @@ class UserMessageManager {
     }
     });
   }
-  //-----------编辑----------------
+//------------------------编辑----------------
+//个人信息
+async editPreBaseInfo(ctx, next) {
+  await UserMessageOpt.editPreBaseInfo(ctx.request.body).then(data => {
+    console.log("data",data)
+    ctx.response.body = {
+        code:200,
+        msg: 'ok',
+        result : data
+    }
+  }).catch(err => {
+    ctx.response.body = {
+      code:300,
+      msg:err,
+  }
+  });
+}
+  //银行卡
+  async editBankcard(ctx, next) {
+    await UserMessageOpt.editBankcard(ctx.request.body).then(data => {
+      console.log("data",data)
+      ctx.response.body = {
+          code:200,
+          msg: 'ok',
+          result : data
+      }
+    }).catch(err => {
+      ctx.response.body = {
+        code:300,
+        msg:err,
+    }
+    });
+  }
   //编辑工作经历
   async editpreWorkInfo(ctx, next) {
     await UserMessageOpt.editpreWorkInfo(ctx.request.body).then(data => {
@@ -282,5 +316,45 @@ class UserMessageManager {
     }
     });
   }
+//---------------------查----------------------
+  //个人信息
+  async findPreBaseInfo(ctx, next) {
+    console.log(ctx.request.body);
+    
+    await UserMessageOpt.findPreBaseInfo(ctx.request.body).then(data => {
+      console.log("data",data)
+      ctx.response.body = {
+          code:200,
+          msg: 'ok',
+          result : data
+      }
+    }).catch(err => {
+      ctx.response.body = {
+        code:300,
+        msg:err,
+    }
+    });
+  }
+  
+  //工资卡
+  async findbankcard(ctx, next) {
+    console.log(ctx.request.body);
+    
+    await UserMessageOpt.findbankcard(ctx.request.body).then(data => {
+      console.log("data",data)
+      ctx.response.body = {
+          code:200,
+          msg: 'ok',
+          result : data
+      }
+    }).catch(err => {
+      ctx.response.body = {
+        code:300,
+        msg:err,
+    }
+    });
+  }
+
+
 }
 module.exports =  new UserMessageManager
