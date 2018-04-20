@@ -355,6 +355,78 @@ async editPreBaseInfo(ctx, next) {
     });
   }
 
+    //工作经历
+    async findworkInfo(ctx, next) {
+      console.log(ctx.request.body);
+      
+      await UserMessageOpt.findworkInfo(ctx.request.body).then(data => {
+        console.log("data",data)
+        ctx.response.body = {
+            code:200,
+            msg: 'ok',
+            result : data
+        }
+      }).catch(err => {
+        ctx.response.body = {
+          code:300,
+          msg:err,
+      }
+      });
+    }
+    //资格证书
+    async findqualifyInfo(ctx, next) {
+      console.log(ctx.request.body);
+      
+      await UserMessageOpt.findqualifyInfo(ctx.request.body).then(data => {
+        console.log("data",data)
+        ctx.response.body = {
+            code:200,
+            msg: 'ok',
+            result : data
+        }
+      }).catch(err => {
+        ctx.response.body = {
+          code:300,
+          msg:err,
+      }
+      });
+    }
+    //家庭
+    async findhomeInfo(ctx, next) {
+      console.log(ctx.request.body);
+      
+      await UserMessageOpt.findhomeInfo(ctx.request.body).then(data => {
+        console.log("data",data)
+        ctx.response.body = {
+            code:200,
+            msg: 'ok',
+            result : data
+        }
+      }).catch(err => {
+        ctx.response.body = {
+          code:300,
+          msg:err,
+      }
+      });
+    }
+    //教育背景
+    async findedubgInfo(ctx, next) {
+      console.log(ctx.request.body);
+      
+      await UserMessageOpt.findedubgInfo(ctx.request.body).then(data => {
+        console.log("data",data)
+        ctx.response.body = {
+            code:200,
+            msg: 'ok',
+            result : data
+        }
+      }).catch(err => {
+        ctx.response.body = {
+          code:300,
+          msg:err,
+      }
+      });
+    }
 
 }
 module.exports =  new UserMessageManager

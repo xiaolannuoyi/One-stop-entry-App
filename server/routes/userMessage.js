@@ -28,7 +28,10 @@ router.post('/step/editEduBgInfo', UserMessageManager.editEduBgInfo);
 //查
 router.post('/step/findPreBaseInfo', UserMessageManager.findPreBaseInfo);
 router.post('/step/findbankcard', UserMessageManager.findbankcard);
-
+router.post('/step/findworkInfo', UserMessageManager.findworkInfo);
+router.post('/step/findqualifyInfo', UserMessageManager.findqualifyInfo);
+router.post('/step/findhomeInfo', UserMessageManager.findhomeInfo);
+router.post('/step/findedubgInfo', UserMessageManager.findedubgInfo);
 
 
 

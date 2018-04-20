@@ -33,6 +33,7 @@ export default {
     },
     methods:{
         confirm(){
+            this.preQualifyInfo.user = this.$store.state.UserInfo._id;
             ServiceManager.submitpreQualifyInfo(this.preQualifyInfo).then(data => {
                 console.log(data)
                 if (data.data.code == 200) {

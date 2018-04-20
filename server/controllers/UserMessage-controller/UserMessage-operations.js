@@ -422,5 +422,64 @@ class UserMessageOpt {
     })
     
   }
+  
+    //查找工作信息
+    findworkInfo(data){
+      console.log("data",data.id);
+      
+      return new Promise((resolve, reject) =>{
+        workInfoModel.find({'user':data.id}).then( bankcard =>{
+          console.log(bankcard);
+          resolve(bankcard)
+        }).catch(() => {
+          reject('fail');
+        });
+      })
+      
+    }
+    //资格证书
+    findqualifyInfo(data){
+      console.log("data",data.id);
+      
+      return new Promise((resolve, reject) =>{
+        QualifyInfoModel.find({'user':data.id}).then( qualifyInfo =>{
+          console.log(qualifyInfo);
+          resolve(qualifyInfo)
+        }).catch(() => {
+          reject('fail');
+        });
+      })
+      
+    }
+    
+    //家庭成员
+    findhomeInfo(data){
+      console.log("data",data.id);
+      
+      return new Promise((resolve, reject) =>{
+        HomeInfoModel.find({'user':data.id}).then( HomeInfo =>{
+          console.log(HomeInfo);
+          resolve(HomeInfo)
+        }).catch(() => {
+          reject('fail');
+        });
+      })
+      
+    }
+
+        //
+        findedubgInfo(data){
+          console.log("data",data.id);
+          
+          return new Promise((resolve, reject) =>{
+            EduBgModel.find({'user':data.id}).then( EduBg =>{
+              console.log(EduBg);
+              resolve(EduBg)
+            }).catch(() => {
+              reject('fail');
+            });
+          })
+          
+        }
 }
 module.exports = new UserMessageOpt;

@@ -1,6 +1,6 @@
 <template>
   <div>
-     <x-button type="primary" @click.native="confirm">新增</x-button>      
+     <x-button type="primary" @click.native="add">新增</x-button>      
     <div v-for="(item,i) in qualifyInfo" :key="item.name">
         <qualify-item :qualify="item" :index="i"></qualify-item>
     </div>
@@ -31,8 +31,23 @@ export default {
             return this.$store.state.qualifyInfo;
         },
     },
+    mounted(){
+        this.getqualifyInfo();
+    },
     methods:{
-        confirm(){
+        getqualifyInfo(){
+            this.$vux.loading.show({
+                text: 'Loading'
+            })
+            console.log("userid",this.$store.state.UserInfo._id);
+             ServiceManager.findqualifyInfo(this.$store.state.UserInfo._id).then(data => {
+                    console.log("yes");
+                    this.$store.state.qualifyInfo = data.data.result;//返回数据存入store
+                    console.log("store",this.$store.state.qualifyInfo)
+                    this.$vux.loading.hide()
+            });
+        },
+        add(){
           this.$router.replace("/userdata/message/step/addQualifyInfo")
         }
     }

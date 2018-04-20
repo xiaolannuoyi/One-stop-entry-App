@@ -117,6 +117,15 @@ let servicesManager = {
         data: work
       });
     },
+    //查找
+    findworkInfo(id) {
+      console.log(" ",id)
+      return axios({
+        method: 'post',
+        url: '/UserMessage/step/findworkInfo',
+        data: {id}
+      });
+    },
 
 //-----------------家庭信息--------------------
   //提交家庭信息
@@ -145,6 +154,14 @@ let servicesManager = {
       method: 'post',
       url: '/UserMessage/step/editpreHomeInfo',
       data: home
+    });
+  },
+  findhomeInfo(id) {
+    console.log(" ",id)
+    return axios({
+      method: 'post',
+      url: '/UserMessage/step/findhomeInfo',
+      data: {id}
     });
   },
 
@@ -176,6 +193,14 @@ let servicesManager = {
         data: qualify
       });
     },
+    findqualifyInfo(id) {
+      console.log(" ",id)
+      return axios({
+        method: 'post',
+        url: '/UserMessage/step/findqualifyInfo',
+        data: {id}
+      });
+    },
 
 //-------------------------教育经历--------------
     //提交教育背景
@@ -203,6 +228,14 @@ let servicesManager = {
           method: 'post',
           url: '/UserMessage/step/delEdubgInfo',
           data: EduBg
+        });
+      },
+      findedubgInfo(id) {
+        console.log(" ",id)
+        return axios({
+          method: 'post',
+          url: '/UserMessage/step/findedubgInfo',
+          data: {id}
         });
       },
 };

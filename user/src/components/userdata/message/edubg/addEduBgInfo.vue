@@ -41,6 +41,7 @@ export default {
     },
     methods:{
         confirm(){
+            this.preEduBg.user = this.$store.state.UserInfo._id;
             ServiceManager.submitEduBgInfo(this.preEduBg).then(data => {
                 console.log(data)
                 if (data.data.code == 200) {

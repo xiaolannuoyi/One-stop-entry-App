@@ -1,6 +1,6 @@
 <template>
   <div>
-     <x-button type="primary" @click.native="confirm">新增</x-button>      
+     <x-button type="primary" @click.native="add">新增</x-button>      
     <div v-for="(item,i) in homeInfo" :key="item.name">
         <home-item :home="item" :index="i"></home-item>
     </div>
@@ -25,6 +25,9 @@ export default {
         }
     
     },
+     mounted(){
+        this.gethomeInfo();
+    },
     computed: {
         homeInfo() {
             console.log(this.$store.state.homeInfo);
@@ -32,7 +35,19 @@ export default {
         },
     },
     methods:{
-        confirm(){
+        gethomeInfo(){
+            this.$vux.loading.show({
+                text: 'Loading'
+            })
+            console.log("userid",this.$store.state.UserInfo._id);
+             ServiceManager.findhomeInfo(this.$store.state.UserInfo._id).then(data => {
+                    console.log("yes");
+                    this.$store.state.homeInfo = data.data.result;//返回数据存入store
+                    console.log("store",this.$store.state.homeInfo)
+                    this.$vux.loading.hide()
+            });
+        },
+        add(){
           this.$router.replace("/userdata/message/step/addHomeInfo")
         }
     }
