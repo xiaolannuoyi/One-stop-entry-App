@@ -16,4 +16,11 @@ export default {
 body {
   background-color: #fbf9fe;
 }
+.req{
+  color: red;
+}
+.reqwarn{
+  font-size: 12px;
+  color: red;
+}
 </style>

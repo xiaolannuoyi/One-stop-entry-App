@@ -17,7 +17,7 @@ class UserMessageOpt {
         }
       }).then(() => {
           UserModel.findById(data.id).then(User => {
-            console.log('修改User数据', JSON.stringify(User, null, 2));
+            console.log('offer 接受，拒绝', JSON.stringify(User, null, 2));
             resolve(User);
           });
         })
@@ -37,7 +37,7 @@ class UserMessageOpt {
         }
       }).then(() => {
         UserModel.findById(data.id).then(User => {
-            console.log('修改User数据', JSON.stringify(User, null, 2));
+            console.log('修改密码', JSON.stringify(User, null, 2));
             resolve(User);
           });
         })
@@ -60,7 +60,6 @@ class UserMessageOpt {
       return new Promise((resolve, reject) => {
         PreBaseInfoModel.create(data).then(back => {
       console.log("2====",back)
-          
           resolve(back)
         }).catch(() => {
           reject('fail');
@@ -100,7 +99,6 @@ class UserMessageOpt {
       return new Promise((resolve, reject) =>{
         workInfoModel.create(data).then( work =>{
           console.log("work",work);
-          
           resolve(work);
         }).catch(() => {
           reject('fail');
@@ -408,7 +406,7 @@ class UserMessageOpt {
     
   }
   
-  //查找个人信息
+  //查找银行卡
   findbankcard(data){
     console.log("data",data.id);
     

@@ -1,9 +1,9 @@
 <template>
   <div>
     <group>
-      <x-input title="工号" ref="Account" v-model="hrData.Account" type="number" :required="true"></x-input>    
-      <x-input title="姓名"  ref="Name" v-model="hrData.Name" :required="true"></x-input>
-      <x-input title="手机号码" ref="Tel" v-model="hrData.Tel" keyboard="number" is-type="china-mobile" :max="11" :required="true"></x-input>
+      <x-input title="工号" ref="Account" v-model="hrData.Account" type="number" :required="true" text-align="right"></x-input>    
+      <x-input title="姓名"  ref="Name" v-model="hrData.Name" :required="true" text-align="right"></x-input>
+      <x-input title="手机号码" ref="Tel" v-model="hrData.Tel" keyboard="number" is-type="china-mobile" :max="11" :required="true" text-align="right"></x-input>
       <popup-picker title="负责区域" :data="hraddresslist" v-model="hrData.Address" value-text-align="right"></popup-picker>
       <x-switch title="管理员权限" :value-map="['0', '1']" v-model="hrData.IsAdmin"></x-switch>
     </group>

@@ -25,7 +25,7 @@
       <confirm v-model="show1"
       title="删除"
       @on-confirm="onConfirm(edubg)">
-        <p style="text-align:center;">确定删除这条工作经历么？</p>
+        <p style="text-align:center;">确定删除这条教育背景么？</p>
       </confirm>
     </div>
   </div>
@@ -64,12 +64,16 @@ export default {
         },
         //删除
         onConfirm(edubg){
+            this.$vux.loading.show({
+                 text: 'Loading'
+            })
             console.log(edubg)
             ServiceManager.delEdubgInfo(edubg).then(data => {
                 console.log(data)
+                this.$vux.loading.hide()                                                
                 if (data.data.code == 200) {
                     this.$vux.toast.show({
-                    text: '修改密码成功',
+                    text: '删除成功',
                     type: 'success'
                     });
                     this.$store.state.edubgInfo = data.data.result;//返回数据存入store
@@ -77,8 +81,8 @@ export default {
                     this.$router.replace('/userdata/message/step/eduBgInfo');
                 } else {
                     this.$vux.toast.show({
-                    text: '修改密码失败，请重试',
-                    type: 'success'
+                    text: '删除失败，请重试',
+                    type: 'warn'
                     });
                 }
             });

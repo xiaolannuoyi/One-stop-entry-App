@@ -61,12 +61,16 @@ export default {
         },
         //删除
         onConfirm(home){
+            this.$vux.loading.show({
+                 text: 'Loading'
+            })
             console.log(home)
             ServiceManager.delHomeInfo(home).then(data => {
                 console.log(data)
+                this.$vux.loading.hide()                                
                 if (data.data.code == 200) {
                     this.$vux.toast.show({
-                    text: '修改密码成功',
+                    text: '删除成功',
                     type: 'success'
                     });
                     this.$store.state.homeInfo = data.data.result;//返回数据存入store
@@ -74,8 +78,8 @@ export default {
                     this.$router.replace('/userdata/message/step/homeInfo');
                 } else {
                     this.$vux.toast.show({
-                    text: '修改密码失败，请重试',
-                    type: 'success'
+                    text: '删除失败，请重试',
+                    type: 'warn'
                     });
                 }
             });

@@ -3,12 +3,12 @@
     <group>
         <datetime  title="起始年月" v-model="preEduBg.Startdate"></datetime>
         <datetime  title="截止年月" v-model="preEduBg.Enddate"></datetime>
-        <x-input title="学校" v-model="preEduBg.Schoolname"></x-input>  
-        <x-input title="院系" v-model="preEduBg.College"></x-input>  
-        <x-input title="专业" v-model="preEduBg.Major"></x-input>  
-        <x-input title="学历" v-model="preEduBg.Education"></x-input> 
+        <x-input title="学校" v-model="preEduBg.Schoolname" text-align="right"></x-input>  
+        <x-input title="院系" v-model="preEduBg.College" text-align="right"></x-input>  
+        <x-input title="专业" v-model="preEduBg.Major" text-align="right"></x-input>  
+        <x-input title="学历" v-model="preEduBg.Education" text-align="right"></x-input> 
 
-        <x-button type="primary" @click.native="confirm">提交</x-button>
+        <x-button type="primary" @click.native="confirm">提交更改</x-button>
           
     </group>
   </div>
@@ -46,11 +46,15 @@ export default {
     },
     methods:{
         confirm(){
+            this.$vux.loading.show({
+                text: 'Loading'
+            })
             ServiceManager.editEduBgInfo(this.preEduBg).then(data => {
                 console.log(data)
+                this.$vux.loading.hide()                
                 if (data.data.code == 200) {
                     this.$vux.toast.show({
-                    text: '修改密码成功',
+                    text: '提交更改成功',
                     type: 'success'
                     });
                     this.$store.state.edubgInfo = data.data.result;//返回数据存入store
@@ -58,8 +62,8 @@ export default {
                     this.$router.replace('/userdata/message/step/eduBgInfo');
                 } else {
                     this.$vux.toast.show({
-                    text: '修改密码失败，请重试',
-                    type: 'success'
+                    text: '提交更改失败，请重试',
+                    type: 'warn'
                     });
                 }
             });

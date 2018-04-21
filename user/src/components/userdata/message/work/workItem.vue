@@ -67,12 +67,16 @@ export default {
         },
         //删除
         onConfirm(work){
+            this.$vux.loading.show({
+                 text: 'Loading'
+            })
             console.log(work)
             ServiceManager.delWorkInfo(work).then(data => {
                 console.log(data)
+                this.$vux.loading.hide()
                 if (data.data.code == 200) {
                     this.$vux.toast.show({
-                    text: '修改密码成功',
+                    text: '删除成功',
                     type: 'success'
                     });
                     this.$store.state.workInfo = data.data.result;//返回数据存入store
@@ -80,8 +84,8 @@ export default {
                     this.$router.replace('/userdata/message/step/preWorkInfo');
                 } else {
                     this.$vux.toast.show({
-                    text: '修改密码失败，请重试',
-                    type: 'success'
+                    text: '删除失败，请重试',
+                    type: 'warn'
                     });
                 }
             });

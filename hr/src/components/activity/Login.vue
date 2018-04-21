@@ -1,10 +1,10 @@
 <template>
   <div>
     <group title="">
-      <x-input title="工号" ref="account" v-model="formData.Account" placeholder="请输入工号" keyboard="number"></x-input>
+      <x-input title="工号" ref="account" v-model="formData.Account" placeholder="请输入工号" keyboard="number" text-align="right"></x-input>
     </group>
     <group title="">
-      <x-input title="密码" ref="password" v-model="formData.Password" placeholder="请输入密码" type="password" ></x-input>
+      <x-input title="密码" ref="password" v-model="formData.Password" placeholder="请输入密码" type="password"  text-align="right"></x-input>
     </group>
     <img :src="src" alt="">
     <x-button type="primary" @click.native="login">primary</x-button>

@@ -1,8 +1,8 @@
 <template>
   <div>
     <group> 
-      <x-input title="姓名"  ref="Name" v-model="userData.Name" :required="true"></x-input>
-      <x-input title="手机号码" ref="Tel" v-model="userData.Tel" keyboard="number" is-type="china-mobile" :max="11" :required="true"></x-input>
+      <x-input title="姓名"  ref="Name" v-model="userData.Name" :required="true" text-align="right"></x-input>
+      <x-input title="手机号码" ref="Tel" v-model="userData.Tel" keyboard="number" is-type="china-mobile" :max="11" :required="true" text-align="right"></x-input>
       <popup-picker title="地点" :data="addresslist" v-model="userData.Address" value-text-align="right"></popup-picker>
       <popup-picker title="部门" :data="Departmentlist" v-model="userData.Department" value-text-align="right"></popup-picker>
       <calendar title="入职时间" ref="EntryTime" v-model="userData.EntryTime" 

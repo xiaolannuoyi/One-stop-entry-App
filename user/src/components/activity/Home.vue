@@ -58,6 +58,7 @@ export default {
     },
   },
   methods: {
+    //拒绝
     onCancel() {
       this.UserInfo.State = 2;
       ServiceManager.UserOfferState(this.UserInfo._id,this.UserInfo.State).then(data => {
@@ -67,6 +68,7 @@ export default {
             text: "提交成功",
             type: "success"
           });
+          this.$store.state.offerStateFlag = false;//offer弹窗
           this.$store.state.UserInfo = data.data.result; //返回数据存入store
           console.log("store", this.$store.state.UserInfo.State);
           this.$router.push("/home");
@@ -78,6 +80,7 @@ export default {
         }
       });
     },
+    //接受
     onConfirm() {
       this.UserInfo.State = 1;
       ServiceManager.UserOfferState(this.UserInfo._id,this.UserInfo.State).then(data => {
@@ -87,6 +90,7 @@ export default {
             text: "提交成功",
             type: "success"
           });
+          this.$store.state.offerStateFlag = false;//offer弹窗          
           this.$store.state.UserInfo = data.data.result; //返回数据存入store
           console.log("store", this.$store.state.UserInfo);
           this.$router.push("/home");
@@ -94,7 +98,7 @@ export default {
           this.$vux.toast.show({
             text: "提交失败，请重试",
             type: "warn"
-          });
+          });                  
         }
       });
     }

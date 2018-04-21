@@ -6,7 +6,7 @@ Vue.use(Vuex);
 
 const state = {
     UserInfo:{},//user个人信息
-    offerStateFlag:false,//offer 弹框显示标志
+    offerStateFlag: true,//offer 弹框显示标志
     preBaseInfo:{},//个人信息
     bankcard:{},//工资卡信息
     workInfo:[],//工作经历

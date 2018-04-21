@@ -4,9 +4,9 @@
     <x-header @on-click-back="back">用户信息</x-header>
     <!-- content -->
     <group>
-      <x-input title="工号" :disabled="disabled" ref="Account" v-model="hrData.Account" type="number" :required="true"></x-input>    
-      <x-input title="姓名"  :disabled="disabled" ref="Name" v-model="hrData.Name" :required="true"></x-input>
-      <x-input title="手机号码" :disabled="disabled" ref="Tel" v-model="hrData.Tel" keyboard="number" is-type="china-mobile" :max="11" :required="true"></x-input>
+      <x-input title="工号" :disabled="disabled" ref="Account" v-model="hrData.Account" type="number" :required="true" text-align="right"></x-input>    
+      <x-input title="姓名"  :disabled="disabled" ref="Name" v-model="hrData.Name" :required="true" text-align="right"></x-input>
+      <x-input title="手机号码" :disabled="disabled" ref="Tel" v-model="hrData.Tel" keyboard="number" is-type="china-mobile" :max="11" :required="true" text-align="right"></x-input>
       <popup-picker title="负责区域" :disabled="disabled" :data="hraddresslist" v-model="hrData.Address" value-text-align="right"></popup-picker>
       <x-switch title="管理员权限" :disabled="disabled" :value-map="['0', '1']" v-model="hrData.IsAdmin"></x-switch>
     </group>

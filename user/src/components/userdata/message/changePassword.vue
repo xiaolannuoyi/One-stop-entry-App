@@ -4,11 +4,11 @@
     <x-header :left-options="{showBack: true}">修改密码</x-header>
     <!-- content -->
     <group>
-      <x-input title="旧密码" type="text" placeholder="请输入旧密码" :max="6" ref="oldps" v-model="oldpassword" :equal-with="storeOldpassword"></x-input>
+      <x-input title="旧密码" type="text" placeholder="请输入旧密码" :max="6" ref="oldps" v-model="oldpassword" :equal-with="storeOldpassword" text-align="right"></x-input>
     </group>
-    <group>
-      <x-input title="新密码" type="password" placeholder="请输入新密码" ref="ps"  v-model="password" :min="6" :max="16"></x-input>
-      <x-input title="确认密码" v-model="password2" type="password" ref="ps2" placeholder="请确认新密码" :min="6" :max="16" :equal-with="password"></x-input>
+    <group title="密码要大于6位">
+      <x-input title="新密码" type="password" placeholder="请输入新密码" ref="ps"  v-model="password" :min="6" :max="16" text-align="right"></x-input>
+      <x-input title="确认密码" v-model="password2" type="password" ref="ps2" placeholder="请确认新密码" :min="6" :max="16" :equal-with="password" text-align="right"></x-input>
     </group>
     <x-button type="primary" :disabled="disable" @click.native="submit">提交</x-button>
    </div> 

@@ -1,12 +1,12 @@
 <template>
   <div>
     <group title="">
-      <x-input title="电话号码" ref="Tel" v-model="formData.Tel" placeholder="请输入电话号码" keyboard="number" :min="11" :max="11"></x-input>
+      <x-input title="电话号码" ref="Tel" v-model="formData.Tel" placeholder="请输入电话号码" keyboard="number" :min="11" :max="11" is-type="china-mobile" :required="true" text-align="right"></x-input>
     </group>
     <group title="">
-      <x-input title="密码" ref="Password" v-model="formData.Password" placeholder="请输入密码" type="password" ></x-input>
+      <x-input title="密码" ref="Password" v-model="formData.Password" placeholder="请输入密码" type="password" :min="6" :required="true" text-align="right"></x-input>
     </group>
-    <x-button type="primary" @click.native="login">primary</x-button>
+    <x-button type="primary" :disabled="canGo||disabled" @click.native="login">primary</x-button>
   </div>
 </template>
 
@@ -25,16 +25,35 @@ export default {
   },
   data() {
     return {
+      disabled:true,
       formData: {
         Tel: '18846042481',
-        Password: '042481'
+        Password: ''
       }
     }
   },
+  computed:{
+      canGo() {
+        console.log(this.formData.Tel);
+        console.log(this.formData.Password);
+        
+        if(this.formData.Tel !=='' && this.formData.Password !=='' && this.$refs.Tel.valid && this.$refs.Password.valid){
+          console.log("1",this.disabled)
+            this.disabled=false;
+        }else{
+          console.log("2",this.disabled)          
+            this.disabled=true;
+        }
+      },
+    },
   methods:{
       login(){
+         this.$vux.loading.show({
+                text: 'Loading'
+            })
           ServiceManager.UserLogin(this.formData).then(data => {
           console.log(data)
+          this.$vux.loading.hide()
           if (data.data.code == 200) {
             this.$vux.toast.show({
               text: '登录成功',

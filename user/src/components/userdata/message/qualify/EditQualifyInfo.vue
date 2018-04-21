@@ -2,8 +2,8 @@
   <div>
     <group>
         <datetime  title="获得年月" v-model="preQualifyInfo.Getdate"></datetime>
-        <x-input title="证书名称" v-model="preQualifyInfo.Name"></x-input> 
-        <x-button type="primary" @click.native="confirm">提交</x-button>
+        <x-input title="证书名称" v-model="preQualifyInfo.Name" text-align="right"></x-input> 
+        <x-button type="primary" @click.native="confirm">提交更改</x-button>
           
     </group>
   </div>
@@ -37,19 +37,23 @@ export default {
     },
     methods:{
         confirm(){
+            this.$vux.loading.show({
+                 text: 'Loading'
+            })
             ServiceManager.editpreQualifyInfo(this.preQualifyInfo).then(data => {
                 console.log(data)
+                this.$vux.loading.hide()
                 if (data.data.code == 200) {
                     this.$vux.toast.show({
-                    text: '修改密码成功',
+                    text: '提交更改成功',
                     type: 'success'
                     });
                     this.$store.state.qualifyInfo=data.data.result;//返回数据存入store
                     this.$router.replace('/userdata/message/step/QualifyInfo');
                 } else {
                     this.$vux.toast.show({
-                    text: '修改密码失败，请重试',
-                    type: 'success'
+                    text: '提交更改失败，请重试',
+                    type: 'warn'
                     });
                 }
             });
