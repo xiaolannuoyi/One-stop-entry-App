@@ -12,7 +12,24 @@ FastClick.attach(document.body)
 
 Vue.config.productionTip = false
 /* eslint-disable no-new */
-new Vue({
-  router,
-  render: h => h(App)
-}).$mount('#app-box')
+if (process.env.NODE_ENV === 'development') {
+  new Vue({
+    el: '#app',
+    router,
+    store,
+    template: '<App/>',
+    components: { App }
+  })
+} else {
+  document.addEventListener('deviceready', function () {
+    new Vue({
+      el: '#app',
+      router,
+      store,
+      template: '<App/>',
+      components: { App }
+    })
+    window.navigator.splashscreen.hide()
+  }, false);
+}
+

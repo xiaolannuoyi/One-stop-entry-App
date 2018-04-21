@@ -1,6 +1,10 @@
 import axios from 'axios';
 
-axios.defaults.baseURL = 'http://localhost:3000/';
+if(process.env.NODE_ENV === 'development') {
+  axios.defaults.baseURL = 'http://localhost:3000/';
+} else {
+  axios.defaults.baseURL = 'http://192.168.10.113:3000/';
+}
 
 let servicesManager = {
   //hr-----------------

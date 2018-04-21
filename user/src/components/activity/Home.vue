@@ -18,7 +18,7 @@
       confirm-text="接受"
       @on-cancel="onCancel"
       @on-confirm="onConfirm">
-        <p style="text-align:center;">11111111111</p>
+        <p style="text-align:center;">您的offer已到达，你是否接受？</p>
       </confirm>
     </div>
 
@@ -73,7 +73,7 @@ export default {
         } else {
           this.$vux.toast.show({
             text: "提交失败，请重试",
-            type: "success"
+            type: "warn"
           });
         }
       });
@@ -93,7 +93,7 @@ export default {
         } else {
           this.$vux.toast.show({
             text: "提交失败，请重试",
-            type: "success"
+            type: "warn"
           });
         }
       });
