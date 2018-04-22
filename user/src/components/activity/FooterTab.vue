@@ -5,19 +5,19 @@
     </div>
     <div class="footer">
       <tabbar>
-        <tabbar-item link="/home/main" selected>
+        <tabbar-item :link="{path:'/home/main', replace: true}" selected>
           <img slot="icon"  src="">
           <span slot="label">主页</span>
         </tabbar-item>
-        <tabbar-item link="/home/userdata">
+        <tabbar-item :link="{path:'/home/userdata', replace: true}" >
           <img slot="icon" src="">
           <span slot="label">填写</span>
         </tabbar-item>
-        <tabbar-item show-dot link="/home/check">
+        <tabbar-item :link="{path:'/home/check', replace: true}">
           <img slot="icon" src="">
           <span slot="label">审核</span>
         </tabbar-item>
-        <tabbar-item link="/home/company">
+        <tabbar-item :link="{path:'/home/company', replace: true}">
           <img slot="icon" src="">
           <span slot="label">公司</span>
         </tabbar-item>

@@ -71,7 +71,7 @@ export default {
           this.$store.state.offerStateFlag = false;//offer弹窗
           this.$store.state.UserInfo = data.data.result; //返回数据存入store
           console.log("store", this.$store.state.UserInfo.State);
-          this.$router.push("/home");
+          this.$router.replace("/home");
         } else {
           this.$vux.toast.show({
             text: "提交失败，请重试",
@@ -93,7 +93,7 @@ export default {
           this.$store.state.offerStateFlag = false;//offer弹窗          
           this.$store.state.UserInfo = data.data.result; //返回数据存入store
           console.log("store", this.$store.state.UserInfo);
-          this.$router.push("/home");
+          this.$router.replace("/home");
         } else {
           this.$vux.toast.show({
             text: "提交失败，请重试",

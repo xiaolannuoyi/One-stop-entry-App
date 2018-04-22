@@ -6,7 +6,7 @@
     <group title="">
       <x-input title="密码" ref="Password" v-model="formData.Password" placeholder="请输入密码" type="password" :min="6" :required="true" text-align="right"></x-input>
     </group>
-    <x-button type="primary" :disabled="canGo||disabled" @click.native="login">primary</x-button>
+    <x-button type="primary" :disabled="canGo||disabled" @click.native="login">登录</x-button>
   </div>
 </template>
 
@@ -61,7 +61,7 @@ export default {
             });
             this.$store.state.UserInfo = data.data.result;//返回数据存入store
             console.log("store",this.$store.state.UserInfo)
-            this.$router.push('/home');
+            this.$router.replace('/home');
           } else {
             this.$vux.toast.show({
               text: '登录失败，请重试',

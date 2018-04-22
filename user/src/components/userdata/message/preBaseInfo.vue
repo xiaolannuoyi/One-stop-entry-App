@@ -1,13 +1,13 @@
 <template>
   <div>
     <group>
-      <x-input v-model="preBaseInfo.idCard"  :required="true" text-align="right" :max="18">
+      <x-input title="身份ID" v-model="preBaseInfo.idCard"  :required="true" text-align="right" :max="18">
           <div slot="label"><span class="req">*</span>身份ID</div>
       </x-input>
-      <x-input v-model="preBaseInfo.tel" :required="true" :max="11" text-align="right">
+      <x-input title="移动电话" v-model="preBaseInfo.tel" :required="true" is-type="china-mobile" :max="11" text-align="right">
           <div slot="label"><span class="req">*</span>移动电话</div>
       </x-input> 
-      <x-input v-model="preBaseInfo.email" :required="true" is-type="email" text-align="right">
+      <x-input title="电子邮件" v-model="preBaseInfo.email" :required="true" is-type="email" text-align="right">
           <div slot="label"><span class="req">*</span>电子邮件</div>
       </x-input>     
       <selector title="性别" v-model="preBaseInfo.sex" :options="preSelector.sex" direction="rtl" :required="true"></selector>
@@ -61,10 +61,10 @@
       <selector title="是否缴纳过社保" v-model="preBaseInfo.secuRi" :options="preSelector.secuRi" direction="rtl" :required="true"></selector>
       <selector title="缴纳社保地区" v-model="preBaseInfo.secuArea" :options="preSelector.secuArea" direction="rtl" :required="true"></selector>
     
-      <x-input v-model="preBaseInfo.urgentPeo" :required="true" text-align="right">
+      <x-input title="紧急联系人" v-model="preBaseInfo.urgentPeo" :required="true" text-align="right">
           <div slot="label"><span class="req">*</span>紧急联系人</div>          
       </x-input>
-      <x-input v-model="preBaseInfo.urgentTel" :required="true" text-align="right">
+      <x-input title="紧急联系方式" v-model="preBaseInfo.urgentTel" is-type="china-mobile" :max="11" :required="true" text-align="right">
           <div slot="label"><span class="req">*</span>紧急联系方式</div>          
       </x-input>
     </group>
@@ -200,7 +200,8 @@ export default {
                     type: 'success'
                     });
                     this.$store.state.preBaseInfo = data.data.result;//返回数据存入store
-                    console.log("store",this.$store.state.preBaseInfo)
+                    console.log("store",this.$store.state.preBaseInfo);
+                    
                 } else {
                     this.$vux.toast.show({
                     text: '提交个人信息失败，请重试',

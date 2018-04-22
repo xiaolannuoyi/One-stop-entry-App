@@ -23,4 +23,10 @@ body {
   font-size: 12px;
   color: red;
 }
+.vux-step-item-head{
+display: block !important;
+}
+.vux-step-item-main{
+  display: block !important;
+}
 </style>
