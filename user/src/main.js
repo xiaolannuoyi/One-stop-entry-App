@@ -23,9 +23,11 @@ if (process.env.NODE_ENV === 'development') {
       render: h => h(App)
     }).$mount('#app-box')
   } else {
-    new Vue({
-      router,
-      store,
-      render: h => h(App)
-    }).$mount('#app-box')
+    document.addEventListener('deviceready',function(){
+      new Vue({
+        router,
+        store,
+        render: h => h(App)
+      }).$mount('#app-box')
+    },false)
   }

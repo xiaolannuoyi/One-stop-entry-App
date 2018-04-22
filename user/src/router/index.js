@@ -31,8 +31,15 @@ import EduBgInfo from '@/components/userdata/message/edubg/EduBgInfo'
 import AddEduBgInfo from '@/components/userdata/message/edubg/addEduBgInfo'
 import EditEduBgInfo from '@/components/userdata/message/edubg/EditEduBgInfo'
 
+//----------------
+import fileStep from '@/components/userdata/imagefile/fileStep'
+import IDCard from '@/components/userdata/imagefile/IDCard'
+import OneInchPhoto from '@/components/userdata/imagefile/OneInchPhoto'
+import bankCard from '@/components/userdata/imagefile/bankCard'
+import leaveWork from '@/components/userdata/imagefile/leaveWork'
+import Education from '@/components/userdata/imagefile/Education'
+import other from '@/components/userdata/imagefile/other'
 
-import mod from '@/components/userdata/message/mod'
 Vue.use(Router)
 
 export default new Router({
@@ -64,7 +71,6 @@ export default new Router({
         }]
     },
     { path: '/userdata/message/changePassword', component: changePassword },
-    { path: '/userdata/message/mod', component: mod },
     {
       path: '/userdata/message/step',
       component: Step,
@@ -140,6 +146,44 @@ export default new Router({
           name: 'EditEduBgInfo',
           component: EditEduBgInfo
         }
+      ]
+    },
+    {
+      path: '/userdata/imagefile/fileStep',
+      component: fileStep,
+      redirect: '/userdata/imagefile/fileStep/IDCard',
+      children: [
+        {
+          path: 'IDCard',
+          name: 'IDCard',
+          component: IDCard
+        },
+        {
+          path: 'OneInchPhoto',
+          name: 'OneInchPhoto',
+          component: OneInchPhoto
+        },
+        {
+          path: 'bankCard',
+          name: 'bankCard',
+          component: bankCard
+        },
+        {
+          path: 'Education',
+          name: 'Education',
+          component: Education
+        },
+        {
+          path: 'leaveWork',
+          name: 'leaveWork',
+          component: leaveWork
+        },
+        {
+          path: 'other',
+          name: 'other',
+          component: other
+        },
+        
       ]
     },
   ]
