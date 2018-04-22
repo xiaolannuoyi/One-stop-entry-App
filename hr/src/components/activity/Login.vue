@@ -7,9 +7,7 @@
       <x-input title="密码" ref="password" v-model="formData.Password" placeholder="请输入密码" type="password"  text-align="right"></x-input>
     </group>
     <img :src="src" alt="">
-    <x-button type="primary" @click.native="login">primary</x-button>
-    <x-button type="primary" @click.native="getPic">拍照</x-button>
-    <x-button type="primary" @click.native="notice">通知</x-button>
+    <x-button type="primary" @click.native="login">登录</x-button>
   </div>
 </template>
 
@@ -36,31 +34,6 @@ export default {
     };
   },
   methods: {
-    getPic() {
-      let self = this;
-      navigator.camera.getPicture(
-        data => {
-          self.src = data;
-        },
-        message => {
-          alert(message);
-        },
-        {
-          destinationType: FILE_URI,
-          encodingType: PNG,
-          saveToPhotoAlbum: true
-        }
-      );
-    },
-    notice() {
-      let self = this;
-      let arr = [];
-      arr.push({
-        id: +new Date(),
-        title: "Hello ，现在是" + new Date().toLocaleString()
-      });
-      cordova.plugins.notification.local.schedule(arr);
-    },
     login() {
       ServiceManager.hrLogin(this.formData).then(data => {
         console.log(data);

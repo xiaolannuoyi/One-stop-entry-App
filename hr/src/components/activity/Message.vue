@@ -1,6 +1,6 @@
 <template>
   <div>
-    <x-header :left-options="{showBack: false}">审核</x-header>
+    <x-header :left-options="{showBack: false}">消息</x-header>
   </div>
 </template>
 

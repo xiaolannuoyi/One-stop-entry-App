@@ -9,13 +9,9 @@
           <img slot="icon"  src="">
           <span slot="label">主页</span>
         </tabbar-item>
-        <tabbar-item link="/home/userdata">
+        <tabbar-item show-dot link="/home/message">
           <img slot="icon" src="">
-          <span slot="label">填写</span>
-        </tabbar-item>
-        <tabbar-item show-dot link="/home/check">
-          <img slot="icon" src="">
-          <span slot="label">审核</span>
+          <span slot="label">消息</span>
         </tabbar-item>
         <tabbar-item link="/home/company">
           <img slot="icon" src="">

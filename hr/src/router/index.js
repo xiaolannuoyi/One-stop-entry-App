@@ -5,7 +5,7 @@ import Login from '@/components/activity/Login'
 import FooterTab from '@/components/activity/FooterTab'
 import Home from '@/components/activity/Home'
 import Company from '@/components/activity/Company'
-import Check from '@/components/activity/Check'
+import Message from '@/components/activity/Message'
 import UserData from '@/components/activity/UserData'
 
 import Hr from '@/components/accountManager/HR/hr'
@@ -38,9 +38,9 @@ export default new Router({
           component: Company
         },
         {
-          path: 'check',
-          name: 'Check',
-          component: Check
+          path: 'message',
+          name: 'Message',
+          component: Message
         },{
           path: 'userData',
           name: 'UserData',

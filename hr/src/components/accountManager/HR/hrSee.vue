@@ -1,6 +1,5 @@
 <template>
   <div>
-      查看
     <panel header="全部" :list="list" type="1"></panel>
   </div>
 </template>
