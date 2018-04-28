@@ -12,6 +12,8 @@
 </template>
 
 <script>
+import ServiceManager from "@/services/services-manager";
+import store from "@/store/store.js";
 import { XHeader,Group,Cell } from 'vux'
 export default {
   components: {
@@ -20,6 +22,17 @@ export default {
   data(){
       return{
       }
+  },
+  mounted(){
+    this.getimg();
+    
+  },
+  methods:{
+    getimg(){
+      ServiceManager.findImg(this.$store.state.UserInfo).then( data =>{
+        console.log(data);
+      })
+    }
   }
 }
 </script>

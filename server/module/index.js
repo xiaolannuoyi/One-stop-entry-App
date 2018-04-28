@@ -260,6 +260,63 @@ module.exports = {
             type: Schema.ObjectId,
             ref: 'user'
         }
+    },
+    image: {
+        user:{
+            type: Schema.ObjectId,
+            ref: 'user'
+        },
+        img:{//头像
+            type: String,
+            default:null
+        },
+        IDface:{//身份证
+            type: String,
+            default:null
+        },
+        IDback:{
+            type: String,
+            default:null
+        },
+        oneph:{//一寸照
+            type: String,
+            default:null
+        },
+        Diploma:{//毕业证
+            type: String,
+            default:null
+        },
+        degree:{//学位证
+            type: String,
+            default:null
+        },
+        StudentID:{//学生证
+            type: String,
+            default:null
+        },
+        Quit:{//离职证明
+            type: String,
+            default:null
+        },
+        bankface:{//银行卡
+            type: String,
+            default:null
+        },
+        bankback:{//学位证
+            type: String,
+            default:null
+        },
+        ResidenceHomepage:{//户口主页
+            type: String,
+            default:null
+        },
+        ResidenceOwnpage:{//户口本人
+            type: String,
+            default:null
+        },
+
+
+        
     }
 
 }

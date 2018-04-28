@@ -3,13 +3,14 @@ const app = new Koa()
 const views = require('koa-views')
 const json = require('koa-json')
 const onerror = require('koa-onerror')
-const bodyparser = require('koa-bodyparser')
+const koaBody = require('koa-body');
 const logger = require('koa-logger')
 
 const index = require('./routes/index')
 const user = require('./routes/user')
 const hr = require('./routes/hr')
 const userMessage = require('./routes/userMessage')
+const upload = require('./routes/upload')
 //引入mongoose
 const mongoose = require('mongoose');
 //引入koa2-cors，解决前后端跨域问题
@@ -30,9 +31,12 @@ mongoose.connection.on('open', function () {
 onerror(app)
 
 // middlewares
-app.use(bodyparser({
-  enableTypes:['json', 'form', 'text']
-}))
+app.use(koaBody({
+  multipart: true,
+  formidable: {
+    maxFileSize: 200*1024*1024 // 设置上传文件大小最大限制，默认2M
+  }
+}));
 app.use(json())
 app.use(logger())
 app.use(require('koa-static')(__dirname + '/public'))
@@ -54,6 +58,7 @@ app.use(index.routes(), index.allowedMethods())
 app.use(user.routes(), user.allowedMethods())
 app.use(hr.routes(), hr.allowedMethods())
 app.use(userMessage.routes(), userMessage.allowedMethods())
+app.use(upload.routes(), upload.allowedMethods())
 // error-handling
 app.on('error', (err, ctx) => {
   console.error('server error', err, ctx)

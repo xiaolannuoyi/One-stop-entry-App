@@ -13,6 +13,7 @@ const state = {
     homeInfo:[],//家庭成员
     qualifyInfo:[],//资格证书
     edubgInfo:[],//教育背景
+    img:{}//图片
  }
  
  const mutations={

@@ -3,6 +3,10 @@
     <!-- header -->
     <x-header :left-options="{showBack: false}">主页</x-header>
     <!-- content -->
+    <blur :blur-amount=40 :url="avatar">
+      <p class="center"><img :src="avatar" @click="actionsShow = true"></p>
+    </blur>
+
     <group>
       <cell title="姓名" :value="UserInfo.Name"></cell>
       <cell title="电话" :value="UserInfo.Tel"></cell>
@@ -22,17 +26,22 @@
       </confirm>
     </div>
 
+    <actionsheet v-model="actionsShow"
+                 :menus="menu"
+                 @on-click-menu="handleSelectAction"
+                 show-cancel>
+                 </actionsheet>
   </div>
 </template>
 
 <script>
-import {Group,Cell,XHeader,CellBox,Confirm,XButton,TransferDomDirective as TransferDom} from "vux";
+import {Group,Cell,XHeader,CellBox,Confirm,XButton,Blur,Actionsheet,TransferDomDirective as TransferDom} from "vux";
 import ServiceManager from "@/services/services-manager";
 import store from "@/store/store.js";
 export default {
   store,
   components: {
-    Group,Cell,XHeader, Confirm, CellBox,XButton
+    Group,Cell,XHeader, Confirm, CellBox,XButton,Blur,Actionsheet
   },
   directives: {
     TransferDom
@@ -47,13 +56,18 @@ export default {
   },
   data() {
     return {
-      show:""
+      show:"",
+      actionsShow: false,
+      menu: {
+        // menu1: '拍照',
+        menu2: '选择图片'
+      },
+      avatar:'http://192.168.88.255:3000/uploads/pic.png',
     };
   },
   computed: {
     UserInfo() {
       console.log(this.$store.state.UserInfo);
-      
       return this.$store.state.UserInfo;
     },
   },
@@ -101,12 +115,66 @@ export default {
           });                  
         }
       });
+    },
+    //图片
+    handleSelectAction (key) {
+      key == 'menu1'
+          ?  this.cameraTakePicture(Camera.PictureSourceType.CAMERA,true,this.$store.state.UserInfo._id)
+          : this.cameraTakePicture(Camera.PictureSourceType.PHOTOLIBRARY,false,this.$store.state.UserInfo._id)
+    },
+    cameraTakePicture(sourcePhoto,edit,userid) {
+        navigator.camera.getPicture(onSuccess, onFail, { 
+            quality: 50,// 	数值型，用从0到100%的百分比来控制图像的质量，100表示不经过压缩
+            sourceType : sourcePhoto,//数值型，指明图像来源。可能值有Camera.PictureSourceType.CAMERA(默认值)，或者Camera.PictureSourceType.PHOTOLIBRARY、Camera.PictureSourceType.SAVEDPHOTOALBUM。选项的行为会根据应用运行的平台不同而不同，像有些平台没有photo libraries或photo albums。
+            allowEdit : edit,//布尔值，照片在返回Cordova应用之前用户是否可以编辑，但并不是所有移动平台都支持。
+            encodingType : Camera.EncodingType.JPEG,//数值型，指明图像输出格式。Camera.EncodingType.JPEG让API返回JPEG图像。
+            targetWdith : 100,//数值型，用来设定获得的图像的高度。
+            targetHeight : 100,
+            popoverOptions : CameraPopoverOptions,
+            saveToPhotoAlbum : false,//布尔值，指示API在拍照后把图像保存到设备照片相册中。
+        });
+    
+        function onSuccess(imageData) {
+          alert(imageData);
+          var ft = new FileTransfer();
+          ft.upload(
+            imageData,
+            'http://192.168.88.255:3000/upload/uploadFace',
+            r => {
+              alert(r.response)
+            },
+            error => {
+              alert(error.code)
+            },
+            {
+              params: {
+                id: userid
+              }
+            }
+          );
+        }
+    
+        function onFail(message) {
+          alert('Failed because: ' + message);
+        }
     }
+   
   }
 };
 </script>
-<style>
-
+<style scoped>
+.center {
+  text-align: center;
+  padding-top: 20px;
+  color: #fff;
+  font-size: 18px;
+}
+.center img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: 4px solid #ececec;
+}
 </style>
 
 
