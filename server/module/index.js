@@ -18,10 +18,14 @@ module.exports = {
         Address: String,//工作地区
         Department:String,//部门
         EntryTime:String,//入职时间
-        State:{
+        offerState:{
             type: Number,
             default:0, // 0: 注册，1:接受，2：拒绝，3：提交（等待审核），4：hr审核中，5：审核结束（审核结果）
         },
+        avatar:{//头像
+            type:String,
+            default:'uploads/pic.png'
+        }
       },
     //个人信息
     preBaseInfo:{
@@ -265,10 +269,6 @@ module.exports = {
         user:{
             type: Schema.ObjectId,
             ref: 'user'
-        },
-        img:{//头像
-            type: String,
-            default:null
         },
         IDface:{//身份证
             type: String,

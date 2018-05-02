@@ -15,19 +15,22 @@ class ImgOpt {
             fse.ensureDirSync('public/uploads/' + userId);
             const upStream = fs.createWriteStream(`public/uploads/${userId}/avatar.jpg`); // 创建可写流
             reader.pipe(upStream); // 可读流通过管道写入可写流
-            // UserModel.findByIdAndUpdate(data.id, {
-            //     $set: {
-            //         img: data.img,//姓名
-            //     }
-            // }).then(() => {
-            //     UserModel.findById(data.id).then(User => {
-            //         resolve(User);
-            //     });
-            // })
-            //     .catch(() => {
-            //         reject('fail');
-            //     });
-            resolve(file);
+            console.log('uploads/'+ userId+'/avatar.jpg');
+            
+            UserModel.findByIdAndUpdate(userId, {
+                $set: {
+                    avatar: 'uploads/'+ userId+'/avatar.jpg',//姓名
+                }
+            }).then(() => {
+                UserModel.findById(userId).then(User => {
+                    console.log('===========');
+                    
+                    resolve(User);
+                });
+            }).catch(() => {
+                reject('fail');
+            });
+            //resolve(file);
         });
     }
 }

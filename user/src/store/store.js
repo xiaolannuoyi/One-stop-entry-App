@@ -5,6 +5,7 @@ import Vuex from 'vuex'
 Vue.use(Vuex);
 
 const state = {
+    baseURL:'',
     UserInfo:{},//user个人信息
     offerStateFlag: true,//offer 弹框显示标志
     preBaseInfo:{},//个人信息
@@ -15,10 +16,17 @@ const state = {
     edubgInfo:[],//教育背景
     img:{}//图片
  }
- 
+//  192.168.88.255//公司
+//  192.168.43.8//手机热点
+ const getters= {
+    baseURL: state =>
+      process.env.NODE_ENV === 'development'
+        ? 'http://localhost:3000/'
+        : 'http://192.168.88.255:3000/'
+  }
  const mutations={
  }
 
  export default new Vuex.Store({
-     state,mutations
+     state,mutations,getters
  });

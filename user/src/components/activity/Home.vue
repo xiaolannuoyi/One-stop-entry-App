@@ -47,7 +47,7 @@ export default {
     TransferDom
   },
   mounted() {
-    if(this.$store.state.offerStateFlag && ( this.UserInfo.State == 0 || this.UserInfo.State == 2) ){
+    if(this.$store.state.offerStateFlag && ( this.UserInfo.offerState == 0 || this.UserInfo.offerState == 2) ){
       this.show = true;
     }else{
       this.show = false;        
@@ -74,8 +74,8 @@ export default {
   methods: {
     //拒绝
     onCancel() {
-      this.UserInfo.State = 2;
-      ServiceManager.UserOfferState(this.UserInfo._id,this.UserInfo.State).then(data => {
+      this.UserInfo.offerState = 2;
+      ServiceManager.UserOfferState(this.UserInfo._id,this.UserInfo.offerState).then(data => {
         console.log(data);
         if (data.data.code == 200) {
           this.$vux.toast.show({
@@ -84,7 +84,7 @@ export default {
           });
           this.$store.state.offerStateFlag = false;//offer弹窗
           this.$store.state.UserInfo = data.data.result; //返回数据存入store
-          console.log("store", this.$store.state.UserInfo.State);
+          console.log("store", this.$store.state.UserInfo.offerState);
           this.$router.replace("/home");
         } else {
           this.$vux.toast.show({
@@ -96,8 +96,8 @@ export default {
     },
     //接受
     onConfirm() {
-      this.UserInfo.State = 1;
-      ServiceManager.UserOfferState(this.UserInfo._id,this.UserInfo.State).then(data => {
+      this.UserInfo.offerState = 1;
+      ServiceManager.UserOfferState(this.UserInfo._id,this.UserInfo.offerState).then(data => {
         console.log(data);
         if (data.data.code == 200) {
           this.$vux.toast.show({

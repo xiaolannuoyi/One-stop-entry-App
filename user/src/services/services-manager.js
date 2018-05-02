@@ -1,14 +1,15 @@
 import axios from 'axios';
 
+import store from '../store/store'
+
+axios.defaults.baseURL = store.getters.baseURL;
 // axios.defaults.baseURL = 'http://localhost:3000/';
-if(process.env.NODE_ENV === 'development') {
-  axios.defaults.baseURL = 'http://localhost:3000/';
-} else {
-  // axios.defaults.baseURL = 'http://192.168.10.113:3000/';
-  axios.defaults.baseURL = 'http://192.168.88.255:3000/';
-  
-  
-}
+// if(process.env.NODE_ENV === 'development') {
+//   axios.defaults.baseURL = 'http://localhost:3000/';
+// } else {
+//   // axios.defaults.baseURL = 'http://192.168.10.113:3000/';
+//   axios.defaults.baseURL = 'http://192.168.88.255:3000/';
+// }
 
 
 let servicesManager = {
