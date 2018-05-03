@@ -59,8 +59,10 @@ export default {
               text: '登录成功',
               type: 'success'
             });
-            this.$store.state.UserInfo = data.data.result;//返回数据存入store
-            console.log("store",this.$store.state.UserInfo)
+            // this.$store.state.UserInfo = data.data.result;//返回数据存入store
+            // console.log("store",this.$store.state.UserInfo)
+            console.log(data.data.result)
+            this.$store.commit('setUserInfo',data.data.result);
             this.$router.replace('/home');
           } else {
             this.$vux.toast.show({

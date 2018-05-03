@@ -24,7 +24,13 @@ const state = {
         ? 'http://localhost:3000/'
         : 'http://192.168.88.255:3000/'
   }
- const mutations={
+
+ const mutations = {
+    setUserInfo(state, data){
+        console.log(data)
+        return state.UserInfo=data;
+     },
+
  }
 
  export default new Vuex.Store({
