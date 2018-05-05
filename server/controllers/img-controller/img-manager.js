@@ -32,8 +32,7 @@ class ImgManager {
     });
   }
 
-  //上传银行卡
-  
+  //ID正面
   async uploadIDface(ctx, next) {
     console.log(ctx.request.body)
     await ImgOpt.uploadIDface(ctx.request.body).then(data => {
@@ -48,21 +47,20 @@ class ImgManager {
       }
     });
   }
-    //上传银行卡
-  
-    async uploadIDback(ctx, next) {
-      await ImgOpt.uploadIDback(ctx.request.body).then(data => {
-        ctx.response.body = {
-          code:200,
-          msg:"上传成功",
-          result:data
-        }
-      }).catch(() => {
-        ctx.response.body = {
-          msg:"上传错误"
-        }
-      });
-    }
+    //ID背面
+  async uploadIDback(ctx, next) {
+    await ImgOpt.uploadIDback(ctx.request.body).then(data => {
+      ctx.response.body = {
+        code:200,
+        msg:"上传成功",
+        result:data
+      }
+    }).catch(() => {
+      ctx.response.body = {
+        msg:"上传错误"
+      }
+    });
+  }
 
   }
   module.exports =  new ImgManager

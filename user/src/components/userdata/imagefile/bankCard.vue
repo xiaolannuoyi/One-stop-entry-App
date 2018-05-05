@@ -21,7 +21,6 @@
 </template>
 
 <script>
-import {cameraTakePicture} from '../../../../static/models/plugin'
 import {Group, Cell,XButton, Actionsheet,TransferDomDirective as TransferDom} from 'vux';
 import { mapState ,mapGetters} from 'vuex';
 import ServiceManager from "@/services/services-manager";
@@ -43,10 +42,6 @@ export default {
                 menu2: "图库"
             },
             img:'',
-            file:{
-                one:'',
-                teo:''
-            }//
         }
     },
     computed: {
@@ -67,35 +62,43 @@ export default {
             this.img = event.target;
             console.log("输出",event.target)
         },
-        click (key) {
-            if(key == 'menu1'){
-                console.log("拍照");
-                cameraTakePicture(Camera.PictureSourceType.CAMERA,true,this.img,this.file)
-            }else if(key == 'menu2'){
-                console.log("图库");
-                cameraTakePicture(Camera.PictureSourceType.PHOTOLIBRARY,false,this.img,this.file)                
-            }else{
-
-            }
+        click (key){
+            navigator.camera.getPicture(
+                data => {
+                    console.log("imagedata---------",data)
+                    this.img.src = data;
+                },
+                error => {
+                    alert("失败原因",error)
+                },
+                {
+                quality: 20,
+                sourceType:
+                    key == 'menu1'
+                    ? Camera.PictureSourceType.CAMERA
+                    : Camera.PictureSourceType.SAVEDPHOTOALBUM,
+                correctOrientation: true
+            })
         },
         comfirm(){
-            console.log("文件",this.file)
             let url1 = this.baseURL + 'upload/uploadIDface'
             let url2 = this.baseURL + 'upload/uploadIDback'
-            console.log("store.image",this.image);
-            console.log("this.image.user",this.image.user);
-            
-            if(this.file.one !=='' && this.file.two !==''){
-                this.updateImage(this.file.one,url1,this.image.user);
-                //this.updateImage(this.file.two,url2,this.image.user);
-            }else{
+            let one = document.getElementById('one').src;
+            let two = document.getElementById('two').src;
 
+            if(one !== this.ID1 && two !== this.ID2){
+                this.updateImage(one,url1,this.image.user);
+                this.updateImage(two,url2,this.image.user);
+            }else if(one == this.ID1){
+                this.updateImage(two,url2,this.image.user);
+            }else{
+                this.updateImage(one,url1,this.image.user);
             }
         },
         updateImage(imagedata,url,userid){
             let self = this;
             self.$vux.loading.show({
-                text: '上传中'
+            text: '上传中'
             })
             var ft = new FileTransfer();
             ft.upload(
@@ -103,20 +106,19 @@ export default {
             url,
             r => {
                 console.log("成功",r.response)
-                alert("成功",r.response)
                 self.$vux.loading.hide();
                 this.$store.commit('setImage',JSON.parse(r.response).result);
                 console.log("store",this.image)
                 self.$vux.toast.show({
-                text: '上传成功',
-                type: 'success'
+                    text: '上传成功',
+                    type: 'success'
                 });
             },
             error => {
                 self.$vux.loading.hide();
                 self.$vux.toast.show({
-                text: '上传失败',
-                type: 'warn'
+                    text: '上传失败',
+                    type: 'warn'
                 });
             },
             {

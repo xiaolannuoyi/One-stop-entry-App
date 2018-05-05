@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import {cameraTakePicture} from '../../../../static/models/plugin'
+// import {cameraTakePicture} from '../../../../static/models/plugin'
 import {Group, Cell,XButton, Actionsheet,TransferDomDirective as TransferDom} from 'vux';
 export default {
     components: {
@@ -50,15 +50,15 @@ export default {
             console.log(event.target)
         },
         click (key) {
-            if(key == 'menu1'){
-                console.log("拍照");
-                cameraTakePicture(Camera.PictureSourceType.CAMERA,true,this.img)
-            }else if(key == 'menu2'){
-                console.log("图库");
-                cameraTakePicture(Camera.PictureSourceType.PHOTOLIBRARY,false,this.img)                
-            }else{
+            // if(key == 'menu1'){
+            //     console.log("拍照");
+            //     cameraTakePicture(Camera.PictureSourceType.CAMERA,true,this.img)
+            // }else if(key == 'menu2'){
+            //     console.log("图库");
+            //     cameraTakePicture(Camera.PictureSourceType.PHOTOLIBRARY,false,this.img)                
+            // }else{
 
-            }
+            // }
         },
         comfirm(){
             
