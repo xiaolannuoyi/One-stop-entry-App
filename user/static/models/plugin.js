@@ -1,4 +1,4 @@
-function cameraTakePicture(sourcePhoto,edit,image) {
+function cameraTakePicture(sourcePhoto,edit,image,file) {
     navigator.camera.getPicture(onSuccess, onFail, { 
         quality: 50,// 	数值型，用从0到100%的百分比来控制图像的质量，100表示不经过压缩
         destinationType: Camera.DestinationType.DATA_URL,
@@ -13,6 +13,11 @@ function cameraTakePicture(sourcePhoto,edit,image) {
  
     function onSuccess(imageData) {
        image.src = "data:image/jpeg;base64," + imageData;
+       if(image.id == "one"){
+           return  file.one = imageData
+       }else{
+            return file.two = imageData
+       }
     }
  
     function onFail(message) {
@@ -20,4 +25,5 @@ function cameraTakePicture(sourcePhoto,edit,image) {
     }
  }
 
+ 
  export{cameraTakePicture}

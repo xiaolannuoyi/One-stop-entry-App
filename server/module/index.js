@@ -272,48 +272,44 @@ module.exports = {
         },
         IDface:{//身份证
             type: String,
-            default:null
+            default: 'uploads/ID-face-card.png'
         },
         IDback:{
             type: String,
-            default:null
+            default:'uploads/ID-back-card.png'
         },
         oneph:{//一寸照
             type: String,
-            default:null
+            default:'uploads/one-inch-photo.png'
         },
         Diploma:{//毕业证
             type: String,
-            default:null
+            default:'uploads/certificate-card.png'
         },
         degree:{//学位证
             type: String,
-            default:null
+            default:'uploads/diploma-card.png'
         },
         StudentID:{//学生证
             type: String,
-            default:null
+            default:'uploads/student-card.png'
         },
         Quit:{//离职证明
             type: String,
-            default:null
+            default:'uploads/leave-prove-img.png'
         },
-        bankface:{//银行卡
+        bank:{//银行卡
             type: String,
-            default:null
-        },
-        bankback:{//学位证
-            type: String,
-            default:null
+            default:'uploads/pf-bank-card.png'
         },
         ResidenceHomepage:{//户口主页
             type: String,
-            default:null
+            default:'uploads/pf-bank-card.png'
         },
         ResidenceOwnpage:{//户口本人
             type: String,
-            default:null
-        },
+            default:'uploads/household-register-card.png'
+        }
 
 
         

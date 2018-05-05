@@ -248,6 +248,16 @@ let servicesManager = {
           data: {id}
         });
       },
+//---------------图片-------------------
+      findImg(id) {
+        console.log(" ",id)
+        return axios({
+          method: 'post',
+          url: '/upload/findImg',
+          data: {id}
+        });
+      },
+
 };
 
 export default servicesManager;

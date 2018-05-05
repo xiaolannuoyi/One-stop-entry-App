@@ -14,7 +14,7 @@ const state = {
     homeInfo:[],//家庭成员
     qualifyInfo:[],//资格证书
     edubgInfo:[],//教育背景
-    img:{}//图片
+    image:{}//图片
  }
 //  192.168.88.255//公司
 //  192.168.43.8//手机热点
@@ -29,6 +29,10 @@ const state = {
     setUserInfo(state, data){
         console.log(data)
         return state.UserInfo=data;
+     },
+     setImage(state, data){
+        console.log(data)
+        return state.image=data;
      },
 
  }

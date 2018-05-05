@@ -15,6 +15,7 @@
 import ServiceManager from "@/services/services-manager";
 import store from "@/store/store.js";
 import { XHeader,Group,Cell } from 'vux'
+import { mapState ,mapGetters} from 'vuex';
 export default {
   components: {
     XHeader,Group,Cell,
@@ -25,12 +26,16 @@ export default {
   },
   mounted(){
     this.getimg();
-    
+  },
+  computed: {
+    ...mapState(['image','UserInfo']),
   },
   methods:{
     getimg(){
-      ServiceManager.findImg(this.$store.state.UserInfo).then( data =>{
-        console.log(data);
+      ServiceManager.findImg(this.UserInfo._id).then( data =>{
+        console.log("image",data);
+        this.$store.commit('setImage',data.data.result);
+        console.log("store",this.image)
       })
     }
   }
