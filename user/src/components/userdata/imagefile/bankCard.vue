@@ -1,13 +1,9 @@
 <template>
   <div>
-    <group title="身份证电子文件上传">
-        <cell title="正面"></cell>
+    
+    <group title="银行卡上传">
         <div class="uploadBox" @click="uploadimg">
-            <img width="100%" :src="ID1" id="one">
-        </div>
-        <cell title="反面"></cell>
-        <div class="uploadBox" @click="uploadimg">
-            <img width="100%" :src="ID2" id="two">
+            <img width="100%" :src="bankcard1" id="one">
         </div>
          <x-button  type="primary" @click.native="comfirm">提交</x-button>
     </group>
@@ -45,13 +41,9 @@ export default {
         }
     },
     computed: {
-        ID1(){
-            console.log("id1",this.baseURL + this.image.IDface)
-            return this.baseURL + this.image.IDface;
-        },
-        ID2(){
-            console.log("id2",this.baseURL + this.image.IDback)
-            return this.baseURL + this.image.IDback;
+        bankcard1(){
+            console.log("bankcard1",this.baseURL + this.image.bank)
+            return this.baseURL + this.image.bank;
         },
         ...mapState(['image']),
         ...mapGetters(['baseURL'])
@@ -81,18 +73,15 @@ export default {
             })
         },
         comfirm(){
-            let url1 = this.baseURL + 'upload/uploadIDface'
-            let url2 = this.baseURL + 'upload/uploadIDback'
+            let url1 = this.baseURL + 'upload/uploadBankCard'
             let one = document.getElementById('one').src;
-            let two = document.getElementById('two').src;
-
-            if(one !== this.ID1 && two !== this.ID2){
-                this.updateImage(one,url1,this.image.user);
-                this.updateImage(two,url2,this.image.user);
-            }else if(one == this.ID1){
-                this.updateImage(two,url2,this.image.user);
+            if(one !== this.bankcard1){
+              this.updateImage(one,url1,this.image.user);
             }else{
-                this.updateImage(one,url1,this.image.user);
+              this.$vux.toast.show({
+                    text: '图片已存在',
+                    type: 'warn'
+                });
             }
         },
         updateImage(imagedata,url,userid){

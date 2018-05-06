@@ -61,6 +61,129 @@ class ImgManager {
       }
     });
   }
+  //bank
+  async uploadBankCard(ctx, next) {
+    await ImgOpt.uploadBankCard(ctx.request.body).then(data => {
+      ctx.response.body = {
+        code:200,
+        msg:"上传成功",
+        result:data
+      }
+    }).catch(() => {
+      ctx.response.body = {
+        msg:"上传错误"
+      }
+    });
+  }
 
+  //毕业证
+  async uploadDiploma(ctx, next) {
+    await ImgOpt.uploadDiploma(ctx.request.body).then(data => {
+      ctx.response.body = {
+        code:200,
+        msg:"上传成功",
+        result:data
+      }
+    }).catch(() => {
+      ctx.response.body = {
+        msg:"上传错误"
+      }
+    });
+  }
+
+  //学位证
+  async uploaddegree(ctx, next) {
+    await ImgOpt.uploaddegree(ctx.request.body).then(data => {
+      ctx.response.body = {
+        code:200,
+        msg:"上传成功",
+        result:data
+      }
+    }).catch(() => {
+      ctx.response.body = {
+        msg:"上传错误"
+      }
+    });
+  }
+
+  //学生证
+  async uploadStudentID(ctx, next) {
+    await ImgOpt.uploadStudentID(ctx.request.body).then(data => {
+      ctx.response.body = {
+        code:200,
+        msg:"上传成功",
+        result:data
+      }
+    }).catch(() => {
+      ctx.response.body = {
+        msg:"上传错误"
+      }
+    });
+  }
+
+
+  
+  //一寸照
+  async uploadoneph(ctx, next) {
+    await ImgOpt.uploadoneph(ctx.request.body).then(data => {
+      ctx.response.body = {
+        code:200,
+        msg:"上传成功",
+        result:data
+      }
+    }).catch(() => {
+      ctx.response.body = {
+        msg:"上传错误"
+      }
+    });
+  }
+
+
+  
+    //离职证明
+    async uploadQuit(ctx, next) {
+      await ImgOpt.uploadQuit(ctx.request.body).then(data => {
+        ctx.response.body = {
+          code:200,
+          msg:"上传成功",
+          result:data
+        }
+      }).catch(() => {
+        ctx.response.body = {
+          msg:"上传错误"
+        }
+      });
+    }
+
+    
+    //户口页主页
+    async uploadResidenceHomepage(ctx, next) {
+      await ImgOpt.uploadResidenceHomepage(ctx.request.body).then(data => {
+        ctx.response.body = {
+          code:200,
+          msg:"上传成功",
+          result:data
+        }
+      }).catch(() => {
+        ctx.response.body = {
+          msg:"上传错误"
+        }
+      });
+    }
+
+    //户口页个人页
+    async uploadResidenceOwnpage(ctx, next) {
+      await ImgOpt.uploadResidenceOwnpage(ctx.request.body).then(data => {
+        ctx.response.body = {
+          code:200,
+          msg:"上传成功",
+          result:data
+        }
+      }).catch(() => {
+        ctx.response.body = {
+          msg:"上传错误"
+        }
+      });
+    }
   }
   module.exports =  new ImgManager

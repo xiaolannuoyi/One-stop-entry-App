@@ -18,11 +18,12 @@ const state = {
  }
 //  192.168.88.255//公司
 //  192.168.43.8//手机热点
+//  192.168.2.107//家
  const getters= {
     baseURL: state =>
       process.env.NODE_ENV === 'development'
         ? 'http://localhost:3000/'
-        : 'http://192.168.88.255:3000/'
+        : 'http://192.168.43.8:3000/'
   }
 
  const mutations = {

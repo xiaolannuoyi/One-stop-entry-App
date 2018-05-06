@@ -284,11 +284,11 @@ module.exports = {
         },
         Diploma:{//毕业证
             type: String,
-            default:'uploads/certificate-card.png'
+            default:'uploads/diploma-card.png'
         },
         degree:{//学位证
             type: String,
-            default:'uploads/diploma-card.png'
+            default:'uploads/certificate-card.png'
         },
         StudentID:{//学生证
             type: String,
@@ -304,7 +304,7 @@ module.exports = {
         },
         ResidenceHomepage:{//户口主页
             type: String,
-            default:'uploads/pf-bank-card.png'
+            default:'uploads/household-register-card.png'
         },
         ResidenceOwnpage:{//户口本人
             type: String,
