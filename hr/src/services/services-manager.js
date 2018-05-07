@@ -88,7 +88,7 @@ let servicesManager = {
       data: {id,data},
     });
   },
-
+//删除用户，及所有文件
   UserDel(data){
     console.log(data)
     return axios({

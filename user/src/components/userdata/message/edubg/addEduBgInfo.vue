@@ -5,7 +5,7 @@
             <div slot="title"><span class="req">*</span>起始年月</div>
         </datetime>
         <datetime  title="截止年月" v-model="preEduBg.Enddate">
-            <div slot="tilte"><span class="req">*</span>截止年月</div>
+            <div slot="title"><span class="req">*</span>截止年月</div>
         </datetime>
         <x-input title="学校" v-model="preEduBg.Schoolname" text-align="right">
             <div slot="label"><span class="req">*</span>学校</div>

@@ -1,7 +1,111 @@
 let dbHelper = require('../../lib/dbHelper');
 let UserModel = dbHelper.getModel('user');
-
+let PreBaseInfoModel = dbHelper.getModel('preBaseInfo');
+let bankcardModel = dbHelper.getModel('bankcard');
+let workInfoModel = dbHelper.getModel('workInfo');
+let HomeInfoModel = dbHelper.getModel('homeInfo');
+let EduBgModel = dbHelper.getModel('eduBg');
+let QualifyInfoModel = dbHelper.getModel('qualifyInfo');
+let ImgModel = dbHelper.getModel('image');
 class UserOpt {
+    /**
+   * 删除数据
+   */
+  UserDel(data) {
+    console.log("data=============",data)
+    var user = new Promise((resolve, reject) => {
+      UserModel.findByIdAndRemove(data.id)
+        .then(() => {
+          console.log('userok');
+          resolve('userok');          
+          
+        })
+        .catch(() => {
+          reject();
+        });
+    });
+    var base = new Promise((resolve, reject) => {
+      PreBaseInfoModel.remove({user:data.id})
+        .then(() => {
+          console.log('baseok');
+          resolve('baseok');          
+        })
+        .catch(() => {
+          reject();
+        });
+    });
+    var bank = new Promise((resolve, reject) => {
+      bankcardModel.remove({user:data.id})
+        .then(() => {
+          console.log('bankok');
+          resolve('bankok');
+          
+        })
+        .catch(() => {
+          reject();
+        });
+    });
+    var work = new Promise((resolve, reject) => {
+      workInfoModel.remove({user:data.id})
+        .then(() => {
+          console.log('workok');
+          resolve('workok');
+          
+        })
+        .catch(() => {
+          reject();
+        });
+    });
+    var home = new Promise((resolve, reject) => {
+      HomeInfoModel.remove({user:data.id})
+        .then(() => {
+          console.log('homeok');
+          resolve('homeok');
+          
+        })
+        .catch(() => {
+          reject();
+        });
+    });
+    var edubg = new Promise((resolve, reject) => {
+      EduBgModel.remove({user:data.id})
+        .then(() => {
+          console.log('edubgok');
+          resolve('Qualifyok');
+          
+        })
+        .catch(() => {
+          reject();
+        });
+    });
+    var Qualify = new Promise((resolve, reject) => {
+      QualifyInfoModel.remove({user:data.id})
+        .then(() => {
+          console.log('Qualifyok');
+          resolve('Qualifyok');
+        })
+        .catch(() => {
+          reject();
+        });
+    });
+    var image = ImgModel.remove({user:data.id});
+
+    
+    var file = new Promise((resolve, reject) => {
+      let fse = require('fs-extra')
+      let savePath = `pubilc/uploads/${data.id}`;
+      console.log(savePath)
+      fse.remove(savePath).then(() => {
+        console.log('fileok');
+        resolve('fileok');
+      })
+      .catch(() => {
+        reject();
+      });
+
+    });
+    return Promise.all([user,base,bank,work,home,edubg,Qualify,image,file])
+  }
   /**
    * 注册
    * 插入数据
@@ -99,22 +203,7 @@ class UserOpt {
     });
   }
 
-  /**
-   * 删除数据
-   */
-  UserDel(data) {
-    console.log("data=============",data)
-    return new Promise((resolve, reject) => {
-      UserModel.findByIdAndRemove(data.id)
-        .then(User => {
-          console.log('查询结果', JSON.stringify(User, null, 2));
-          resolve(User);
-        })
-        .catch(() => {
-          reject();
-        });
-    });
-  }
+
     //重置密码
     UserResetPassword(data){
       console.log(data.password)

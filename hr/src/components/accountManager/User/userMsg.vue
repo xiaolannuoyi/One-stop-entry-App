@@ -32,7 +32,7 @@
 
     <div v-transfer-dom>
       <confirm v-model="show" title="确认删除" @on-confirm="onConfirm">
-        <p style="text-align:center;">删除不可恢复</p>
+        <p style="text-align:center;">删除用户所有信息，删除不可恢复</p>
       </confirm>
     </div>
 

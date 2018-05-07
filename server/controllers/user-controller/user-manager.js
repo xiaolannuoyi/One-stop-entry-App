@@ -90,11 +90,11 @@ class UserManager {
   async UserDel(ctx, next) {
     console.log("ctx.request.body",ctx.request.body);
     
-    await UserOpt.UserDel(ctx.request.body).then(data => {
+    await UserOpt.UserDel(ctx.request.body).then(() => {
+      
       ctx.response.body = {
         code:200,
-        msg:"查询成功",
-        result:data
+        msg:"查询成功"
       }
     }).catch(() => {
       ctx.response.body = {
@@ -110,6 +110,10 @@ class UserManager {
             code:200,
             msg:"ok",
             result:data
+        }
+      }).catch(() => {
+        ctx.response.body = {
+          msg:"查询错误"
         }
       });
     }

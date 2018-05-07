@@ -256,8 +256,8 @@ export default {
             predata.workDate = this.preBaseInfo.workDate;//工作日期
             predata.birthDay = this.preBaseInfo.birthDay; //生日
 
-            predata.user = this.preBaseInfo.user; //id
-            predata._id=this.preBaseInfo._id;
+            predata.user = this.UserInfo._id; //id
+            predata._id=this.preBaseInfo._id ;
             this.postData = predata;
         },
         confirm(){
