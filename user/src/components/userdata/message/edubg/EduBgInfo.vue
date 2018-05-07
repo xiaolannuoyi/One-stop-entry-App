@@ -12,10 +12,9 @@
 import edubgItem from "./EduBgItem"
 import ServiceManager from '@/services/services-manager';
 import { Group,XButton,Cell, CellBox, } from 'vux'
-import store from '@/store/store.js'
+import { mapState } from 'vuex'
 
 export default {
-    store,
     components: {
       Group,XButton,Cell, CellBox,edubgItem
     },
@@ -26,10 +25,7 @@ export default {
     
     },
     computed: {
-        edubgInfo() {
-            console.log(this.$store.state.edubgInfo);
-            return this.$store.state.edubgInfo;
-        },
+        ...mapState(['edubgInfo','UserInfo']),
     },
     mounted(){
         this.getedubgInfo();
@@ -39,11 +35,11 @@ export default {
             this.$vux.loading.show({
                 text: 'Loading'
             })
-            console.log("userid",this.$store.state.UserInfo._id);
-             ServiceManager.findedubgInfo(this.$store.state.UserInfo._id).then(data => {
+            console.log("userid",this.UserInfo._id);
+             ServiceManager.findedubgInfo(this.UserInfo._id).then(data => {
                     console.log("yes");
-                    this.$store.state.edubgInfo = data.data.result;//返回数据存入store
-                    console.log("store",this.$store.state.edubgInfo)
+                    this.$store.commit('setedubgInfo',data.data.result);//返回数据存入store
+                    console.log("store",this.edubgInfo)
                     this.$vux.loading.hide()
             });
         },

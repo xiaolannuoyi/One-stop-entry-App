@@ -12,10 +12,9 @@
 import workItem from "./workItem"
 import ServiceManager from '@/services/services-manager';
 import { Group,XButton,Cell, CellBox, } from 'vux'
-import store from '@/store/store.js'
+import { mapState } from 'vuex';
 
 export default {
-    store,
     components: {
       Group,XButton,Cell, CellBox,workItem
     },
@@ -26,10 +25,7 @@ export default {
     
     },
     computed: {
-        workInfo() {
-            console.log(this.$store.state.workInfo);
-            return this.$store.state.workInfo;
-        },
+        ...mapState(['workInfo','UserInfo']),
     },
     mounted(){
         this.getworkInfo();
@@ -39,11 +35,11 @@ export default {
             this.$vux.loading.show({
                 text: 'Loading'
             })
-            console.log("userid",this.$store.state.UserInfo._id);
-             ServiceManager.findworkInfo(this.$store.state.UserInfo._id).then(data => {
+            console.log("userid",this.UserInfo._id);
+             ServiceManager.findworkInfo(this.UserInfo._id).then(data => {
                     console.log("yes");
-                    this.$store.state.workInfo = data.data.result;//返回数据存入store
-                    console.log("store",this.$store.state.workInfo)
+                    this.$store.commit('setworkInfo',data.data.result);//返回数据存入store
+                    console.log("store",this.workInfo)
                     this.$vux.loading.hide()
             });
         },

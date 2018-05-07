@@ -17,10 +17,9 @@
 <script>
 import ServiceManager from '@/services/services-manager';
 import { Group,XButton,XInput,Datetime } from 'vux'
-import store from '@/store/store.js'
+import { mapState } from 'vuex';
 
 export default {
-    store,
     components: {
       Group,XButton,XInput,Datetime
     },
@@ -38,13 +37,14 @@ export default {
     
     },
     computed: {
+        ...mapState(['edubgInfo','UserInfo']),
     },
     methods:{
         confirm(){
             this.$vux.loading.show({
                 text: 'Loading'
             })
-            this.preEduBg.user = this.$store.state.UserInfo._id;
+            this.preEduBg.user = this.UserInfo._id;
             ServiceManager.submitEduBgInfo(this.preEduBg).then(data => {
                 console.log(data)
                 this.$vux.loading.hide()                                
@@ -53,8 +53,8 @@ export default {
                     text: '提交成功',
                     type: 'success'
                     });
-                    this.$store.state.edubgInfo.push(data.data.result);//返回数据存入store
-                    console.log("edubgInfo",this.$store.state.edubgInfo)
+                    this.$store.commit('addedubgInfo',data.data.result);//返回数据存入store
+                    console.log("edubgInfo",this.edubgInfo)
                     this.$router.replace('/userdata/message/step/eduBgInfo');
                 } else {
                     this.$vux.toast.show({

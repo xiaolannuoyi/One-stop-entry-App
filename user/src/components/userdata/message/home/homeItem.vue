@@ -32,12 +32,11 @@
 <script>
 import ServiceManager from '@/services/services-manager';
 import { Group,XButton,Cell,Confirm,TransferDomDirective as TransferDom } from 'vux'
-import store from '@/store/store.js'
+import { mapState } from 'vuex';
 
 export default {
     name: 'home-item',
     props:["home","index"],
-    store,
     components: {
       Group,XButton,Cell,Confirm
     },
@@ -52,6 +51,7 @@ export default {
     
     },
     computed: {
+        ...mapState(['homeInfo']),
     },
     methods:{
         //编辑
@@ -73,8 +73,8 @@ export default {
                     text: '删除成功',
                     type: 'success'
                     });
-                    this.$store.state.homeInfo = data.data.result;//返回数据存入store
-                    console.log("homeInfo",this.$store.state.homeInfo)
+                    this.$store.commit('sethomeInfo',data.data.result);//返回数据存入store
+                    console.log("homeInfo",this.homeInfo);
                     this.$router.replace('/userdata/message/step/homeInfo');
                 } else {
                     this.$vux.toast.show({

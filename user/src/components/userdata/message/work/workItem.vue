@@ -33,12 +33,11 @@
 <script>
 import ServiceManager from '@/services/services-manager';
 import { Group,XButton,Cell,Confirm,TransferDomDirective as TransferDom } from 'vux'
-import store from '@/store/store.js'
+import { mapState } from 'vuex';
 
 export default {
     name: 'work-item',
     props:["work","index"],
-    store,
     components: {
       Group,XButton,Cell,Confirm
     },
@@ -53,10 +52,7 @@ export default {
     
     },
     computed: {
-        // workInfo() {
-        //     console.log(this.$store.state.workInfo);
-        //     return this.$store.state.workInfo;
-        // },
+        ...mapState(['workInfo']),
     },
     methods:{
         //编辑
@@ -79,8 +75,8 @@ export default {
                     text: '删除成功',
                     type: 'success'
                     });
-                    this.$store.state.workInfo = data.data.result;//返回数据存入store
-                    console.log("workInfo",this.$store.state.workInfo)
+                     this.$store.commit('setworkInfo',data.data.result);//返回数据存入store
+                    console.log("workInfo",this.workInfo)
                     this.$router.replace('/userdata/message/step/preWorkInfo');
                 } else {
                     this.$vux.toast.show({

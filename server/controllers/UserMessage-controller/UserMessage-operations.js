@@ -13,7 +13,7 @@ class UserMessageOpt {
     return new Promise((resolve, reject) => {
       UserModel.findByIdAndUpdate(data.id,{
         $set: {
-          State: data.state,
+          offerState: data.state,
         }
       }).then(() => {
           UserModel.findById(data.id).then(User => {

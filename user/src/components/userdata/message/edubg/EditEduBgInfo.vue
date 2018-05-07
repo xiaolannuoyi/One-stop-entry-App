@@ -17,15 +17,15 @@
 <script>
 import ServiceManager from '@/services/services-manager';
 import { Group,XButton,XInput,Datetime } from 'vux'
-import store from '@/store/store.js'
+import { mapState } from 'vuex';
 
 export default {
-    store,
     components: {
       Group,XButton,XInput,Datetime
     },
     data(){
         return{
+            preEduBg:{},
             // preEduBg:{
             //     Startdate:'',
             //     Enddate:'',
@@ -38,13 +38,18 @@ export default {
     
     },
     computed: {
-        preEduBg() {
-            console.log("index",this.$route.params.index)
-             console.log("this.$store.state.workInfo",this.$store.state.edubgInfo[this.$route.params.index]);
-             return this.$store.state.edubgInfo[this.$route.params.index];
-        },
+        ...mapState(['edubgInfo']),
+        
+    },
+    mounted(){
+        this.getdata()
     },
     methods:{
+        getdata() {
+            console.log("index",this.$route.params.index)
+             console.log("this.workInfo",this.edubgInfo[this.$route.params.index]);
+             this.preEduBg = this.edubgInfo[this.$route.params.index];
+        },
         confirm(){
             this.$vux.loading.show({
                 text: 'Loading'
@@ -57,8 +62,8 @@ export default {
                     text: '提交更改成功',
                     type: 'success'
                     });
-                    this.$store.state.edubgInfo = data.data.result;//返回数据存入store
-                    console.log("edubgInfo",this.$store.state.edubgInfo)
+                     this.$store.commit('setedubgInfo',data.data.result);//返回数据存入store
+                    console.log("edubgInfo",this.edubgInfo)
                     this.$router.replace('/userdata/message/step/eduBgInfo');
                 } else {
                     this.$vux.toast.show({

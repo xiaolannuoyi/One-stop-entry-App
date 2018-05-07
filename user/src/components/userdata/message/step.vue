@@ -10,7 +10,9 @@
       <tab :scroll-threshold="5">
         <tab-item  v-for="(item,index) in stepName" :key="item.id" :selected="select===index" @click.native="nextStep(index,item.path)">{{item.title}}</tab-item>
       </tab>
-      <router-view></router-view>    
+      <keep-alive>
+        <router-view></router-view>
+      </keep-alive>
     </div>
   </div>
 </template>

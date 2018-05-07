@@ -18,16 +18,16 @@
 <script>
 import ServiceManager from '@/services/services-manager';
 import { Group,XButton,XInput,Datetime } from 'vux'
-import store from '@/store/store.js'
+import { mapState } from 'vuex';
 
 export default {
-    store,
     components: {
       Group,XButton,XInput,Datetime
     },
     data(){
         return{
             index:'',
+            preWorkInfo:{}
             // preWorkInfo:{
             //     company:'',
             //     Startdate:'',
@@ -41,13 +41,18 @@ export default {
     
     },
     computed: {
-        preWorkInfo() {
-            console.log("index",this.$route.params.index)
-             console.log("this.$store.state.workInfo",this.$store.state.workInfo[this.$route.params.index]);
-             return this.$store.state.workInfo[this.$route.params.index];
-        },
+        ...mapState(['workInfo']),
+        
+    },
+    mounted(){
+        this.getdata()
     },
     methods:{
+        getdata() {
+             console.log("index",this.$route.params.index)
+             console.log("this.workInfo",this.workInfo[this.$route.params.index]);
+             this.preWorkInfo = this.workInfo[this.$route.params.index];
+        },
         confirm(){
             this.$vux.loading.show({
                 text: 'Loading'
@@ -60,8 +65,8 @@ export default {
                     text: '修改工作经历成功',
                     type: 'success'
                     });
-                    this.$store.state.workInfo = data.data.result;//返回数据存入store
-                    console.log("workInfo",this.$store.state.workInfo)
+                    this.$store.commit('setworkInfo',data.data.result);//返回数据存入store
+                    console.log("workInfo",this.workInfo)
                     this.$router.replace('/userdata/message/step/preWorkInfo');
                 } else {
                     this.$vux.toast.show({

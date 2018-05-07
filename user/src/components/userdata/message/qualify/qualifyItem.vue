@@ -29,12 +29,11 @@
 <script>
 import ServiceManager from '@/services/services-manager';
 import { Group,XButton,Cell,Confirm,TransferDomDirective as TransferDom } from 'vux'
-import store from '@/store/store.js'
+import { mapState } from 'vuex';
 
 export default {
     name: 'qualify-item',
     props:["qualify","index"],
-    store,
     components: {
       Group,XButton,Cell,Confirm
     },
@@ -49,6 +48,7 @@ export default {
     
     },
     computed: {
+        ...mapState(['qualifyInfo']),
     },
     methods:{
         //编辑
@@ -70,8 +70,8 @@ export default {
                     text: '删除成功',
                     type: 'success'
                     });
-                    this.$store.state.qualifyInfo = data.data.result;//返回数据存入store
-                    console.log("qualifyInfo",this.$store.state.qualifyInfo)
+                     this.$store.commit('qualifyInfo',data.data.result);//返回数据存入store
+                    console.log("qualifyInfo",this.qualifyInfo)
                     this.$router.replace('/userdata/message/step/QualifyInfo');
                 } else {
                     this.$vux.toast.show({

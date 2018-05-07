@@ -31,9 +31,53 @@ const state = {
         console.log(data)
         return state.UserInfo=data;
      },
+     setpreBaseInfo(state, data){
+        console.log(data)
+        return state.preBaseInfo=data;
+     },
+     setbankcard(state, data){
+        console.log(data)
+        return state.bankcard=data;
+     },
+     setworkInfo(state, data){
+        console.log(data)
+        return state.workInfo = data;
+     },
+     sethomeInfo(state, data){
+        console.log(data)
+        return state.homeInfo = data;
+     },
+     setqualifyInfo(state, data){
+        console.log(data)
+        return state.qualifyInfo = data;
+     },
+     setedubgInfo(state, data){
+        console.log(data)
+        return state.edubgInfo = data;
+     },
+     addworkInfo(state, data){
+        console.log(data)
+        return state.workInfo.push(data);
+     },
+     addhomeInfo(state, data){
+        console.log(data)
+        return state.homeInfo.push(data);
+     },
+     addqualifyInfo(state, data){
+        console.log(data)
+        return state.qualifyInfo.push(data);
+     },
+     addedubgInfo(state, data){
+        console.log(data)
+        return state.edubgInfo.push(data);
+     },
      setImage(state, data){
         console.log(data)
         return state.image=data;
+     },
+     setofferStateFlag(state, data){
+        console.log(data)
+        return state.offerStateFlag=data;
      },
 
  }

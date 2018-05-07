@@ -34,12 +34,11 @@
 <script>
 import ServiceManager from '@/services/services-manager';
 import { Group,XButton,Cell,Confirm,TransferDomDirective as TransferDom } from 'vux'
-import store from '@/store/store.js'
+import { mapState } from 'vuex';
 
 export default {
     name: 'edubg-item',
     props:["edubg","index"],
-    store,
     components: {
       Group,XButton,Cell,Confirm
     },
@@ -54,6 +53,7 @@ export default {
     
     },
     computed: {
+        ...mapState(['edubgInfo']),
     },
     methods:{
         //编辑
@@ -76,8 +76,8 @@ export default {
                     text: '删除成功',
                     type: 'success'
                     });
-                    this.$store.state.edubgInfo = data.data.result;//返回数据存入store
-                    console.log("edubgInfo",this.$store.state.edubgInfo)
+                    this.$store.commit('setedubgInfo',data.data.result);//返回数据存入store
+                    console.log("edubgInfo",this.edubgInfo)
                     this.$router.replace('/userdata/message/step/eduBgInfo');
                 } else {
                     this.$vux.toast.show({

@@ -18,10 +18,9 @@
 <script>
 import ServiceManager from '@/services/services-manager';
 import { Group,XButton,XInput,Datetime } from 'vux'
-import store from '@/store/store.js'
+import { mapState } from 'vuex';
 
 export default {
-    store,
     components: {
       Group,XButton,XInput,Datetime
     },
@@ -40,10 +39,7 @@ export default {
     
     },
     computed: {
-        // preBaseInfo() {
-        //     console.log(this.$store.state.preBaseInfo);
-        //     return this.$store.state.preBaseInfo;
-        // },
+        ...mapState(['preBaseInfo','UserInfo']),
     },
     methods:{
         confirm(){
@@ -59,7 +55,7 @@ export default {
             this.$vux.loading.show({
                 text: 'Loading'
                 })
-            this.preWorkInfo.user = this.$store.state.UserInfo._id;
+            this.preWorkInfo.user = this.UserInfo._id;
             ServiceManager.submitpreWorkInfo(this.preWorkInfo).then(data => {
                 console.log(data)
                 this.$vux.loading.hide()                
@@ -68,8 +64,8 @@ export default {
                     text: '添加工作经历成功',
                     type: 'success'
                     });
-                    this.$store.state.workInfo.push(data.data.result);//返回数据存入store
-                    console.log("workInfo",this.$store.state.workInfo)
+                    this.$store.commit('addworkInfo',data.data.result);//返回数据存入store  
+                    console.log("workInfo",this.workInfo)
                     this.$router.replace('/userdata/message/step/preWorkInfo');
                 } else {
                     this.$vux.toast.show({

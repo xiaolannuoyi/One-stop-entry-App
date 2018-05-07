@@ -15,13 +15,11 @@
 </template>
 
 <script>
-import store from "@/store/store.js";
+import { mapState } from 'vuex';
 import { XHeader,Group,XInput,XButton} from 'vux'
-import {mapState} from 'vuex';
 import ServiceManager from '@/services/services-manager';
 
 export default {
-  store,
   components: {
     XHeader,Group,XInput,XButton
   },
@@ -36,9 +34,10 @@ export default {
   },
 
  computed: {
+   ...mapState(['UserInfo']),
     storeOldpassword() {
-        console.log(this.$store.state.UserInfo.Password);
-        return this.$store.state.UserInfo.Password;
+        console.log(this.UserInfo.Password);
+        return this.UserInfo.Password;
     },
      disable(){
         if(this.oldpassword !='' && this.password != ''&&this.password2 != ''&&
@@ -53,15 +52,15 @@ export default {
   },
   methods:{
       submit(){
-          ServiceManager.ChangePassword(this.$store.state.UserInfo._id,this.password2).then(data => {
+          ServiceManager.ChangePassword(this.UserInfo._id,this.password2).then(data => {
           console.log(data)
           if (data.data.code == 200) {
             this.$vux.toast.show({
               text: '修改密码成功',
               type: 'success'
             });
-            this.$store.state.UserInfo = data.data.result;//返回数据存入store
-            console.log("store",this.$store.state.UserInfo)
+            this.$store.commit('setUserInfo',data.data.result);
+            console.log("store",this.UserInfo)
             this.$router.replace('/home/userdata');
           } else {
             this.$vux.toast.show({

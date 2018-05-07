@@ -12,15 +12,15 @@
 <script>
 import ServiceManager from '@/services/services-manager';
 import { Group,XButton,XInput,Datetime } from 'vux'
-import store from '@/store/store.js'
+import { mapState } from 'vuex';
 
 export default {
-    store,
     components: {
       Group,XButton,XInput,Datetime
     },
     data(){
         return{
+            preQualifyInfo:{}
             // preQualifyInfo:{
             //     Getdate:'',
             //     Name:''
@@ -29,13 +29,17 @@ export default {
     
     },
     computed: {
-        preQualifyInfo() {
-            console.log("index",this.$route.params.index)
-             console.log("this.$store.state.qualifyInfo",this.$store.state.qualifyInfo[this.$route.params.index]);
-             return this.$store.state.qualifyInfo[this.$route.params.index];
-        },
+        ...mapState(['qualifyInfo']),
+    },
+    mounted(){
+        this.getdata()
     },
     methods:{
+        getdata() {
+            console.log("index",this.$route.params.index)
+             console.log("this.qualifyInfo",this.qualifyInfo[this.$route.params.index]);
+             this.preQualifyInfo = this.qualifyInfo[this.$route.params.index];
+        },
         confirm(){
             this.$vux.loading.show({
                  text: 'Loading'
@@ -48,7 +52,7 @@ export default {
                     text: '提交更改成功',
                     type: 'success'
                     });
-                    this.$store.state.qualifyInfo=data.data.result;//返回数据存入store
+                    this.$store.commit('setqualifyInfo',data.data.result);//返回数据存入store
                     this.$router.replace('/userdata/message/step/QualifyInfo');
                 } else {
                     this.$vux.toast.show({

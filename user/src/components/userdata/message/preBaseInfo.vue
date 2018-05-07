@@ -82,10 +82,9 @@
 import ServiceManager from '@/services/services-manager';
 import preSelectorlist from 'static/models/preSelector.js'
 import { Group,Selector,XInput,XAddress,Datetime,XButton, ChinaAddressV4Data } from 'vux'
-import store from '@/store/store.js'
+import { mapState } from 'vuex';
 
 export default {
-    store,
     components: {
         Group,Selector,XInput,XAddress,Datetime,XButton
     },
@@ -130,33 +129,34 @@ export default {
     
     },
     computed: {
-        preBaseInfo() {
-            return this.$store.state.preBaseInfo;
-        },
+        // preBaseInfo() {
+        //     return this.preBaseInfo;
+        // },
+        ...mapState(['preBaseInfo','UserInfo'])
     },
     methods:{
         getpreBaseInfo(){
             this.$vux.loading.show({
                 text: 'Loading'
             })
-            console.log("userid",this.$store.state.UserInfo._id);
+            console.log("userid",this.UserInfo._id);
             
-             ServiceManager.findPreBaseInfo(this.$store.state.UserInfo._id).then(data => {
+             ServiceManager.findPreBaseInfo(this.UserInfo._id).then(data => {
                 this.$vux.loading.hide()
                 if(data.data.result ==null){
                     console.log("null");
                     return 
                 }else{
                     console.log("yes");
-                    this.$store.state.preBaseInfo = data.data.result;//返回数据存入store
-                    console.log("store",this.$store.state.preBaseInfo)
+                    this.$store.commit('setpreBaseInfo',data.data.result);
+                    console.log("store",this.preBaseInfo)
                 }
                 
             });
         },
         confirm(){
             // console.log(this.preBaseInfo);
-            // console.log(this.$store.state.UserInfo._id);
+            // console.log(this.UserInfo._id);
             // 类型转换
             // let predata ={}
             // predata.email=this.preBaseInfo.email ;
@@ -190,7 +190,7 @@ export default {
             this.$vux.loading.show({
                 text: 'Loading'
             })
-             this.preBaseInfo.user = this.$store.state.UserInfo._id;
+             this.preBaseInfo.user = this.UserInfo._id;
              ServiceManager.submitPreBaseInfo(this.preBaseInfo).then(data => {
                 console.log(data)
                 this.$vux.loading.hide()
@@ -199,8 +199,8 @@ export default {
                     text: '提交个人信息成功',
                     type: 'success'
                     });
-                    this.$store.state.preBaseInfo = data.data.result;//返回数据存入store
-                    console.log("store",this.$store.state.preBaseInfo);
+                    this.$store.commit('setpreBaseInfo',data.data.result);
+                    console.log("store",this.preBaseInfo);
                     
                 } else {
                     this.$vux.toast.show({
@@ -224,8 +224,8 @@ export default {
                         text: '编辑个人信息成功',
                         type: 'success'
                         });
-                        this.$store.state.preBaseInfo = data.data.result;//返回数据存入store
-                        console.log("store",this.$store.state.preBaseInfo)
+                        this.$store.commit('setpreBaseInfo',data.data.result);
+                        console.log("store",this.preBaseInfo)
                     } else {
                         this.$vux.toast.show({
                         text: '编辑个人信息失败，请重试',

@@ -13,7 +13,6 @@
 
 <script>
 import ServiceManager from "@/services/services-manager";
-import store from "@/store/store.js";
 import { XHeader,Group,Cell } from 'vux'
 import { mapState ,mapGetters} from 'vuex';
 export default {

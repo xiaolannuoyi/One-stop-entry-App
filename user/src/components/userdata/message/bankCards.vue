@@ -16,10 +16,9 @@
 <script>
 import ServiceManager from '@/services/services-manager';
 import { Group,XInput,XButton,Cell } from 'vux'
-import store from '@/store/store.js'
+import { mapState } from 'vuex';
 
 export default {
-    store,
     components: {
         Group,XInput,XButton,Cell
     },
@@ -35,9 +34,10 @@ export default {
         }
     },
     computed: {
+        ...mapState(['bankcard','UserInfo']),
         ZSbankcard() {
-            console.log(this.$store.state.bankcard);
-            return this.$store.state.bankcard;
+            console.log(this.bankcard);
+            return this.bankcard;
         },
     },
     mounted(){
@@ -48,17 +48,17 @@ export default {
             this.$vux.loading.show({
                 text: 'Loading'
             })
-            console.log("userid",this.$store.state.UserInfo._id);
+            console.log("userid",this.UserInfo._id);
             
-             ServiceManager.findbankcard(this.$store.state.UserInfo._id).then(data => {
+             ServiceManager.findbankcard(this.UserInfo._id).then(data => {
                 this.$vux.loading.hide()                 
                 if(data.data.result ==null){
                     console.log("null");
                     return 
                 }else{
                     console.log("yes");
-                    this.$store.state.bankcard = data.data.result;//返回数据存入store
-                    console.log("store",this.$store.state.bankcard)
+                    this.$store.commit('setbankcard',data.data.result);//返回数据存入store
+                    console.log("store",this.bankcard)
                 }
                 
             });
@@ -67,7 +67,7 @@ export default {
             this.$vux.loading.show({
                 text: 'Loading'
             })
-            this.ZSbankcard.user = this.$store.state.UserInfo._id
+            this.ZSbankcard.user = this.UserInfo._id
              ServiceManager.submitBankcard(this.ZSbankcard).then(data  => {
                 console.log(data)
                 this.$vux.loading.hide()  
@@ -76,8 +76,8 @@ export default {
                     text: data.data.msg,
                     type: 'success'
                     });
-                    this.$store.state.bankcard = data.data.result;//返回数据存入store
-                    console.log("bankcard",this.$store.state.bankcard)
+                    this.$store.commit('setbankcard',data.data.result);//返回数据存入store
+                    console.log("bankcard",this.bankcard)
                 } else {
                     this.$vux.toast.show({
                     text : data.data.msg,
@@ -98,8 +98,8 @@ export default {
                     text: data.data.msg,
                     type: 'success'
                     });
-                    this.$store.state.bankcard = data.data.result;//返回数据存入store
-                    console.log("bankcard",this.$store.state.bankcard)
+                    this.$store.commit('setbankcard',data.data.result);//返回数据存入store
+                    console.log("bankcard",this.bankcard)
                 } else {
                     this.$vux.toast.show({
                     text : data.data.msg,

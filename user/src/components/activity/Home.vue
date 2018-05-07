@@ -37,10 +37,8 @@
 <script>
 import {Group,Cell,XHeader,CellBox,Confirm,XButton,Blur,Actionsheet,TransferDomDirective as TransferDom} from "vux";
 import ServiceManager from "@/services/services-manager";
-import store from "@/store/store.js";
 import { mapState ,mapGetters} from 'vuex';
 export default {
-  store,
   components: {
     Group,Cell,XHeader, Confirm, CellBox,XButton,Blur,Actionsheet
   },
@@ -48,7 +46,7 @@ export default {
     TransferDom
   },
   mounted() {
-    if(this.$store.state.offerStateFlag && ( this.UserInfo.offerState == 0 || this.UserInfo.offerState == 2) ){
+    if(this.offerStateFlag && ( this.UserInfo.offerState == 0 || this.UserInfo.offerState == 2) ){
       this.show = true;
     }else{
       this.show = false;        
@@ -60,7 +58,7 @@ export default {
       show:"",
       actionsShow: false,
       menu: {
-        // menu1: '拍照',
+        menu1: '拍照',
         menu2: '选择图片'
       },
     };
@@ -69,7 +67,7 @@ export default {
     avatar(){
       return this.baseURL + this.UserInfo.avatar;
     },
-    ...mapState(['UserInfo']),
+    ...mapState(['UserInfo','offerStateFlag']),
     ...mapGetters(['baseURL'])
   },
   methods: {
@@ -83,7 +81,7 @@ export default {
             text: "提交成功",
             type: "success"
           });
-          this.$store.state.offerStateFlag = false;//offer弹窗
+          this.$store.commit('setofferStateFlag',false);//offer弹窗
           this.$store.commit('setUserInfo',data.data.result);//存store
           this.$router.replace("/home");
         } else {
@@ -104,7 +102,7 @@ export default {
             text: "提交成功",
             type: "success"
           });
-          this.$store.state.offerStateFlag = false;//offer弹窗    
+          this.$store.commit('setofferStateFlag',false);//offer弹窗 
           this.$store.commit('setUserInfo',data.data.result);//存store
           this.$router.replace("/home");
         } else {

@@ -14,10 +14,9 @@
 <script>
 import ServiceManager from '@/services/services-manager';
 import { Group,XButton,XInput,Datetime } from 'vux'
-import store from '@/store/store.js'
+import { mapState } from 'vuex';
 
 export default {
-    store,
     components: {
       Group,XButton,XInput,Datetime
     },
@@ -33,17 +32,14 @@ export default {
     
     },
     computed: {
-        // preBaseInfo() {
-        //     console.log(this.$store.state.preBaseInfo);
-        //     return this.$store.state.preBaseInfo;
-        // },
+        ...mapState(['preBaseInfo','UserInfo']),
     },
     methods:{
         confirm(){
              this.$vux.loading.show({
                  text: 'Loading'
             })
-            this.preHomeInfo.user=this.$store.state.UserInfo._id;
+            this.preHomeInfo.user=this.UserInfo._id;
             ServiceManager.submitpreHomeInfo(this.preHomeInfo).then(data => {
                 console.log(data)
                 this.$vux.loading.hide()                
@@ -52,8 +48,8 @@ export default {
                     text: '提交成功',
                     type: 'success'
                     });
-                    this.$store.state.homeInfo.push(data.data.result);//返回数据存入store
-                    console.log("homeInfo",this.$store.state.homeInfo)
+                    this.$store.commit('addhomeInfo',data.data.result);//返回数据存入store
+                    console.log("homeInfo",this.homeInfo)
                     this.$router.replace('/userdata/message/step/homeInfo');
                 } else {
                     this.$vux.toast.show({
