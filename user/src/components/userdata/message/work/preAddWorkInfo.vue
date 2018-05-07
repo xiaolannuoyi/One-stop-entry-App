@@ -1,15 +1,23 @@
 <template>
   <div>
     <group>
-        <x-input title="工作单位" v-model="preWorkInfo.company" text-align="right"></x-input>
-        <datetime  title="开始日期" v-model="preWorkInfo.Startdate"></datetime>
-        <datetime  title="结束日期" v-model="preWorkInfo.Enddate"></datetime>
-        <x-input title="工作岗位" v-model="preWorkInfo.post" text-align="right"></x-input>  
+        <x-input title="工作单位" v-model="preWorkInfo.company" text-align="right">
+            <div slot="label"><span class="req">*</span>工作单位</div>
+        </x-input>
+        <datetime  v-model="preWorkInfo.Startdate">
+            <div slot="title"><span class="req">*</span>开始日期</div>
+        </datetime>
+        <datetime  v-model="preWorkInfo.Enddate">
+            <div slot="title"><span class="req">*</span>结束日期</div>
+        </datetime>
+        <x-input title="工作岗位" v-model="preWorkInfo.post" text-align="right">
+            <div slot="label"><span class="req">*</span>工作岗位</div>
+        </x-input> 
         <x-input title="证明人" v-model="preWorkInfo.Provider" text-align="right"></x-input>  
         <x-input title="证明人岗位" v-model="preWorkInfo.Proname" text-align="right"></x-input>  
         <x-input title="证明人联系方式" v-model="preWorkInfo.Prophone" is-type="china-mobile" :max="11" text-align="right"></x-input>  
 
-        <x-button type="primary" @click.native="confirm">提交</x-button>
+        <x-button type="primary"  @click.native="confirm">提交</x-button>
           
     </group>
   </div>

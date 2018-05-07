@@ -1,8 +1,12 @@
 <template>
   <div>
     <group>
-        <datetime  title="获得年月" v-model="preQualifyInfo.Getdate"></datetime>
-        <x-input title="证书名称" v-model="preQualifyInfo.Name" text-align="right"></x-input> 
+        <datetime  title="获得年月" v-model="preQualifyInfo.Getdate">
+            <div slot="title"><span class="req">*</span>获得年月</div>
+        </datetime>
+        <x-input title="证书名称" v-model="preQualifyInfo.Name" text-align="right">
+            <div slot="label"><span class="req">*</span>证书名称</div>
+        </x-input> 
         <x-button type="primary" @click.native="confirm">提交更改</x-button>
           
     </group>

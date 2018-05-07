@@ -2,11 +2,21 @@
   <div>
     <group>
       <cell title="招商银行"></cell>
-      <x-input title="账户名" v-model="ZSbankcard.sPfaccount" type="text"  :required="true" text-align="right"></x-input>
-      <x-input title="身份证号码" v-model="ZSbankcard.sPfid" type="number" :required="true" text-align="right"></x-input>
-      <x-input title="卡号" v-model="ZSbankcard.sPfcardNum" type="number" :required="true" text-align="right"></x-input>
-      <x-input title="开户行名称" v-model="ZSbankcard.sPfopenban" type="text" :required="true" text-align="right"></x-input>
-      <x-input title="开户城市" v-model="ZSbankcard.sPfopCity" type="text" :required="true" text-align="right"></x-input>
+      <x-input title="账户名" v-model="ZSbankcard.sPfaccount" type="text"  :required="true" text-align="right">
+          <div slot="label"><span class="req">*</span>账户名</div>
+      </x-input>
+      <x-input title="身份证号码" v-model="ZSbankcard.sPfid" type="number" :required="true" text-align="right">
+          <div slot="label"><span class="req">*</span>身份证号码</div>          
+      </x-input>
+      <x-input title="卡号" v-model="ZSbankcard.sPfcardNum" type="number" :min="16" :required="true" text-align="right">
+          <div slot="label"><span class="req">*</span>卡号</div>          
+      </x-input>
+      <x-input title="开户行名称" v-model="ZSbankcard.sPfopenban" type="text" :required="true" text-align="right">
+          <div slot="label"><span class="req">*</span>开户行名称</div>          
+      </x-input>
+      <x-input title="开户城市" v-model="ZSbankcard.sPfopCity" type="text" :required="true" text-align="right">
+          <div slot="label"><span class="req">*</span>开户城市</div>          
+      </x-input>
     </group>
      <x-button  v-if="ZSbankcard.user == null" type="primary" @click.native="confirm">提交</x-button>
      <x-button v-else type="primary" @click.native="edit">提交更改</x-button>     

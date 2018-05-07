@@ -1,10 +1,18 @@
 <template>
   <div>
     <group>
-        <x-input title="姓名" v-model="preHomeInfo.name" text-align="right"></x-input>
-        <x-input title="与本人关系" v-model="preHomeInfo.Relation" text-align="right"></x-input>  
-        <x-input title="工作单位" v-model="preHomeInfo.Company" text-align="right"></x-input>
-        <x-input title="联系方式" v-model="preHomeInfo.Contact " is-type="china-mobile" :max="11" text-align="right"></x-input>
+        <x-input title="姓名" v-model="preHomeInfo.name" text-align="right">
+            <div slot="label"><span class="req">*</span>姓名</div>
+        </x-input>
+        <x-input title="与本人关系" v-model="preHomeInfo.Relation" text-align="right">
+            <div slot="label"><span class="req">*</span>与本人关系</div>
+        </x-input>  
+        <x-input title="工作单位" v-model="preHomeInfo.Company" text-align="right">
+            <div slot="label"><span class="req">*</span>工作单位</div>
+        </x-input>
+        <x-input title="联系方式" v-model="preHomeInfo.Contact " is-type="china-mobile" :max="11" text-align="right">
+            <div slot="label"><span class="req">*</span>联系方式</div>
+        </x-input>
 
         <x-button type="primary" @click.native="confirm">提交</x-button>
     </group>

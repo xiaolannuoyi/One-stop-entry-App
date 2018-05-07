@@ -1,12 +1,23 @@
 <template>
   <div>
     <group>
-        <datetime  title="起始年月" v-model="preEduBg.Startdate"></datetime>
-        <datetime  title="截止年月" v-model="preEduBg.Enddate"></datetime>
-        <x-input title="学校" v-model="preEduBg.Schoolname" text-align="right"></x-input>  
-        <x-input title="院系" v-model="preEduBg.College" text-align="right"></x-input>  
-        <x-input title="专业" v-model="preEduBg.Major" text-align="right"></x-input>  
-        <x-input title="学历" v-model="preEduBg.Education" text-align="right"></x-input> 
+        <datetime  title="起始年月" v-model="preEduBg.Startdate">
+            <div slot="title"><span class="req">*</span>起始年月</div>
+        </datetime>
+        <datetime  title="截止年月" v-model="preEduBg.Enddate">
+            <div slot="title"><span class="req">*</span>截止年月</div>
+        </datetime>
+        <x-input title="学校" v-model="preEduBg.Schoolname" text-align="right">
+            <div slot="label"><span class="req">*</span>学校</div>
+        </x-input>  
+        <x-input title="院系" v-model="preEduBg.College" text-align="right">
+            <div slot="label"><span class="req">*</span>院系</div>
+        </x-input>  
+        <x-input title="专业" v-model="preEduBg.Major" text-align="right">
+            <div slot="label"><span class="req">*</span>专业</div></x-input>  
+        <x-input title="学历" v-model="preEduBg.Education" text-align="right">
+            <div slot="label"><span class="req">*</span>学历</div>
+        </x-input> 
 
         <x-button type="primary" @click.native="confirm">提交更改</x-button>
           
