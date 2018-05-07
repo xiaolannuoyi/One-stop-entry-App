@@ -117,6 +117,36 @@ class UserManager {
         }
       });
     }
+
+    //修改offer状态
+    async confirmCherk(ctx, next) {
+      await UserOpt.confirmCherk(ctx.request.body).then(data => {
+        ctx.response.body = {
+            code:200,
+            msg:"ok",
+            result:data
+        }
+      }).catch(() => {
+        ctx.response.body = {
+          msg:"查询错误"
+        }
+      });
+    }
+    //查找offer提交审核的 
+    async findcheck(ctx, next) {
+      console.log("ctx.params.offerState",ctx.params.offerState);
+      await UserOpt.findcheck(ctx.params.offerState).then(data => {
+        ctx.response.body = {
+          code:200,
+          msg:"查询成功",
+          result:data
+        }
+      }).catch(() => {
+        ctx.response.body = {
+          msg:"查询错误"
+        }
+      });
+    }
  
 }
 module.exports =  new UserManager

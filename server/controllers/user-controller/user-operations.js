@@ -223,6 +223,40 @@ class UserOpt {
           });
       });
     }
+
+    //
+    //提交审核
+    //0: 注册，1:接受，2：拒绝，3：提交（等待审核），4：hr审核中，5：审核有错误（修改后走3），6：审核结束（审核结果）
+    confirmCherk(data){
+    return new Promise((resolve, reject) => {
+      UserModel.findByIdAndUpdate(data.id,{
+        $set: {
+          offerState: 3,
+        }
+      }).then(() => {
+          UserModel.findById(data.id).then(User => {
+            console.log('已提交审核', JSON.stringify(User, null, 2));
+            resolve(User);
+          });
+        })
+        .catch(() => {
+          reject('fail');
+        });
+    });
+  }
+  //offerState=3
+  findcheck(data) {
+    return new Promise((resolve, reject) => {
+      UserModel.find(data)
+        .then(user => {
+          console.log('查询结果', JSON.stringify(user, null, 2));
+          resolve(user);
+        })
+        .catch(() => {
+          reject();
+        });
+    });
+  }
   
 }
 module.exports = new UserOpt;

@@ -110,6 +110,19 @@ let servicesManager = {
       });
   },
   
+
+  //查看提交审核的列表
+  // offerState :3
+  findcheck(data){
+    console.log(data)
+    return axios({
+      method: 'get',
+      url: '/user/findcheck',
+      params: {
+        offerState:data
+      },     
+    });
+  }
   
 };
 

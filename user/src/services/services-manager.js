@@ -257,6 +257,15 @@ let servicesManager = {
           data: {id}
         });
       },
+//------------提交审核--------
+confirmCherk(id) {
+  console.log("qianduan ",id)
+  return axios({
+    method: 'post',
+    url: '/user/confirmCherk',
+    data: {id}
+  });
+},
 
 };
 

@@ -20,7 +20,7 @@ module.exports = {
         EntryTime:String,//入职时间
         offerState:{
             type: Number,
-            default:0, // 0: 注册，1:接受，2：拒绝，3：提交（等待审核），4：hr审核中，5：审核结束（审核结果）
+            default:0, // 0: 注册，1:接受，2：拒绝，3：提交（等待审核），4：hr审核中，5：审核有错误（修改后走3），6：审核结束（审核结果）
         },
         avatar:{//头像
             type:String,

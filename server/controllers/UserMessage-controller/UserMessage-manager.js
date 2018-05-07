@@ -17,6 +17,10 @@ class UserMessageManager {
           msg:"ok",
           result:data
       }
+    }).catch(() => {
+      ctx.response.body = {
+        msg:"查询错误"
+      }
     });
   }
    /**
@@ -31,6 +35,10 @@ class UserMessageManager {
           code:200,
           msg:"ok",
           result:data
+      }
+    }).catch(() => {
+      ctx.response.body = {
+        msg:"查询错误"
       }
     });
   }

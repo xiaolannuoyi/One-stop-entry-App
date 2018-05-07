@@ -6,7 +6,6 @@ import FooterTab from '@/components/activity/FooterTab'
 import Home from '@/components/activity/Home'
 import Company from '@/components/activity/Company'
 import Message from '@/components/activity/Message'
-import UserData from '@/components/activity/UserData'
 
 import Hr from '@/components/accountManager/HR/hr'
 import HrSee from '@/components/accountManager/HR/hrSee'
@@ -41,10 +40,6 @@ export default new Router({
           path: 'message',
           name: 'Message',
           component: Message
-        },{
-          path: 'userData',
-          name: 'UserData',
-          component: UserData
         }]
     },
     {
