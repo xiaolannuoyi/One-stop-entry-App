@@ -1,7 +1,6 @@
 <template>
   <div>
-    <group>
-      <cell title="招商银行"></cell>
+    <group title="招商银行">
       <x-input title="账户名" v-model="ZSbankcard.sPfaccount" type="text"  :required="true" text-align="right">
           <div slot="label"><span class="req">*</span>账户名</div>
       </x-input>

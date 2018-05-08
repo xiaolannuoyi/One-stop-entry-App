@@ -6,7 +6,8 @@ Vue.use(Vuex);
 
 const state = {
     HrInfo:{},//hr个人信息
-    baseURL:{}
+    baseURL:{},
+    usercheckData:{},//提交审核的人的个人信息
  }
  //  192.168.88.255//公司
 //  192.168.43.8//手机热点
@@ -18,6 +19,10 @@ const state = {
         : 'http://192.168.43.8:3000/'
   }
  const mutations={
+    setusercheckData(state,data){
+        console.log('cun',data)
+        state.usercheckData[data.userid] = data.userdata;
+     },
  }
 
  export default new Vuex.Store({

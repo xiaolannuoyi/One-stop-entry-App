@@ -266,7 +266,7 @@ class UserOpt {
         });
     });
   }
-
+//查找用户
   findusercheckMsg(data){
     var user = new Promise((resolve, reject) => {
       UserModel.findById(data)

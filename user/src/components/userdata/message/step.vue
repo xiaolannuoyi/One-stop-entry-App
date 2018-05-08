@@ -60,7 +60,7 @@ export default {
         {
           title:"教育背景",
           path:"eduBgInfo",
-          req:true,
+          req: false,
         },
       ]
     };

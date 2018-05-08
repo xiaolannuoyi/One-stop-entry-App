@@ -149,12 +149,11 @@ class UserManager {
         }
       });
     }
-    //查找用户
+    //查找用户信息
     async findusercheckMsg(ctx, next) {
       console.log("findusercheckMsg ctx.params.UserId",ctx.params.UserId);
       await UserOpt.findusercheckMsg(ctx.params.UserId).then(data => {
-        console.log("查找用户返回",data);
-        
+        console.log("=================查找用户返回==============",data);
         ctx.response.body = {
           code:200,
           msg:"查询成功",
