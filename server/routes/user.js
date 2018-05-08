@@ -14,4 +14,5 @@ router.post('/UserResetPassword', UserManager.UserResetPassword);
 router.post('/confirmCherk', UserManager.confirmCherk);
 //查找offState=3
 router.get('/findcheck', UserManager.findcheck);
+router.get('/findusercheckMsg/:UserId', UserManager.findusercheckMsg);
 module.exports = router

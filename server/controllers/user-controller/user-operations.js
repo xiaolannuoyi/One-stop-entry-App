@@ -88,8 +88,16 @@ class UserOpt {
           reject();
         });
     });
-    var image = ImgModel.remove({user:data.id});
-
+    //var image = ImgModel.remove({user:data.id});
+    var image =new Promise((resolve, reject) => {
+       ImgModel.remove({user:data.id}).then(() => {
+        console.log('imageok');
+        resolve('imageok');
+      })
+      .catch(() => {
+        reject();
+      });
+    });
     
     var file = new Promise((resolve, reject) => {
       let fse = require('fs-extra')
@@ -246,8 +254,9 @@ class UserOpt {
   }
   //offerState=3
   findcheck(data) {
+    console.log("findcheck",data)
     return new Promise((resolve, reject) => {
-      UserModel.find(data)
+      UserModel.find({offerState:data})
         .then(user => {
           console.log('查询结果', JSON.stringify(user, null, 2));
           resolve(user);
@@ -256,6 +265,95 @@ class UserOpt {
           reject();
         });
     });
+  }
+
+  findusercheckMsg(data){
+    var user = new Promise((resolve, reject) => {
+      UserModel.findById(data)
+        .then( user1 => {
+          console.log('userok',user1);
+          resolve(user1);          
+          
+        })
+        .catch(() => {
+          reject();
+        });
+    });
+    var base = new Promise((resolve, reject) => {
+      PreBaseInfoModel.findOne({user:data})
+        .then(base1 => {
+          console.log('baseok',base1);
+          resolve(base1);          
+        })
+        .catch(() => {
+          reject();
+        });
+    });
+    var bank = new Promise((resolve, reject) => {
+      bankcardModel.findOne({user:data})
+        .then(bank1 => {
+          console.log('bankok',bank1);
+          resolve(bank1);
+          
+        })
+        .catch(() => {
+          reject();
+        });
+    });
+    var work = new Promise((resolve, reject) => {
+      workInfoModel.find({user:data})
+        .then(work1 => {
+          console.log('workok',work1);
+          resolve(work1);
+          
+        })
+        .catch(() => {
+          reject();
+        });
+    });
+    var home = new Promise((resolve, reject) => {
+      HomeInfoModel.find({user:data})
+        .then(home1 => {
+          console.log('homeok',home1);
+          resolve(home1);
+          
+        })
+        .catch(() => {
+          reject();
+        });
+    });
+    var edubg = new Promise((resolve, reject) => {
+      EduBgModel.find({user:data})
+        .then(edubg1 => {
+          console.log('edubgok',edubg1);
+          resolve(edubg1);
+          
+        })
+        .catch(() => {
+          reject();
+        });
+    });
+    var Qualify = new Promise((resolve, reject) => {
+      QualifyInfoModel.find({user:data})
+        .then(Qualify1 => {
+          console.log('Qualifyok',Qualify1);
+          resolve(Qualify1);
+        })
+        .catch(() => {
+          reject();
+        });
+    });
+    //var image = ImgModel.remove({user:data});
+    var image =new Promise((resolve, reject) => {
+       ImgModel.findOne({user:data}).then(image1 => {
+        console.log('imageok',image1);
+        resolve(image1);
+      })
+      .catch(() => {
+        reject();
+      });
+    });
+    return Promise.all([user,base,bank,work,home,edubg,Qualify,image])
   }
   
 }

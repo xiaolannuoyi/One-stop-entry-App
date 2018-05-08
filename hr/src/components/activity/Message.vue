@@ -8,9 +8,8 @@
 <script>
 import { XHeader,Panel } from 'vux'
 import ServiceManager from '@/services/services-manager';
-
+import {mapGetters} from 'vuex'
 export default {
-    name:"hrSee",
     components: {
         XHeader,Panel
     },
@@ -24,6 +23,9 @@ export default {
             ],
         }
     },
+    computed:{
+        ...mapGetters(['baseURL']),
+    },
     methods:{
         getData(){
           let check = 3;
@@ -32,16 +34,17 @@ export default {
           if(data.data.code == 200){
               let result = data.data.result;
               console.log(result);
-              
               result.forEach(item => {
                   this.list.push({
-                      'src': item.avatar,
+                      'src': this.baseURL + item.avatar,
                       'title': item.Name,
-                      'desc': item.Account+"--"+item.Address,
-                      'url': '/hr/hrMsg/'+item._id
+                      'desc': item.Address+"--"+item.Department,
+                      'url': '/user/userCheckMeg/'+item._id
                   })
               })
               console.log("list",this.list);
+            }else{
+                
             }
           })
         }

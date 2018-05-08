@@ -122,8 +122,15 @@ let servicesManager = {
         offerState:data
       },     
     });
-  }
-  
+  }, 
+
+  //个人信息
+  findusercheckMsg(data) {
+    return axios({
+      method: 'get',
+      url: '/user/findusercheckMsg/' + data
+    });
+  },
 };
 
 export default servicesManager;

@@ -90,8 +90,8 @@ class UserManager {
   async UserDel(ctx, next) {
     console.log("ctx.request.body",ctx.request.body);
     
-    await UserOpt.UserDel(ctx.request.body).then(() => {
-      
+    await UserOpt.UserDel(ctx.request.body).then(data => {
+      console.log('删除返回值',data)
       ctx.response.body = {
         code:200,
         msg:"查询成功"
@@ -134,8 +134,27 @@ class UserManager {
     }
     //查找offer提交审核的 
     async findcheck(ctx, next) {
-      console.log("ctx.params.offerState",ctx.params.offerState);
-      await UserOpt.findcheck(ctx.params.offerState).then(data => {
+      console.log("ctx.query.offerState",ctx.query.offerState);
+      await UserOpt.findcheck(ctx.query.offerState).then(data => {
+        console.log("查找offer提交审核的 ",data);
+        
+        ctx.response.body = {
+          code:200,
+          msg:"查询成功",
+          result:data
+        }
+      }).catch(() => {
+        ctx.response.body = {
+          msg:"查询错误"
+        }
+      });
+    }
+    //查找用户
+    async findusercheckMsg(ctx, next) {
+      console.log("findusercheckMsg ctx.params.UserId",ctx.params.UserId);
+      await UserOpt.findusercheckMsg(ctx.params.UserId).then(data => {
+        console.log("查找用户返回",data);
+        
         ctx.response.body = {
           code:200,
           msg:"查询成功",

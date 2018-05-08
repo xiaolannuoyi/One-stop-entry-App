@@ -16,6 +16,10 @@ import User from '@/components/accountManager/User/user'
 import UserSee from '@/components/accountManager/User/userSee'
 import UserAdd from '@/components/accountManager/User/userAdd'
 import UserMsg from '@/components/accountManager/User/userMsg'
+
+import UserCheckMeg from '@/components/check/userCheckMeg'
+import CheckmsgMust from '@/components/check/checkmsgMust'
+import CheckmsgNOMust from '@/components/check/checkmsgNOMust'
 Vue.use(Router)
 
 export default new Router({
@@ -83,6 +87,23 @@ export default new Router({
       path: '/user/userMsg/:id',
       name: 'UserMsg',
       component: UserMsg,
+    },
+    {
+      path: '/user/userCheckMeg/:id',
+      name: 'UserCheckMeg',
+      component: UserCheckMeg,
+      redirect: '/user/userCheckMeg/:id/checkmsgMust',
+      children: [
+        {
+          path:'checkmsgMust',
+          name: 'CheckmsgMust',
+          component: CheckmsgMust
+        },
+        {
+          path: 'checkmsgNOMust',
+          name: 'CheckmsgNOMust',
+          component: CheckmsgNOMust
+        }]
     },
   ]
 })
