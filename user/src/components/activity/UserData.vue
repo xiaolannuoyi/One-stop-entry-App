@@ -49,7 +49,7 @@ export default {
             type: "success"
           });
           this.$store.commit('setofferStateFlag',false);//offer弹窗
-          this.$store.commit('setUserInfo',data.data.result);//存store
+          this.$store.commit('setcheckProgress',data.data.result);//存store
           this.$router.replace("/home/check");
         } else {
           this.$vux.toast.show({

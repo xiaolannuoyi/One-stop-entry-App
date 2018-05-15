@@ -121,6 +121,7 @@ class UserManager {
     //修改offer状态
     async confirmCherk(ctx, next) {
       await UserOpt.confirmCherk(ctx.request.body).then(data => {
+        console.log("修改offer状态",data)
         ctx.response.body = {
             code:200,
             msg:"ok",
@@ -134,8 +135,8 @@ class UserManager {
     }
     //查找offer提交审核的 
     async findcheck(ctx, next) {
-      console.log("ctx.query.offerState",ctx.query.offerState);
-      await UserOpt.findcheck(ctx.query.offerState).then(data => {
+      console.log("ctx.query.checkState",ctx.query.checkState);
+      await UserOpt.findcheck(ctx.query.checkState).then(data => {
         console.log("查找offer提交审核的 ",data);
         
         ctx.response.body = {
@@ -149,10 +150,28 @@ class UserManager {
         }
       });
     }
-    //查找用户信息
+    //查找用户审核信息
     async findusercheckMsg(ctx, next) {
       console.log("findusercheckMsg ctx.params.UserId",ctx.params.UserId);
       await UserOpt.findusercheckMsg(ctx.params.UserId).then(data => {
+        console.log("=================查找用户返回==============",data);
+        ctx.response.body = {
+          code:200,
+          msg:"查询成功",
+          result:data
+        }
+      }).catch(() => {
+        ctx.response.body = {
+          msg:"查询错误"
+        }
+      });
+    }
+
+    
+    //查找审核状态
+    async findcheckState(ctx, next) {
+      console.log("findcheckState ctx.params.UserId",ctx.params.UserId);
+      await UserOpt.findcheckState(ctx.params.UserId).then(data => {
         console.log("=================查找用户返回==============",data);
         ctx.response.body = {
           code:200,

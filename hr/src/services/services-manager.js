@@ -119,7 +119,7 @@ let servicesManager = {
       method: 'get',
       url: '/user/findcheck',
       params: {
-        offerState:data
+        checkState:data
       },     
     });
   }, 
@@ -131,6 +131,16 @@ let servicesManager = {
       url: '/user/findusercheckMsg/' + data
     });
   },
+
+  //------------hr审核结果--------
+confirmCherk(id,checkState,checkText) {
+  console.log("qianduan ",id,checkState,checkText)
+  return axios({
+    method: 'post',
+    url: '/user/confirmCherk',
+    data: {id,checkState,checkText}
+  });
+},
 };
 
 export default servicesManager;

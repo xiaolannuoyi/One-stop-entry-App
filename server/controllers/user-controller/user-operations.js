@@ -7,6 +7,8 @@ let HomeInfoModel = dbHelper.getModel('homeInfo');
 let EduBgModel = dbHelper.getModel('eduBg');
 let QualifyInfoModel = dbHelper.getModel('qualifyInfo');
 let ImgModel = dbHelper.getModel('image');
+let CheckProgressModel = dbHelper.getModel('checkProgress');
+
 class UserOpt {
     /**
    * 删除数据
@@ -234,29 +236,35 @@ class UserOpt {
 
     //
     //提交审核
-    //0: 注册，1:接受，2：拒绝，3：提交（等待审核），4：hr审核中，5：审核有错误（修改后走3），6：审核结束（审核结果）
+    //
     confirmCherk(data){
-    return new Promise((resolve, reject) => {
-      UserModel.findByIdAndUpdate(data.id,{
-        $set: {
-          offerState: 3,
-        }
-      }).then(() => {
-          UserModel.findById(data.id).then(User => {
-            console.log('已提交审核', JSON.stringify(User, null, 2));
-            resolve(User);
-          });
-        })
-        .catch(() => {
+      var a =new Promise((resolve, reject) => {
+        CheckProgressModel.create({
+          user:data.id,
+          checkState:data.checkState,
+          checkText:data.checkText
+        }).then(aa =>{
+          resolve(aa);
+        }).catch(() => {
           reject('fail');
         });
+     });
+
+     var b =new Promise((resolve, reject) => {
+      UserModel.findOneAndUpdate({checkState:data.checkState}).then(bb =>{
+        resolve(bb);
+      }).catch(() => {
+        reject('fail');
+      }); 
     });
+         
+    return Promise.all([a,b]);
   }
-  //offerState=3
+  //checkState=1
   findcheck(data) {
     console.log("findcheck",data)
     return new Promise((resolve, reject) => {
-      UserModel.find({offerState:data})
+      UserModel.find({checkState:data})
         .then(user => {
           console.log('查询结果', JSON.stringify(user, null, 2));
           resolve(user);
@@ -266,7 +274,7 @@ class UserOpt {
         });
     });
   }
-//查找用户
+//查看用户所有信息 
   findusercheckMsg(data){
     var user = new Promise((resolve, reject) => {
       UserModel.findById(data)
@@ -356,5 +364,20 @@ class UserOpt {
     return Promise.all([user,base,bank,work,home,edubg,Qualify,image])
   }
   
+
+  //查找所有审核状态
+  findcheckState(data) {
+    console.log("findcheck",data)
+    return new Promise((resolve, reject) => {
+      CheckProgressModel.find({user:data})
+        .then( back => {
+          console.log('查询结果', JSON.stringify( back, null, 2));
+          resolve( back);
+        })
+        .catch(() => {
+          reject();
+        });
+    });
+  }
 }
 module.exports = new UserOpt;

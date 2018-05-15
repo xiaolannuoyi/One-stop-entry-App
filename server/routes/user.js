@@ -15,4 +15,6 @@ router.post('/confirmCherk', UserManager.confirmCherk);
 //查找offState=3
 router.get('/findcheck', UserManager.findcheck);
 router.get('/findusercheckMsg/:UserId', UserManager.findusercheckMsg);
+router.get('/findcheckState/:UserId', UserManager.findcheckState);//查看审核状态
+
 module.exports = router

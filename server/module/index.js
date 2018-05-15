@@ -20,13 +20,36 @@ module.exports = {
         EntryTime:String,//入职时间
         offerState:{
             type: Number,
-            default:0, // 0: 注册，1:接受，2：拒绝，3：提交（等待审核），4：hr审核中，5：审核有错误（修改后走3），6：审核结束（审核结果）
+            default:0, // 0: 注册，1:接受，2：拒绝，
+        },
+        checkState:{
+            type: Number,
+            default:0, // 1：提交（等待审核），2：hr审核中，3：审核有错误（修改后走1），4：审核结束（审核结果）
         },
         avatar:{//头像
             type:String,
             default:'uploads/pic.png'
         }
       },
+      //审核进度表
+      checkProgress:{
+        checkState:{
+            type: Number,
+            default:1, // 1：提交（等待审核），2：hr审核中，3：审核有错误（修改后走1），4：审核结束（审核结果）
+        },
+          checkText:{
+              type:String,
+          },
+          date:{
+              type:Date,
+              default:Date.now
+          },
+          user:{
+            type: Schema.ObjectId,
+            ref: 'user'
+        }
+      },
+
     //个人信息
     preBaseInfo:{
         email:{

@@ -28,7 +28,7 @@ export default {
     },
     methods:{
         getData(){
-          let check = 3;
+          let check = 1;
           ServiceManager.findcheck(check).then(data => {
           console.log(data)
           if(data.data.code == 200){

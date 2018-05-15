@@ -14,7 +14,8 @@ const state = {
     homeInfo:[],//家庭成员
     qualifyInfo:[],//资格证书
     edubgInfo:[],//教育背景
-    image:{}//图片
+    image:{},//图片
+    checkProgress:[]//审核进度
  }
 //  192.168.88.255//公司
 //  192.168.43.8//手机热点
@@ -78,6 +79,10 @@ const state = {
      setofferStateFlag(state, data){
         console.log(data)
         return state.offerStateFlag=data;
+     },
+     setcheckProgress(state, data){
+        console.log(data)
+        return state.checkProgress = data;
      },
 
  }

@@ -16,9 +16,6 @@ export default {
 body {
   background-color: #fbf9fe;
 }
-#app {
-  padding-top: 44px;
-}
 #app .vux-header {
     position: fixed;
     background-color: #35495e;
@@ -28,7 +25,6 @@ body {
 }
 #app .vux-tab-warp {
     position: fixed;
-    /* padding-top: 5px; */
     width: 100%;
     z-index: 100;
     top: 44px;

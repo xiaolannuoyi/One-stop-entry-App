@@ -266,6 +266,14 @@ confirmCherk(id) {
     data: {id}
   });
 },
+//---------查看审核状态
+findcheckState(id) {
+  console.log("qianduan ",id)
+  return axios({
+    method: 'get',
+    url: '/user/findcheckState/' + id,
+  });
+},
 
 };
 
