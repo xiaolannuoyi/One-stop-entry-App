@@ -135,8 +135,8 @@ class UserManager {
     }
     //查找offer提交审核的 
     async findcheck(ctx, next) {
-      console.log("ctx.query.checkState",ctx.query.checkState);
-      await UserOpt.findcheck(ctx.query.checkState).then(data => {
+      console.log("ctx.query.checkState",ctx.query.checkState,ctx.query.HRaddress);
+      await UserOpt.findcheck(ctx.query.checkState,ctx.query.HRaddress).then(data => {
         console.log("查找offer提交审核的 ",data);
         
         ctx.response.body = {

@@ -15,6 +15,9 @@ FastClick.attach(document.body)
 Vue.config.productionTip = false
 /* eslint-disable no-new */
 
+import MuseUI from 'muse-ui'
+import 'muse-ui/dist/muse-ui.css'
+Vue.use(MuseUI)
 
 if (process.env.NODE_ENV === 'development') {
     new Vue({

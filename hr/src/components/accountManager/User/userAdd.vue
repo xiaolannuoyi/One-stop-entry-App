@@ -3,8 +3,8 @@
     <group> 
       <x-input title="姓名"  ref="Name" v-model="userData.Name" :required="true" text-align="right"></x-input>
       <x-input title="手机号码" ref="Tel" v-model="userData.Tel" keyboard="number" is-type="china-mobile" :max="11" :required="true" text-align="right"></x-input>
-      <popup-picker title="地点" :data="addresslist" v-model="userData.Address" value-text-align="right"></popup-picker>
-      <popup-picker title="部门" :data="Departmentlist" v-model="userData.Department" value-text-align="right"></popup-picker>
+      <popup-picker title="地点" :data="list.addresslist" v-model="userData.Address" :columns="2" value-text-align="right" show-name></popup-picker>
+      <popup-picker title="部门" :data="list.Departmentlist" v-model="userData.Department"  :columns="2" value-text-align="right" show-name></popup-picker>
       <calendar title="入职时间" ref="EntryTime" v-model="userData.EntryTime" 
       :start-date="startDate"
       :end-date="endDate"
@@ -24,6 +24,7 @@
 <script>
   import { Group, XInput,PopupPicker,XSwitch,XButton,Calendar } from 'vux'
   import ServiceManager from '@/services/services-manager';
+  import compass from 'static/compass.js'
   export default {
     components: {
       Group, XInput,PopupPicker,XSwitch,XButton,Calendar
@@ -34,12 +35,13 @@
           Name: "",//姓名
           Tel: "",//电话
           Password: "",//密码，默认为电话后六位
-          Address: ['北京'],//工作地区
-          Department:['北京'],//部门
+          Address: [],//工作地区
+          Department:[],//部门
           EntryTime:"",//入职时间
         },
-        addresslist: [["北京","上海"]],
-        Departmentlist:[["java","php"]],
+        // addresslist: [["北京","上海"]],
+        // Departmentlist:[["java","php"]],
+        list:compass,
         btndisable: true,
         startDate:"",
         endDate:"",

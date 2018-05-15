@@ -16,6 +16,9 @@ export default {
 body {
   background-color: #fbf9fe;
 }
+#app{
+  padding-top:44px;
+}
 #app .vux-header {
     position: fixed;
     background-color: #35495e;

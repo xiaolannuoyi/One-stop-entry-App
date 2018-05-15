@@ -24,7 +24,7 @@ module.exports = {
         },
         checkState:{
             type: Number,
-            default:0, // 1：提交（等待审核），2：hr审核中，3：审核有错误（修改后走1），4：审核结束（审核结果）
+            default:0, // 0:未提交 1：提交（等待审核），2：审核有错误（修改后走1），3：审核结束（审核结果）
         },
         avatar:{//头像
             type:String,
@@ -35,12 +35,12 @@ module.exports = {
       checkProgress:{
         checkState:{
             type: Number,
-            default:1, // 1：提交（等待审核），2：hr审核中，3：审核有错误（修改后走1），4：审核结束（审核结果）
+            default:1, // 0:未提交 1：提交（等待审核），2：审核有错误（修改后走1），3：审核结束（审核结果）
         },
-          checkText:{
+          checkText:{ //审核反馈信息
               type:String,
           },
-          date:{
+          date:{ //时间
               type:Date,
               default:Date.now
           },

@@ -59,7 +59,7 @@ export default {
       //审核通过 4
        comfirm(){
           let id = this.$route.params.id;
-          let checkState = 4
+          let checkState = 3
             ServiceManager.confirmCherk(id,checkState,null).then(data => {
                 console.log(data)
                 if(data.data.code == 200){
@@ -72,7 +72,7 @@ export default {
         //反馈
         comfirmMesg(){
           let id = this.$route.params.id;
-          let checkState = 3
+          let checkState = 2
           let checkText = this.backtext
             ServiceManager.confirmCherk(id,checkState,checkText).then(data => {
                 console.log(data)

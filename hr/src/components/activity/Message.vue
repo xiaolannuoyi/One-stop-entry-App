@@ -8,7 +8,7 @@
 <script>
 import { XHeader,Panel } from 'vux'
 import ServiceManager from '@/services/services-manager';
-import {mapGetters} from 'vuex'
+import {mapState,mapGetters} from 'vuex'
 export default {
     components: {
         XHeader,Panel
@@ -24,12 +24,13 @@ export default {
         }
     },
     computed:{
+        ...mapState(['HrInfo']),
         ...mapGetters(['baseURL']),
     },
     methods:{
         getData(){
           let check = 1;
-          ServiceManager.findcheck(check).then(data => {
+          ServiceManager.findcheck(check,this.HrInfo.Address).then(data => {
           console.log(data)
           if(data.data.code == 200){
               let result = data.data.result;

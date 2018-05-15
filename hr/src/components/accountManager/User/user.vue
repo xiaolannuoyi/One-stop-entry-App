@@ -7,11 +7,12 @@
       <tab-item selected @click.native="$router.replace('/user/userSee')">查看</tab-item>
       <tab-item @click.native="$router.replace('/user/userAdd')">添加</tab-item>
     </tab>
-    <swiper :show-dots="false" style="min-height:90vh;">
-        <swiper-item >
-          <router-view></router-view>
-        </swiper-item>
-    </swiper>
+    <div style="margin-top:44px;">
+      
+        <router-view></router-view>
+      
+    </div>
+    
   </div>
 </template>
 

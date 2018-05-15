@@ -244,7 +244,16 @@ class UserOpt {
           checkState:data.checkState,
           checkText:data.checkText
         }).then(aa =>{
-          resolve(aa);
+          UserModel.findByIdAndUpdate(data.id,{
+            $set: {
+              checkState: 1,//提交
+            }
+          }).then( bb =>{
+            resolve(bb);
+          }).catch(() => {
+            reject('fail');
+          });
+          
         }).catch(() => {
           reject('fail');
         });
@@ -261,10 +270,10 @@ class UserOpt {
     return Promise.all([a,b]);
   }
   //checkState=1
-  findcheck(data) {
-    console.log("findcheck",data)
+  findcheck(check,HRaddress) {
+    console.log("findcheck",check,HRaddress)
     return new Promise((resolve, reject) => {
-      UserModel.find({checkState:data})
+      UserModel.find({checkState:check,Address:HRaddress})
         .then(user => {
           console.log('查询结果', JSON.stringify(user, null, 2));
           resolve(user);

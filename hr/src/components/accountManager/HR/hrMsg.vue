@@ -3,7 +3,7 @@
     <!-- header -->
     <x-header @on-click-back="back">用户信息</x-header>
     <!-- content -->
-    <group>
+    <group >
       <x-input title="工号"
                :disabled="disabled"
                ref="Account"
@@ -28,9 +28,9 @@
                text-align="right"></x-input>
       <popup-picker title="负责区域"
                     :disabled="disabled"
-                    :data="hraddresslist"
+                    :data="list.addresslist"
                     v-model="hrData.Address"
-                    value-text-align="right"></popup-picker>
+                    :columns="2" value-text-align="right" show-name></popup-picker>
       <x-switch title="管理员权限"
                 :disabled="disabled"
                 :value-map="['0', '1']"
@@ -91,6 +91,7 @@ import {
   TransferDomDirective as TransferDom
 } from 'vux';
 import ServiceManager from '@/services/services-manager';
+import compass from 'static/compass.js';
 
 export default {
   components: {
@@ -120,7 +121,7 @@ export default {
         Address: [], //负责地区
         IsAdmin: '' //是否为管理者 0 :false; 1: true
       },
-      hraddresslist: [['北京', '上海', '广州']],
+      list:compass,
       editNum: 1,
       show: false,
       btndisable: true

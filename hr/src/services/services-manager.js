@@ -112,14 +112,15 @@ let servicesManager = {
   
 
   //查看提交审核的列表
-  // offerState :3
-  findcheck(data){
-    console.log(data)
+  // offerState :3,address
+  findcheck(check,address){
+    console.log(check,address)
     return axios({
       method: 'get',
       url: '/user/findcheck',
       params: {
-        checkState:data
+        checkState:check,
+        HRaddress:address
       },     
     });
   }, 
