@@ -15,9 +15,9 @@
         </x-input>  
         <x-input title="证明人" v-model="preWorkInfo.Provider" text-align="right"></x-input>  
         <x-input title="证明人岗位" v-model="preWorkInfo.Proname" text-align="right"></x-input>  
-        <x-input title="证明人联系方式" v-model="preWorkInfo.Prophone" is-type="china-mobile" :max="11" text-align="right"></x-input>  
+        <x-input title="证明人联系方式" v-model="preWorkInfo.Prophone" is-type="china-mobile" ref="Prophone" :max="11" text-align="right"></x-input>  
 
-        <x-button type="primary" @click.native="confirm">提交更改</x-button>
+        <x-button type="primary" :disabled="cango" @click.native="confirm">提交更改</x-button>
           
     </group>
   </div>
@@ -35,7 +35,7 @@ export default {
     data(){
         return{
             index:'',
-            preWorkInfo:{}
+            //preWorkInfo:{}
             // preWorkInfo:{
             //     company:'',
             //     Startdate:'',
@@ -45,22 +45,60 @@ export default {
             //     Proname:'',
             //     Prophone:'',
             // }
+            requestData:{
+                company:'',
+                Startdate:'',
+                Enddate:'',
+                post:'',
+            },
+            noData:{
+                Provider:'',
+                Proname:'',
+                Prophone:'',
+            }
         }
     
     },
     computed: {
         ...mapState(['workInfo']),
-        
+        preWorkInfo(){
+            console.log("llllllll",this.workInfo[this.$route.params.index]);
+            if(this.workInfo[this.$route.params.index]!==undefined){
+                return this.workInfo[this.$route.params.index];
+            }else{
+                console.log('------------------');
+                return {Enddate:"",Proname:"",Prophone:"",Provider:"",Startdate:"",company:"",post:""}
+            }
+        },
+        cango(){
+            let result = false;
+            for(let key in this.requestData){
+                this.requestData[key]=this.preWorkInfo[key]
+            }
+            for(let key in this.noData){
+                this.noData[key] = this.preWorkInfo[key];
+            }
+            for(let key in this.requestData){
+                if(this.requestData[key] == '' || this.requestData[key].length == 0){
+                    result= true;
+                }
+
+            }
+            console.log("this.$refs.Prophone",this.$refs.Prophone);
+            
+                if(this.$refs.Prophone!==undefined){
+                    console.log("111",this.$refs.Prophone.valid);
+                    if(this.$refs.Prophone.valid==false){
+                        result= true
+                    }
+                }
+            
+           return result;
+        },
     },
     mounted(){
-        this.getdata()
     },
     methods:{
-        getdata() {
-             console.log("index",this.$route.params.index)
-             console.log("this.workInfo",this.workInfo[this.$route.params.index]);
-             this.preWorkInfo = this.workInfo[this.$route.params.index];
-        },
         confirm(){
             this.$vux.loading.show({
                 text: 'Loading'

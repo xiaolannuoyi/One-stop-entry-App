@@ -38,7 +38,14 @@ export default {
             console.log("userid",this.UserInfo._id);
              ServiceManager.findworkInfo(this.UserInfo._id).then(data => {
                     console.log("yes");
-                    this.$store.commit('setworkInfo',data.data.result);//返回数据存入store
+                    let result = data.data.result;
+                    result.forEach(element => {
+                        if(element['Prophone']!==null){
+                        // console.log("elsement.Prophone",element['Prophone'].toString())   
+                         element['Prophone'] = element['Prophone'].toString()                         
+                        }
+                    });
+                    this.$store.commit('setworkInfo',result);//返回数据存入store
                     console.log("store",this.workInfo)
                     this.$vux.loading.hide()
             });

@@ -38,7 +38,14 @@ export default {
             console.log("userid",this.UserInfo._id);
              ServiceManager.findhomeInfo(this.UserInfo._id).then(data => {
                     console.log("yes");
-                    this.$store.commit('sethomeInfo',data.data.result);//返回数据存入store
+                    let result = data.data.result;
+                    result.forEach(element => {
+                        if(element['Contact']!==null){
+                        // console.log("elsement.Contact",element['Contact'].toString())   
+                         element['Contact'] = element['Contact'].toString()                         
+                        }
+                    });
+                    this.$store.commit('sethomeInfo',result);//返回数据存入store
                     console.log("store",this.homeInfo)
                     this.$vux.loading.hide()
             });

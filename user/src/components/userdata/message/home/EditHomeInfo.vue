@@ -8,13 +8,12 @@
             <div slot="label"><span class="req">*</span>与本人关系</div>
         </x-input>  
         <x-input title="工作单位" v-model="preHomeInfo.Company" text-align="right">
-            <div slot="label"><span class="req">*</span>工作单位</div>
         </x-input>
-        <x-input title="联系方式" v-model="preHomeInfo.Contact " is-type="china-mobile" :max="11" text-align="right">
+        <x-input title="联系方式" v-model="preHomeInfo.Contact " ref="Contact" is-type="china-mobile" :max="11" text-align="right">
             <div slot="label"><span class="req">*</span>联系方式</div>
         </x-input>
 
-        <x-button type="primary" @click.native="confirm">提交更改</x-button>
+        <x-button type="primary" @click.native="confirm" :disabled="cango">提交更改</x-button>
     </group>
   </div>
 </template>
@@ -31,17 +30,40 @@ export default {
     data(){
         return{
             preHomeInfo:{},
-            // preHomeInfo:{
-            //     name:'',
-            //     Relation:'',
-            //     Company:'',
-            //     Contact:''
-            // }
+            requestData:{
+                name:'',
+                Relation:'',
+                Contact:''
+            },
+            noData:{
+                Company:'',
+            }
         }
     
     },
     computed: {
         ...mapState(['homeInfo']),
+         cango(){
+            let result = false;
+            for(let key in this.requestData){
+                this.requestData[key]=this.preHomeInfo[key]
+            }
+            console.log("this.requestdata",this.requestData);
+            
+            for(let key in this.requestData){
+                if(this.$refs.Contact!==undefined){
+                    console.log("111",this.$refs.Contact.valid);
+                    if(this.$refs.Contact.valid==false){
+                        result= true
+                    }
+                }
+                if(this.requestData[key] ==='' ){
+                    result= true;
+                }
+
+            }
+           return result;
+        },
     },
     mounted(){
         this.getdata()

@@ -15,9 +15,9 @@
         </x-input> 
         <x-input title="证明人" v-model="preWorkInfo.Provider" text-align="right"></x-input>  
         <x-input title="证明人岗位" v-model="preWorkInfo.Proname" text-align="right"></x-input>  
-        <x-input title="证明人联系方式" v-model="preWorkInfo.Prophone" is-type="china-mobile" :max="11" text-align="right"></x-input>  
+        <x-input title="证明人联系方式" v-model="preWorkInfo.Prophone" is-type="china-mobile"  ref="Prophone" :max="11" text-align="right"></x-input>  
 
-        <x-button type="primary"  @click.native="confirm">提交</x-button>
+        <x-button type="primary"  :disabled="cango" @click.native="confirm">提交</x-button>
           
     </group>
   </div>
@@ -42,12 +42,46 @@ export default {
                 Provider:'',
                 Proname:'',
                 Prophone:'',
+            },
+            requestData:{
+                company:'',
+                Startdate:'',
+                Enddate:'',
+                post:'',
+            },
+            noData:{
+                Provider:'',
+                Proname:'',
+                Prophone:'',
             }
         }
     
     },
     computed: {
-        ...mapState(['preBaseInfo','UserInfo']),
+        ...mapState(['UserInfo']),
+        cango(){
+            let result = false;
+            for(let key in this.requestData){
+                this.requestData[key]=this.preWorkInfo[key]
+            }
+            for(let key in this.noData){
+                this.noData[key] = this.preWorkInfo[key];
+            }
+            for(let key in this.requestData){
+                if(this.requestData[key] == '' || this.requestData[key].length == 0){
+                    result= true;
+                }
+
+            }
+                if(this.$refs.Prophone!==undefined){
+                    console.log("111",this.$refs.Prophone.valid);
+                    if(this.$refs.Prophone.valid==false){
+                        result= true
+                    }
+                }
+            
+           return result;
+        },
     },
     methods:{
         confirm(){

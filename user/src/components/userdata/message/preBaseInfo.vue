@@ -91,7 +91,7 @@
       <x-input title="紧急联系人" v-model="preBaseInfo.urgentPeo"  text-align="right">
           <!-- <div slot="label"><span class="req">*</span>紧急联系人</div>           -->
       </x-input>
-      <x-input title="紧急联系方式" v-model="preBaseInfo.urgentTel" is-type="china-mobile" :max="11"  text-align="right">
+      <x-input title="紧急联系方式" v-model="preBaseInfo.urgentTel" is-type="china-mobile" ref="urgentTel" :max="11"  text-align="right">
           <!-- <div slot="label"><span class="req">*</span>紧急联系方式</div>           -->
       </x-input>
     </group>
@@ -126,8 +126,6 @@ export default {
             // disable:true,
             requestData:{
                     email:'',
-                    // urgentPeo:'',//紧急联系人
-                    // urgentTel:'',//紧急联系方式
                     tel:'',                
                     idCard:'',//身份ID n
 
@@ -152,7 +150,11 @@ export default {
                     graduDate:'',//毕业日期
                     workDate:'',//工作日期
                     birthDay:'', //生日
-            }//必填
+            },//必填
+            noData:{
+                urgentPeo:'',//紧急联系人
+                urgentTel:'',//紧急联系方式
+            }
         }
     
     },
@@ -163,36 +165,46 @@ export default {
         ...mapState(['preBaseInfo','UserInfo']),
         cango(){
             this.primaryData();
-            
+            let result = false;
             for(let key in this.requestData){
                 this.requestData[key]=this.postData[key]
+            }
+            for(let key in this.noData){
+                this.noData[key] = this.postData[key];
             }
             for(let key in this.requestData){
                 if(this.$refs.idCard!==undefined){
                     console.log("111",this.$refs.idCard.valid);
                     if(this.$refs.idCard.valid==false){
-                        return true
+                        result= true
                     }
                 }
                 if(this.$refs.tel!==undefined){
                     console.log("222",this.$refs.tel.valid);
                     if(this.$refs.tel.valid==false){
-                        return true
+                        result= true
                     }
                 }
                 if(this.$refs.email!==undefined){
                     console.log("333",this.$refs.email.valid);
                     if(this.$refs.email.valid==false){
-                        return true
+                        result= true
                     }
                 }
                 if(this.requestData[key] == '' || this.requestData[key].length == 0){
-                    return true;
+                    result= true;
                 }
 
             }
+
+                if(this.$refs.urgentTel!==undefined){
+                    console.log("111",this.$refs.urgentTel.valid);
+                    if(this.$refs.urgentTel.valid==false){
+                        result= true
+                    }
+                }
             
-           return false;
+           return result;
         },
     },
     methods:{

@@ -8,7 +8,7 @@
             <div slot="label"><span class="req">*</span>证书名称</div>
         </x-input>
 
-        <x-button type="primary" @click.native="confirm">提交</x-button>
+        <x-button type="primary" @click.native="confirm" :disabled="cango">提交</x-button>
           
     </group>
   </div>
@@ -28,12 +28,30 @@ export default {
             preQualifyInfo:{
                 Getdate:'',
                 Name:''
-            }
+            },
+            requestData:{
+                Getdate:'',
+                Name:''
+            },
         }
     
     },
     computed: {
         ...mapState(['qualifyInfo','UserInfo']),
+        cango(){
+            let result = false;
+            for(let key in this.requestData){
+                this.requestData[key]=this.preQualifyInfo[key]
+            }
+            for(let key in this.requestData){
+                if(this.requestData[key] == '' || this.requestData[key].length == 0){
+                    result= true;
+                }
+
+            }
+            
+           return result;
+        },
     },
     methods:{
         confirm(){

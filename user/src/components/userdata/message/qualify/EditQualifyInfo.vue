@@ -7,7 +7,7 @@
         <x-input title="证书名称" v-model="preQualifyInfo.Name" text-align="right">
             <div slot="label"><span class="req">*</span>证书名称</div>
         </x-input> 
-        <x-button type="primary" @click.native="confirm">提交更改</x-button>
+        <x-button type="primary" @click.native="confirm" :disabled="cango">提交更改</x-button>
           
     </group>
   </div>
@@ -24,7 +24,11 @@ export default {
     },
     data(){
         return{
-            preQualifyInfo:{}
+            requestData:{
+                Getdate:'',
+                Name:''
+            },
+            // preQualifyInfo:{}
             // preQualifyInfo:{
             //     Getdate:'',
             //     Name:''
@@ -34,16 +38,33 @@ export default {
     },
     computed: {
         ...mapState(['qualifyInfo']),
+        preQualifyInfo(){
+            console.log("llllllll",this.qualifyInfo[this.$route.params.index]);
+            if(this.qualifyInfo[this.$route.params.index]!==undefined){
+                return this.qualifyInfo[this.$route.params.index];
+            }else{
+                console.log('------------------');
+                return {Getdate:'',Name:''}
+            }
+        },
+        cango(){
+            let result = false;
+            for(let key in this.requestData){
+                this.requestData[key]=this.preQualifyInfo[key]
+            }
+            for(let key in this.requestData){
+                if(this.requestData[key] == '' || this.requestData[key].length == 0){
+                    result= true;
+                }
+
+            }
+            
+           return result;
+        },
     },
     mounted(){
-        this.getdata()
     },
     methods:{
-        getdata() {
-            console.log("index",this.$route.params.index)
-             console.log("this.qualifyInfo",this.qualifyInfo[this.$route.params.index]);
-             this.preQualifyInfo = this.qualifyInfo[this.$route.params.index];
-        },
         confirm(){
             this.$vux.loading.show({
                  text: 'Loading'

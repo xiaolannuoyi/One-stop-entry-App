@@ -19,7 +19,7 @@
             <div slot="label"><span class="req">*</span>学历</div>
         </x-input> 
 
-        <x-button type="primary" @click.native="confirm">提交</x-button>
+        <x-button type="primary" @click.native="confirm" :disabled="cango">提交</x-button>
           
     </group>
   </div>
@@ -43,12 +43,33 @@ export default {
                 College:'',
                 Major:'',
                 Education:''
-            }
+            },
+            requestData:{
+                Startdate:'',
+                Enddate:'',
+                Schoolname:'',
+                College:'',
+                Major:'',
+                Education:''
+            },
         }
     
     },
     computed: {
         ...mapState(['edubgInfo','UserInfo']),
+        cango(){
+            let result = false;
+            for(let key in this.requestData){
+                this.requestData[key]=this.preEduBg[key]
+            }
+            for(let key in this.requestData){
+                if(this.requestData[key] == '' || this.requestData[key].length == 0){
+                    result= true;
+                }
+
+            }
+           return result;
+        },
     },
     methods:{
         confirm(){
