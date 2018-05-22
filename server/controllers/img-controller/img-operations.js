@@ -319,7 +319,7 @@ class ImgOpt {
             let file = data.files.file; // 获取上传文件
             let userId = data.fields.id;
             ImgModel.findOne({user:userId}).then(back => {
-                if(back.StudentID !=='uploads/certificate-card.png') {
+                if(back.StudentID !=='uploads/student-card.png') {
                     fs.unlinkSync(`public/${back.StudentID}`);
                     ImgModel.findOneAndUpdate({user:userId}, {
                         $set: {

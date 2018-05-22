@@ -114,7 +114,16 @@ class UserOpt {
       });
 
     });
-    return Promise.all([user,base,bank,work,home,edubg,Qualify,image,file])
+    var check =new Promise((resolve, reject) => {
+      CheckProgressModel.remove({user:data.id}).then(() => {
+       console.log('check');
+       resolve('check');
+     })
+     .catch(() => {
+       reject();
+     });
+   });
+    return Promise.all([user,base,bank,work,home,edubg,Qualify,image,file,check])
   }
   /**
    * 注册

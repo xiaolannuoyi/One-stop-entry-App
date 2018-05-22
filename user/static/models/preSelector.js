@@ -75,9 +75,9 @@ var preSelector = {
                     {"value": "乌鲁木齐","name": "乌鲁木齐"},
                   ],
                   nation:[
-                        {"value":"01","name":"汉族"},{"value":"02","name":"蒙古族"},{"value":"03","name":"回族"},
-                        {"value":"04","name":"藏族"},{"value":"05","name":"维吾尔族"},{"value":"06","name":"苗族"},
-                        {"value":"07","name":"彝族"},{"value":"08","name":"壮族"},{"value":"09","name":"布依族"},
+                        {"value":"1","name":"汉族"},{"value":"2","name":"蒙古族"},{"value":"3","name":"回族"},
+                        {"value":"4","name":"藏族"},{"value":"5","name":"维吾尔族"},{"value":"6","name":"苗族"},
+                        {"value":"7","name":"彝族"},{"value":"8","name":"壮族"},{"value":"9","name":"布依族"},
                         {"value":"10","name":"朝鲜族"},{"value":"11","name":"满族"},{"value":"12","name":"侗族"},
                         {"value":"13","name":"瑶族"},{"value":"14","name":"白族"},{"value":"15","name":"土家族"},
                         {"value":"16","name":"哈尼族"},{"value":"17","name":"哈萨克族"},{"value":"18","name":"傣族"},
