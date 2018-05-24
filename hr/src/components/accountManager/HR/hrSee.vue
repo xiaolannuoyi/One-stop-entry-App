@@ -52,7 +52,7 @@ export default {
                   this.list.push({
                       'src': 'http://placeholder.qiniudn.com/60x60/3cc51f/ffffff',
                       'title': item.Name,
-                      'desc': item.Account+"--"+item.Address,
+                      'desc': "工号"+item.Account,
                       'url': '/hr/hrMsg/'+item._id
                   })
               })

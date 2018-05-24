@@ -7,7 +7,7 @@
       <tab-item selected @click.native="$router.replace('/hr/hrSee')">查看</tab-item>
       <tab-item @click.native="$router.replace('/hr/hrAdd')">添加</tab-item>
     </tab>
-    <div style="margin-top:44px;">
+    <div>
       
         <router-view></router-view>
       

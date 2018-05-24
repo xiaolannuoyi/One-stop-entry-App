@@ -24,7 +24,8 @@
 <script>
   import { Group, XInput,PopupPicker,XSwitch,XButton,Calendar } from 'vux'
   import ServiceManager from '@/services/services-manager';
-  import compass from 'static/compass.js'
+  import compass from 'static/compass.js';
+  import {mapState} from 'vuex'
   export default {
     components: {
       Group, XInput,PopupPicker,XSwitch,XButton,Calendar
@@ -57,6 +58,7 @@
             this.btndisable=true;
         }
       },
+      ...mapState(['HrInfo']),
     },
     methods:{
       userRegist(){
@@ -92,6 +94,8 @@
     },
     mounted(){
       this.setToday();
+      this.userData.Address.push(this.HrInfo.Address);
+      console.log(this.userData.Address)
     },
 }
   

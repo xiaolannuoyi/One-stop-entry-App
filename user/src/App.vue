@@ -35,4 +35,10 @@ display: block !important;
 #app .scrollable{
   padding-bottom: 0;
 }
+#app button.weui-btn, input.weui-btn{
+  margin-top: 10px;
+}
+ #app .vux-flexbox{
+  margin-top: 10px;
+}
 </style>

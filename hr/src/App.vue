@@ -38,4 +38,7 @@ body {
 #app .scrollable{
   padding-bottom: 0;
 }
+ #app .vux-flexbox{
+  margin-top: 10px;
+}
 </style>

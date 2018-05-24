@@ -38,7 +38,9 @@ class UserManager {
    * 查看所有user 返回信息
    */
   async findUser(ctx, next) {
-    await UserOpt.findUser().then(data => {
+    console.log("finduser",ctx.query);
+    
+    await UserOpt.findUser(ctx.query).then(data => {
       ctx.response.body = {
         code:200,
         msg:"查询成功",

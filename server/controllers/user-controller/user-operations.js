@@ -167,6 +167,8 @@ class UserOpt {
    * 查询数据
    */
   findUser(data) {
+    console.log("finduser -- 传如数据",data);
+    
     return new Promise((resolve, reject) => {
       UserModel.find(data)
         .then(user => {
