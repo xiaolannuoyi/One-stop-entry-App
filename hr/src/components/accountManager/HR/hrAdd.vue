@@ -50,7 +50,11 @@
       hrRegist(){
         this.hrData.Password = this.hrData.Account;
         this.hrData.Address.toString();
+        this.$vux.loading.show({
+                text: 'Loading'
+            })
         ServiceManager.hrRegist(this.hrData).then(data => {
+          this.$vux.loading.hide()
           console.log(data)
           if (data.data.code == 200) {
             this.$vux.toast.show({

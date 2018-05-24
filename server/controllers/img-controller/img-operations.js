@@ -12,10 +12,12 @@ class ImgOpt {
         return new Promise((resolve, reject) => {
             let file = data.files.file; // 获取上传文件
             let userId = data.fields.id;
-            ImgModel.findByIdAndUpdate(userId).then(back => {
+            UserModel.findByIdAndUpdate(userId).then(back => {
+                console.log("222");
+                
                 if(back.avatar !=='uploads/pic.png') {
                     fs.unlinkSync(`public/${back.avatar}`);
-                    ImgModel.findByIdAndUpdate(userId,{
+                    UserModel.findByIdAndUpdate(userId,{
                         $set: {
                             avatar: '',
                         }
@@ -24,6 +26,8 @@ class ImgOpt {
                         return false;
                     })
                 }
+                console.log("333");
+                
                     let reader = fs.createReadStream(file.path); // 创建可读流
                     let ext = file.name.split('.').pop(); // 获取上传文件扩展名
                     fse.ensureDirSync('public/uploads/' + userId);
@@ -32,12 +36,12 @@ class ImgOpt {
                     reader.pipe(upStream); // 可读流通过管道写入可写流
                     console.log(savePath);
                     
-                    ImgModel.findByIdAndUpdate(userId, {
+                    UserModel.findByIdAndUpdate(userId, {
                         $set: {
                             IDface: savePath,//姓名
                         }
                     }).then(() => {
-                        ImgModel.findById(userId).then(User => {
+                        UserModel.findById(userId).then(User => {
                             console.log('===========',User);
                             resolve(User);
                         });
@@ -76,15 +80,6 @@ class ImgOpt {
                 
             })
             .catch(() => {
-                console.log("0000000000")
-                    ImgModel.create({user:data.id}).then( newimg =>{
-                        console.log("查找图片信息",newimg);
-                        resolve(newimg);
-                    }).catch( ()=>{
-                        console.log("失败");
-                        reject();
-                    })
-                reject();
             });
         });
     }

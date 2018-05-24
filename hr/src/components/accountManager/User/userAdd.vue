@@ -62,10 +62,14 @@
     },
     methods:{
       userRegist(){
+        this.$vux.loading.show({
+                text: 'Loading'
+            })
         this.userData.Password = this.userData.Tel.slice(5);
         this.userData.Address.toString();
         ServiceManager.userRegist(this.userData).then(data => {
           console.log(data)
+          this.$vux.loading.hide()          
           if (data.data.code == 200) {
             this.$vux.toast.show({
               text: '注册成功',

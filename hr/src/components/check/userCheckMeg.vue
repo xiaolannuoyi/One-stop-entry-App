@@ -60,12 +60,22 @@ export default {
        comfirm(){
           let id = this.$route.params.id;
           let checkState = 3
+          this.$vux.loading.show({
+                text: 'Loading'
+            })
             ServiceManager.confirmCherk(id,checkState,null).then(data => {
                 console.log(data)
+                this.$vux.loading.hide()
                 if(data.data.code == 200){
-
+                  this.$vux.toast.show({
+                    text: '提交成功',
+                    type: 'success'
+                  });
                 }else{
-
+                  this.$vux.toast.show({
+                    text: '提交失败，请重试',
+                    type: 'warn'
+                  });
                 }
             })
         },
@@ -73,13 +83,23 @@ export default {
         comfirmMesg(){
           let id = this.$route.params.id;
           let checkState = 2
-          let checkText = this.backtext
+          let checkText = this.backtext;
+          this.$vux.loading.show({
+                text: 'Loading'
+            })
             ServiceManager.confirmCherk(id,checkState,checkText).then(data => {
                 console.log(data)
+                this.$vux.loading.hide()
                 if(data.data.code == 200){
-
+                  this.$vux.toast.show({
+                    text: '提交成功',
+                    type: 'success'
+                  });
                 }else{
-
+                  this.$vux.toast.show({
+                    text: '提交失败，请重试',
+                    type: 'warn'
+                  });
                 }
             })
         },

@@ -47,8 +47,12 @@ export default {
   },
   methods:{
     getdata(){
+      this.$vux.loading.show({
+                text: 'Loading'
+            })
       ServiceManager.findcheckState(this.UserInfo._id).then(data => {
         console.log(data)
+        this.$vux.loading.hide()
         // 1：提交（等待审核），2：hr审核中，3：审核有错误（修改后走1），4：审核结束（审核结果）
         let result = data.data.result;
         let arr = []

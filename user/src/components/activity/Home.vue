@@ -90,8 +90,12 @@ export default {
     //拒绝
     onCancel() {
       this.UserInfo.offerState = 2;
+      this.$vux.loading.show({
+                text: 'Loading'
+            })
       ServiceManager.UserOfferState(this.UserInfo._id,this.UserInfo.offerState).then(data => {
         console.log(data);
+        this.$vux.loading.hide()        
         if (data.data.code == 200) {
           this.$vux.toast.show({
             text: "提交成功",
@@ -111,8 +115,12 @@ export default {
     //接受
     onConfirm() {
       this.UserInfo.offerState = 1;
+      this.$vux.loading.show({
+                text: 'Loading'
+            })
       ServiceManager.UserOfferState(this.UserInfo._id,this.UserInfo.offerState).then(data => {
         console.log(data);
+        this.$vux.loading.hide()        
         if (data.data.code == 200) {
           this.$vux.toast.show({
             text: "提交成功",
@@ -145,7 +153,7 @@ export default {
             this.baseURL + 'upload/uploadFace',
             r => {
               console.log("成功",r.response)
-              alert("成功",r.response)
+              // alert("成功",r.response)
               self.$vux.loading.hide();
               this.$store.commit('setUserInfo',JSON.parse(r.response).result);
               self.$vux.toast.show({

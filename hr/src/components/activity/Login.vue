@@ -35,8 +35,12 @@ export default {
   },
   methods: {
     login() {
+      this.$vux.loading.show({
+          text: 'Loading'
+      })
       ServiceManager.hrLogin(this.formData).then(data => {
         console.log(data);
+        this.$vux.loading.hide()
         if (data.data.code == 200) {
           this.$vux.toast.show({
             text: "登录成功",

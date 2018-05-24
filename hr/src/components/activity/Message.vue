@@ -30,8 +30,12 @@ export default {
     methods:{
         getData(){
           let check = 1;
+          this.$vux.loading.show({
+                text: 'Loading'
+            })
           ServiceManager.findcheck(check,this.HrInfo.Address).then(data => {
           console.log(data)
+          this.$vux.loading.hide()          
           if(data.data.code == 200){
               let result = data.data.result;
               console.log(result);

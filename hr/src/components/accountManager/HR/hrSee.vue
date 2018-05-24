@@ -44,8 +44,12 @@ export default {
     },
     methods:{
         getData(){
+            this.$vux.loading.show({
+                text: 'Loading'
+            })
           ServiceManager.findHr().then(data => {
           console.log(data)
+          this.$vux.loading.hide()          
           if(data.data.code == 200){
               let result = data.data.result;
               result.forEach(item => {

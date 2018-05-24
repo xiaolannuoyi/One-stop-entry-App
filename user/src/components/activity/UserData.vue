@@ -72,7 +72,9 @@ export default {
   methods:{
     getpreBaseInfo(){
             console.log("userid",this.UserInfo._id);
-            
+            this.$vux.loading.show({
+                text: 'Loading'
+            })
              ServiceManager.findPreBaseInfo(this.UserInfo._id).then(data => {
                 this.$vux.loading.hide()
                 if(data.data.result ==null){
@@ -156,14 +158,22 @@ export default {
             console.log("preBaseInfo",this.preBaseInfo)
         },
     getimg(){
+        this.$vux.loading.show({
+                text: 'Loading'
+            })
       ServiceManager.findImg(this.UserInfo._id).then( data =>{
+          this.$vux.loading.hide()          
         console.log("image",data);
         this.$store.commit('setImage',data.data.result);
         console.log("store",this.image)
       })
     },
     getbankcard(){
+        this.$vux.loading.show({
+                text: 'Loading'
+            })
              ServiceManager.findbankcard(this.UserInfo._id).then(data => {
+          this.$vux.loading.hide()                 
                 this.$vux.loading.hide()                 
                 if(data.data.result ==null){
                     console.log("null");
@@ -185,8 +195,12 @@ export default {
             });
         },
     confirmCherk(){
+        this.$vux.loading.show({
+                text: 'Loading'
+            })
        ServiceManager.confirmCherk(this.UserInfo._id).then(data => {
         console.log(data);
+          this.$vux.loading.hide()        
         if (data.data.code == 200) {
           this.$vux.toast.show({
             text: "提交成功",

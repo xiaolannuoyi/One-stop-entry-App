@@ -152,8 +152,12 @@ export default {
     },
     getData() {
       console.log('router', this.$route.params);
+      this.$vux.loading.show({
+          text: 'Loading'
+      })
       ServiceManager.findHrOne(this.$route.params.id).then(data => {
         console.log('data', data);
+          this.$vux.loading.hide()        
         if (data.data.code == 200) {
           let result = data.data.result;
           this.hrData.Account = result.Account;
@@ -170,8 +174,12 @@ export default {
       this.show = true;
     },
     onConfirm() {
+      this.$vux.loading.show({
+          text: 'Loading'
+      })
       ServiceManager.hrDel(this.$route.params.id).then(data => {
         console.log('del', data);
+          this.$vux.loading.hide()        
         if (data.data.code == 200) {
           this.$vux.toast.show({
             text: '删除成功',
@@ -195,7 +203,11 @@ export default {
       this.editNum = 1;
       this.disabled = true;
       console.log('this.edit', this.editNum);
+      this.$vux.loading.show({
+          text: 'Loading'
+      })
       ServiceManager.hrEdit(this.$route.params.id, this.hrData).then(data => {
+          this.$vux.loading.hide()        
         console.log('edit', data);
         if (data.data.code == 200) {
           this.$vux.toast.show({
@@ -213,9 +225,13 @@ export default {
     },
     ConfirmResetPassword() {
       let password = this.hrData.Account;
+      this.$vux.loading.show({
+          text: 'Loading'
+      })
       ServiceManager.hrResetPassword(this.$route.params.id, password).then(
         data => {
           console.log(data);
+          this.$vux.loading.hide()          
           if (data.data.code == 200) {
             this.$vux.toast.show({
               text: '重置密码成功',

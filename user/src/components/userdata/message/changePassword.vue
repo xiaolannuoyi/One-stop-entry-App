@@ -52,8 +52,12 @@ export default {
   },
   methods:{
       submit(){
+        this.$vux.loading.show({
+                text: 'Loading'
+            })
           ServiceManager.ChangePassword(this.UserInfo._id,this.password2).then(data => {
           console.log(data)
+          this.$vux.loading.hide()          
           if (data.data.code == 200) {
             this.$vux.toast.show({
               text: '修改密码成功',
@@ -65,7 +69,7 @@ export default {
           } else {
             this.$vux.toast.show({
               text: '修改密码失败，请重试',
-              type: 'success'
+              type: 'warn'
             });
           }
         });

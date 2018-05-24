@@ -199,8 +199,12 @@ export default {
     },
     methods:{
         getdata(){
+            this.$vux.loading.show({
+                text: 'Loading'
+            })
             ServiceManager.findusercheckMsg(this.userid).then(data => {
                 console.log(data)
+                this.$vux.loading.hide()                
                 if(data.data.code == 200){
                     let result = data.data.result;
                     this.$store.commit('setusercheckData',{userid:this.userid,userdata:result})
