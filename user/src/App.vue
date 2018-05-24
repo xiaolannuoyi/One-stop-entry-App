@@ -29,4 +29,10 @@ display: block !important;
 .vux-step-item-main{
   display: block !important;
 }
+#app .scrollable .vux-tab-ink-bar{
+  bottom:0;
+}
+#app .scrollable{
+  padding-bottom: 0;
+}
 </style>

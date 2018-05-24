@@ -32,4 +32,10 @@ body {
     z-index: 100;
     top: 44px;
 }
+#app .scrollable .vux-tab-ink-bar{
+  bottom:0;
+}
+#app .scrollable{
+  padding-bottom: 0;
+}
 </style>
