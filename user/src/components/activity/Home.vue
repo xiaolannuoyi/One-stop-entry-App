@@ -15,18 +15,12 @@
       <cell title="入职时间" :value="UserInfo.EntryTime"></cell>
     </group> -->
     <group >
-      <x-input title="姓名" :disabled="true" ref="Name" v-model="UserInfo.Name" :required="true" text-align="right"></x-input>
-      <x-input title="手机号码" :disabled="true" ref="Tel" v-model="UserInfo.Tel" keyboard="number" is-type="china-mobile" :max="11" :required="true" text-align="right"></x-input>
-      <popup-picker title="地点" :disabled="true" :data="list.addresslist" v-model="UserInfo.Address" :columns="2" value-text-align="right" show-name></popup-picker>
-      <popup-picker title="部门" :disabled="true" :data="list.Departmentlist" v-model="UserInfo.Department"  :columns="2" value-text-align="right" show-name></popup-picker>
-      <calendar title="入职时间" :readonly="true" ref="EntryTime" v-model="UserInfo.EntryTime" 
-      :start-date="startDate"
-      :end-date="endDate"
-      :show-last-month="showLastMonth=false"
-      :show-next-month="showNextMonth=false"
-      :return-six-rows="return6Rows=false"
-      :disable-past="disablePast=false"
-      :disable-weekend="disableWeekend=true"></calendar>
+      <cell title="姓名" :value="UserInfo.Name"></cell>
+      <cell title="电话" :value="UserInfo.Tel"></cell>
+      <popup-picker title="地点" :disabled="true" :data="list.addresslist" v-model="addressData" :columns="2" value-text-align="right" show-name></popup-picker>
+      <popup-picker title="部门" :disabled="true" :data="list.Departmentlist" v-model="DepartmentData"  :columns="2" value-text-align="right" show-name></popup-picker>
+      <cell title="入职时间" :value="UserInfo.EntryTime"></cell>
+     
     </group>
     <!-- confirm -->
     <div v-transfer-dom>
@@ -61,6 +55,9 @@ export default {
     TransferDom
   },
   mounted() {
+    console.log("userinfo",this.UserInfo);
+    this.addressData.push(this.UserInfo.Address)
+    this.DepartmentData.push(this.UserInfo.Department)
     if(this.offerStateFlag && ( this.UserInfo.offerState == 0 || this.UserInfo.offerState == 2) ){
       this.show = true;
     }else{
@@ -70,6 +67,8 @@ export default {
   },
   data() {
     return {
+      addressData:[],
+      DepartmentData:[],      
       show:"",
       actionsShow: false,
       menu: {

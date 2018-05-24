@@ -8,10 +8,10 @@
         :arrow-direction="show ? 'up' : 'down'"
         @click.native="show = !show"></cell>
         <template v-if="show">
-            <div>
-                <p>{{home.Relation}}</p>
-                <p>{{home.Company}}</p>
-                <p>{{home.Contact}}</p>
+            <div style="padding-left:10px;">
+                <p>关系：{{home.Relation}}</p>
+                <p>工作单位：{{home.Company}}</p>
+                <p>联系方式：{{home.Contact}}</p>
                 <x-button type="warn" mini @click.native="show1 = true">删除</x-button>
                 <x-button type="primary"  mini @click.native="edithomeInfo(index)">编辑</x-button>
             </div>

@@ -9,10 +9,10 @@
         @click.native="show = !show"></cell>
 
         <template v-if="show">
-            <div>
-                <p>{{work.Startdate}}  {{work.Enddate}}</p>
-                <p>{{work.post}}</p>
-                <p>{{work.Provider}} {{work.Proname}} {{work.Prophone}}</p>
+            <div style="padding-left:10px;">
+                <p>起止日期：{{work.Startdate}} —— {{work.Enddate}}</p>
+                <p>工作岗位：{{work.post}}</p>
+                <p>联系人信息：{{work.Provider}} {{work.Proname}} {{work.Prophone}}</p>
                 <x-button type="warn" mini @click.native="show1 = true">删除</x-button>
                 <x-button type="primary"  mini @click.native="editworkInfo(index)">编辑</x-button>
             </div>

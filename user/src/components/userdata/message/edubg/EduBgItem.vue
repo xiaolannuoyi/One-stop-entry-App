@@ -9,11 +9,12 @@
         @click.native="show = !show"></cell>
 
         <template v-if="show">
-            <div>
-                <p>{{edubg.Startdate}}  {{edubg.Enddate}}</p>
-                <p>{{edubg.Schoolname}}</p>
-                <p>{{edubg.College}}</p>
-                <p>{{edubg.Major}}</p>
+            <div style="padding-left:10px;">
+                <p>起止日期：{{edubg.Startdate}}——{{edubg.Enddate}}</p>
+                <p>学校：{{edubg.Schoolname}}</p>
+                <p>院系：{{edubg.College}}</p>
+                <p>专业：{{edubg.Major}}</p>
+                <p>学历：{{edubg.Education}}</p>                
                 <x-button type="warn" mini @click.native="show1 = true">删除</x-button>
                 <x-button type="primary"  mini @click.native="editedubgInfo(index)">编辑</x-button>
             </div>

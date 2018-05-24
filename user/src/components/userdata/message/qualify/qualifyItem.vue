@@ -9,7 +9,7 @@
         @click.native="show = !show"></cell>
 
         <template v-if="show">
-            <div>
+            <div style="padding-left:10px;">
                 <x-button type="warn" mini @click.native="show1 = true">删除</x-button>
                 <x-button type="primary"  mini @click.native="editqualifyInfo(index)">编辑</x-button>
             </div>

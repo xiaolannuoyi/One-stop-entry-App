@@ -8,8 +8,8 @@
         <cell title="个人信息" link="/userdata/message/step"></cell>
         <cell title="资料上传" link="/userdata/imagefile/fileStep/IDCard"></cell>
     </group>
-    <group title="dang">
-        <x-button type="primary" :disabled="disable" @click.native="confirmCherk">发送给HR进行审核</x-button>
+    <group title="当所有必填信息都填写完毕后，方可点击此按钮" style="margin-top:20px;">
+        <x-button type="primary" style="margin-top:0;" :disabled="disable" @click.native="confirmCherk">发送给HR进行审核</x-button>
     </group>
    </div> 
 </template>
