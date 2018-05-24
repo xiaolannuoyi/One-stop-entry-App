@@ -7,12 +7,26 @@
       <p class="center"><img :src="avatar" @click="actionsShow = true"></p>
     </blur>
 
-    <group>
+    <!-- <group>
       <cell title="姓名" :value="UserInfo.Name"></cell>
       <cell title="电话" :value="UserInfo.Tel"></cell>
       <cell title="地区" :value="UserInfo.Address"></cell>
       <cell title="部门" :value="UserInfo.Department"></cell>
       <cell title="入职时间" :value="UserInfo.EntryTime"></cell>
+    </group> -->
+    <group >
+      <x-input title="姓名" :disabled="true" ref="Name" v-model="UserInfo.Name" :required="true" text-align="right"></x-input>
+      <x-input title="手机号码" :disabled="true" ref="Tel" v-model="UserInfo.Tel" keyboard="number" is-type="china-mobile" :max="11" :required="true" text-align="right"></x-input>
+      <popup-picker title="地点" :disabled="true" :data="list.addresslist" v-model="UserInfo.Address" :columns="2" value-text-align="right" show-name></popup-picker>
+      <popup-picker title="部门" :disabled="true" :data="list.Departmentlist" v-model="UserInfo.Department"  :columns="2" value-text-align="right" show-name></popup-picker>
+      <calendar title="入职时间" :readonly="true" ref="EntryTime" v-model="UserInfo.EntryTime" 
+      :start-date="startDate"
+      :end-date="endDate"
+      :show-last-month="showLastMonth=false"
+      :show-next-month="showNextMonth=false"
+      :return-six-rows="return6Rows=false"
+      :disable-past="disablePast=false"
+      :disable-weekend="disableWeekend=true"></calendar>
     </group>
     <!-- confirm -->
     <div v-transfer-dom>
@@ -35,12 +49,13 @@
 </template>
 
 <script>
-import {Group,Cell,XHeader,CellBox,Confirm,XButton,Blur,Actionsheet,TransferDomDirective as TransferDom} from "vux";
+import { Group, Cell, XHeader, CellBox, XInput,PopupPicker,XSwitch,XButton,Flexbox, FlexboxItem,Confirm,Blur,Actionsheet,Calendar,TransferDomDirective as TransferDom} from 'vux'
 import ServiceManager from "@/services/services-manager";
 import { mapState ,mapGetters} from 'vuex';
+import compass from 'static/models/compass.js';
 export default {
   components: {
-    Group,Cell,XHeader, Confirm, CellBox,XButton,Blur,Actionsheet
+    Group, Cell, XHeader, CellBox, XInput,PopupPicker,XSwitch,XButton,Flexbox, FlexboxItem,Confirm,Blur,Actionsheet,Calendar
   },
   directives: {
     TransferDom
@@ -61,6 +76,7 @@ export default {
         menu1: '拍照',
         menu2: '选择图片'
       },
+      list:compass,
     };
   },
   computed: {
