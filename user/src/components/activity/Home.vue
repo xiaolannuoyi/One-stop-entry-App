@@ -3,7 +3,7 @@
     <!-- header -->
     <x-header :left-options="{showBack: false}">主页</x-header>
     <!-- content -->
-    <blur :blur-amount=40 :url="avatar">
+    <blur :blur-amount=10 :url="avatar">
       <p class="center"><img :src="avatar" @click="actionsShow = true"></p>
     </blur>
 

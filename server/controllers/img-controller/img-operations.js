@@ -38,7 +38,7 @@ class ImgOpt {
                     
                     UserModel.findByIdAndUpdate(userId, {
                         $set: {
-                            IDface: savePath,//姓名
+                            avatar: savePath,//姓名
                         }
                     }).then(() => {
                         UserModel.findById(userId).then(User => {
