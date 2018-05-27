@@ -39,7 +39,11 @@ import bankCard from '@/components/userdata/imagefile/bankCard'
 import leaveWork from '@/components/userdata/imagefile/leaveWork'
 import Education from '@/components/userdata/imagefile/Education'
 import other from '@/components/userdata/imagefile/other'
-
+//公司
+import Introduction from '@/components/company/introduction'
+import EmployeeWelfare from '@/components/company/EmployeeWelfare'
+import RulesRegulations from '@/components/company/RulesRegulations'
+import position from '@/components/company/position'
 Vue.use(Router)
 
 export default new Router({
@@ -58,7 +62,7 @@ export default new Router({
         {
           path: 'company',
           name: 'Company',
-          component: Company
+          component: Company,
         },
         {
           path: 'check',
@@ -67,7 +71,7 @@ export default new Router({
         }, {
           path: 'userData',
           name: 'UserData',
-          component: UserData
+          component: UserData,
         }]
     },
     { path: '/userdata/message/changePassword', component: changePassword },
@@ -186,5 +190,27 @@ export default new Router({
         
       ]
     },
+    {
+      path: '/home/company/introduction',
+      name: 'Introduction',
+      component: Introduction
+    },
+    {
+      path: '/home/company/EmployeeWelfare',
+      name: 'EmployeeWelfare',
+      component: EmployeeWelfare
+    },
+    {
+      path: '/home/company/RulesRegulations',
+      name: 'RulesRegulations',
+      component: RulesRegulations
+    },
+    {
+      path: '/home/company/position',
+      name: 'position',
+      component: position
+    },
+      
+    
   ]
 })
