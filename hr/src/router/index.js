@@ -4,7 +4,6 @@ import Router from 'vue-router'
 import Login from '@/components/activity/Login'
 import FooterTab from '@/components/activity/FooterTab'
 import Home from '@/components/activity/Home'
-import Company from '@/components/activity/Company'
 import Message from '@/components/activity/Message'
 
 import Hr from '@/components/accountManager/HR/hr'
@@ -34,11 +33,6 @@ export default new Router({
           path: 'main',
           name: 'main',
           component: Home
-        },
-        {
-          path:'company',
-          name: 'Company',
-          component: Company
         },
         {
           path: 'message',

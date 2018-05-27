@@ -112,5 +112,6 @@ export default {
   position: fixed;
   bottom: 0;
   width: 100%;
+  background: #fff;
 }
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div style="margin-top:44px;">
     <group>
       <x-input title="工号" ref="Account" v-model="hrData.Account" type="number" :required="true" text-align="right"></x-input>    
       <x-input title="姓名"  ref="Name" v-model="hrData.Name" :required="true" text-align="right"></x-input>
@@ -8,7 +8,7 @@
       <x-switch title="管理员权限" :value-map="['0', '1']" v-model="hrData.IsAdmin"></x-switch>
     </group>
     <group>
-      <x-button type="primary" :disabled="canGo || btndisable" @click.native="hrRegist">primary</x-button>
+      <x-button type="primary" :disabled="canGo || btndisable" @click.native="hrRegist">提交</x-button>
     </group>
     
   </div>

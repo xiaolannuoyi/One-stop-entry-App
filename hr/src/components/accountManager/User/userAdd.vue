@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div style="margin-top:44px;">
     <group> 
       <x-input title="姓名"  ref="Name" v-model="userData.Name" :required="true" text-align="right"></x-input>
       <x-input title="手机号码" ref="Tel" v-model="userData.Tel" keyboard="number" is-type="china-mobile" :max="11" :required="true" text-align="right"></x-input>
@@ -15,7 +15,7 @@
       :disable-weekend="disableWeekend=true"></calendar>
     </group>
     <group>
-      <x-button type="primary" :disabled="canGo || btndisable" @click.native="userRegist">primary</x-button>
+      <x-button type="primary" :disabled="canGo || btndisable" @click.native="userRegist">提交</x-button>
     </group>
     
   </div>

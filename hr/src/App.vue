@@ -16,21 +16,18 @@ export default {
 body {
   background-color: #fbf9fe;
 }
-#app{
-  padding-top:44px;
+.req{
+  color: red;
 }
-#app .vux-header {
-    position: fixed;
-    background-color: #35495e;
-    z-index: 100;
-    width: 100%;
-    top: 0;
+.reqwarn{
+  font-size: 12px;
+  color: red;
 }
-#app .vux-tab-warp {
-    position: fixed;
-    width: 100%;
-    z-index: 100;
-    top: 44px;
+.vux-step-item-head{
+display: block !important;
+}
+.vux-step-item-main{
+  display: block !important;
 }
 #app .scrollable .vux-tab-ink-bar{
   bottom:0;
@@ -38,7 +35,22 @@ body {
 #app .scrollable{
   padding-bottom: 0;
 }
+#app button.weui-btn, input.weui-btn{
+  margin-top: 10px;
+}
  #app .vux-flexbox{
   margin-top: 10px;
+}
+//tab
+#app .vux-tab-container{
+  position: fixed;
+  top: 44px;
+  z-index: 100;
+}
+#app .vux-header{
+  position: fixed;
+  top: 0;
+  z-index: 100;
+  width:100%;
 }
 </style>

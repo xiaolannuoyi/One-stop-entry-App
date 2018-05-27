@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div style="margin-top:44px; ">
     <x-header :left-options="{showBack: false}">消息</x-header>
     <panel header="全部" :list="list" type="1"></panel>
   </div>
@@ -43,7 +43,6 @@ export default {
                   this.list.push({
                       'src': this.baseURL + item.avatar,
                       'title': item.Name,
-                      'desc': item.Address+"--"+item.Department,
                       'url': '/user/userCheckMeg/'+item._id
                   })
               })

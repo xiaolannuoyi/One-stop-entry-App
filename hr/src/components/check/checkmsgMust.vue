@@ -5,10 +5,10 @@
       <x-input title="身份ID" v-model="preBaseInfo.idCard"  :required="true" text-align="right" :max="18">
           <div slot="label"><span class="req">*</span>身份ID</div>
       </x-input>
-      <x-input title="移动电话" v-model="preBaseInfo.tel" :required="true" is-type="china-mobile" :max="11" text-align="right">
+      <x-input title="移动电话" v-model="preBaseInfo.tel" :required="true"  text-align="right">
           <div slot="label"><span class="req">*</span>移动电话</div>
       </x-input> 
-      <x-input title="电子邮件" v-model="preBaseInfo.email" :required="true" is-type="email" text-align="right">
+      <x-input title="电子邮件" v-model="preBaseInfo.email" :required="true"  text-align="right">
           <div slot="label"><span class="req">*</span>电子邮件</div>
       </x-input>     
       <popup-picker title="性别" v-model="preBaseInfo.sex" :data="preSelector.sex" :columns="2" show-name>
@@ -90,7 +90,7 @@
 
       <x-input title="紧急联系人" v-model="preBaseInfo.urgentPeo" :required="true" text-align="right">
       </x-input>
-      <x-input title="紧急联系方式" v-model="preBaseInfo.urgentTel" is-type="china-mobile" :max="11" :required="true" text-align="right">
+      <x-input title="紧急联系方式" v-model="preBaseInfo.urgentTel" :required="true" text-align="right">
       </x-input>
     </group>
     <!-- 银行卡信息 -->

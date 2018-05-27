@@ -3,7 +3,7 @@
     <!-- header -->
     <x-header @on-click-back="back">用户信息</x-header>
     <!-- content -->
-    <group >
+    <group style="margin-top:44px; ">
       <x-input title="工号"
                :disabled="disabled"
                ref="Account"

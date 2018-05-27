@@ -3,7 +3,7 @@
     <!-- header -->
     <x-header @on-click-back="back">用户信息</x-header>
     <!-- content -->
-    <group >
+    <group style="margin-top:44px; ">
       <x-input title="姓名" :disabled="disabled" ref="Name" v-model="userData.Name" :required="true" text-align="right"></x-input>
       <x-input title="手机号码" :disabled="disabled" ref="Tel" v-model="userData.Tel" keyboard="number" is-type="china-mobile" :max="11" :required="true" text-align="right"></x-input>
       <popup-picker title="地点" :disabled="disabled" :data="list.addresslist" v-model="userData.Address" :columns="2" value-text-align="right" show-name></popup-picker>

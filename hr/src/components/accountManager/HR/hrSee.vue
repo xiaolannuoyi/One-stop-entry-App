@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div style="margin-top:44px;">
     <panel header="全部" :list="list" type="1"></panel>
   </div>
 </template>
