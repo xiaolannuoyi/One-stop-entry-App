@@ -1,13 +1,13 @@
 <template>
   <div>
     <group title="">
-      <x-input title="工号" ref="account" v-model="formData.Account" placeholder="请输入工号" keyboard="number" text-align="right"></x-input>
+      <x-input title="工号" ref="Account" v-model="formData.Account" placeholder="请输入工号" keyboard="number" :min="6" :required="true" text-align="right"></x-input>
     </group>
     <group title="">
-      <x-input title="密码" ref="password" v-model="formData.Password" placeholder="请输入密码" type="password"  text-align="right"></x-input>
+      <x-input title="密码" ref="Password" v-model="formData.Password" placeholder="请输入密码" type="password" :min="6" :required="true" text-align="right"></x-input>
     </group>
     <img :src="src" alt="">
-    <x-button type="primary" @click.native="login">登录</x-button>
+    <x-button type="primary" @click.native="login" :disabled='canGo ||disabled'>登录</x-button>
   </div>
 </template>
 
@@ -27,14 +27,31 @@ export default {
   data() {
     return {
       formData: {
-        Account: "20141488",
-        Password: "20141488"
+        Account: "",
+        Password: ""
       },
-      src: ""
+      src: "",
+      disabled:true,
     };
+  },
+  computed:{
+    canGo() {
+        console.log(this.formData.Account);
+        console.log(this.formData.Password);
+        
+        if(this.formData.Account !=='' && this.formData.Password !=='' && this.$refs.Account.valid && this.$refs.Password.valid){
+          console.log("1",this.disabled)
+            this.disabled=false;
+        }else{
+          console.log("2",this.disabled)          
+            this.disabled=true;
+        }
+      },
   },
   methods: {
     login() {
+      console.log('111111');
+      
       this.$vux.loading.show({
           text: 'Loading'
       })

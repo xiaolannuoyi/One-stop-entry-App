@@ -37,6 +37,7 @@ display: block !important;
 }
 #app button.weui-btn, input.weui-btn{
   margin-top: 10px;
+  margin-bottom:10px;
 }
  #app .vux-flexbox{
   margin-top: 10px;

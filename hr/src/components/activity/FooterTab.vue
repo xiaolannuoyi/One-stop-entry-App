@@ -6,13 +6,13 @@
     <div class="footer">
       <tabbar>
         <tabbar-item link="/home/main" selected>
-          <img slot="icon"  src="static/images/b-home.png">
-          <img slot="icon-active"  src="static/images/a-home.png">   
+          <img slot="icon"  src="../../images/b-home.png">
+          <img slot="icon-active"  src="../../images/a-home.png">   
           <span slot="label">主页</span>          
         </tabbar-item>
         <tabbar-item show-dot link="/home/message">
-          <img slot="icon" src="static/images/b-offer.png">
-          <img slot="icon-active" src="static/images/a-offer.png">
+          <img slot="icon" src="../../images/b-offer.png">
+          <img slot="icon-active" src="../../images/a-offer.png">
           <span slot="label">消息</span>
         </tabbar-item>
       </tabbar>

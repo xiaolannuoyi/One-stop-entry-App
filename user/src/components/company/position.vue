@@ -50,14 +50,14 @@ export default {
   width: 50%;
   height:43px;
   line-height:43px;
-  background: url('../../../static/images/header.png') center center no-repeat;
+  background: url('../../images/header.png') center center no-repeat;
   background-size: contain;
   margin-bottom: 16px;
 }
 .box{
   width: 84%;
   border:1.3rem double #3cc1bc;
-  border-image:url(../../../static/images/background.png) 45;
+  border-image:url(../../images/background.png) 45;
   margin: 0 auto;
   margin-top: 15px;
   border-radius:50px;

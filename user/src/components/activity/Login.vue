@@ -26,7 +26,7 @@ export default {
     return {
       disabled:true,
       formData: {
-        Tel: '18846042481',
+        Tel: '',
         Password: ''
       }
     }

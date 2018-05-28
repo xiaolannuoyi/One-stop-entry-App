@@ -4,7 +4,7 @@
     <x-header :left-options="{showBack: true}">修改密码</x-header>
     <!-- content -->
     <group>
-      <x-input title="旧密码" type="text" placeholder="请输入旧密码" :max="6" ref="oldps" v-model="oldpassword" :equal-with="storeOldpassword" text-align="right"></x-input>
+      <x-input title="旧密码" type="text" placeholder="请输入旧密码" :min="6" ref="oldps" v-model="oldpassword" :equal-with="storeOldpassword" text-align="right"></x-input>
     </group>
     <group title="密码要大于6位">
       <x-input title="新密码" type="password" placeholder="请输入新密码" ref="ps"  v-model="password" :min="6" :max="16" text-align="right"></x-input>
