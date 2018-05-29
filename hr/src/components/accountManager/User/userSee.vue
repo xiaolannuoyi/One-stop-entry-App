@@ -7,7 +7,7 @@
 <script>
 import { Panel } from 'vux'
 import ServiceManager from '@/services/services-manager';
-import {mapState} from 'vuex'
+import {mapState,mapGetters} from 'vuex'
 export default {
     name:"userSee",
     components: {
@@ -25,6 +25,7 @@ export default {
     },
     computed:{
         ...mapState(['HrInfo']),
+        ...mapGetters(['baseURL']),
     },
     methods:{
         getData(){
@@ -38,7 +39,7 @@ export default {
               let result = data.data.result;
               result.forEach(item => {
                   this.list.push({
-                      'src': 'http://placeholder.qiniudn.com/60x60/3cc51f/ffffff',
+                      'src': this.baseURL + item.avatar,
                       'title': item.Name,
                       'desc': "电话号码:"+item.Tel,
                       'url': '/user/userMsg/'+item._id
