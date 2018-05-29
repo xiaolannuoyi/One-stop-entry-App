@@ -1,5 +1,6 @@
 <template>
   <div class="rules">
+    <x-header :left-options="{showBack: true}">员工福利</x-header>
     <article>
       <div class="header">
         <h3>员工福利</h3>
@@ -71,8 +72,12 @@
 </template>
 
 <script>
-export default {
+import { XHeader } from 'vux'
 
+export default {
+components: {
+    XHeader
+  },
 }
 </script>
 

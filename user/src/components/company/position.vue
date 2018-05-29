@@ -1,5 +1,6 @@
 <template>
   <div class="rules">
+    <x-header :left-options="{showBack: true}">周边环境</x-header>
     <article>
       <div class="header">
         <h3>周边环境</h3>
@@ -24,8 +25,12 @@
 </template>
 
 <script>
-export default {
+import { XHeader } from 'vux'
 
+export default {
+components: {
+    XHeader
+  },
 }
 </script>
 

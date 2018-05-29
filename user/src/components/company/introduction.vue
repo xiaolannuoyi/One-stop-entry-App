@@ -1,12 +1,16 @@
 <template>
     <div>
-        员工福利
+        <x-header :left-options="{showBack: true}">介绍</x-header>
     </div>
 </template>
 
 <script>
-export default {
+import { XHeader } from 'vux'
 
+export default {
+components: {
+    XHeader
+  },
 }
 </script>
 
