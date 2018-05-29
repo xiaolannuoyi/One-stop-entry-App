@@ -69,7 +69,7 @@ export default {
         } else {
           this.$vux.toast.show({
             text: "登录失败，请重试",
-            type: "success"
+            type: "warn"
           });
         }
       });

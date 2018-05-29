@@ -2,63 +2,63 @@
   <div>
     <!-- 工作经历 -->
     <group title="工作经历" v-if="workArray.length >0" v-for="item in workArray" :key="item.id">
-        <x-input title="工作单位" v-model="item.company" text-align="right">
+        <x-input title="工作单位" v-model="item.company" :disabled="true" text-align="right">
             <div slot="label"><span class="req">*</span>工作单位</div>
         </x-input>
-        <datetime  v-model="item.Startdate">
+        <datetime  v-model="item.Startdate" readonly>
             <div slot="title"><span class="req">*</span>开始日期</div>
         </datetime>
-        <datetime  v-model="item.Enddate">
+        <datetime  v-model="item.Enddate" readonly>
             <div slot="title"><span class="req">*</span>结束日期</div>
         </datetime>
-        <x-input title="工作岗位" v-model="item.post" text-align="right">
+        <x-input title="工作岗位" v-model="item.post" text-align="right" :disabled="true">
             <div slot="label"><span class="req">*</span>工作岗位</div>
         </x-input> 
-        <x-input title="证明人" v-model="item.Provider" text-align="right"></x-input>  
-        <x-input title="证明人岗位" v-model="item.Proname" text-align="right"></x-input>  
-        <x-input title="证明人联系方式" v-model="item.Prophone" :max="11" text-align="right"></x-input>        
+        <x-input title="证明人" v-model="item.Provider" text-align="right" :disabled="true"></x-input>  
+        <x-input title="证明人岗位" v-model="item.Proname" text-align="right" :disabled="true"></x-input>  
+        <x-input title="证明人联系方式" v-model="item.Prophone" :max="11" text-align="right" :disabled="true"></x-input>        
     </group>
     <!-- 荣誉证书 -->
     <group title="荣誉证书" v-if="qualifyArray.length >0" v-for="item in qualifyArray" :key="item.id">
-        <datetime  title="获得年月" v-model="item.Getdate">
+        <datetime  title="获得年月" v-model="item.Getdate" :disabled="true">
             <div slot="title"><span class="req">*</span>获得年月</div>
         </datetime>
-        <x-input title="证书名称" v-model="item.Name" text-align="right">
+        <x-input title="证书名称" v-model="item.Name" :disabled="true" text-align="right">
             <div slot="label"><span class="req">*</span>证书名称</div>
         </x-input>
     </group>
     <!-- 家庭成员 -->
     <group title="家庭成员" v-if="homeArray.length >0" v-for="item in homeArray" :key="item.id">
-        <x-input title="姓名" v-model="item.name" text-align="right">
+        <x-input title="姓名" v-model="item.name" text-align="right" :disabled="true">
             <div slot="label"><span class="req">*</span>姓名</div>
         </x-input>
-        <x-input title="与本人关系" v-model="item.Relation" text-align="right">
+        <x-input title="与本人关系" v-model="item.Relation" text-align="right" :disabled="true">
             <div slot="label"><span class="req">*</span>与本人关系</div>
         </x-input>  
-        <x-input title="工作单位" v-model="item.Company" text-align="right">
+        <x-input title="工作单位" v-model="item.Company" text-align="right" :disabled="true">
             <div slot="label"><span class="req">*</span>工作单位</div>
         </x-input>
-        <x-input title="联系方式" v-model="item.Contact " :max="11" text-align="right">
+        <x-input title="联系方式" v-model="item.Contact " :max="11" text-align="right" :disabled="true">
             <div slot="label"><span class="req">*</span>联系方式</div>
         </x-input>
     </group>
     <!-- 教育背景 -->
     <group title="教育背景" v-if="edubgArray.length >0" v-for="item in edubgArray" :key="item.id">
-        <datetime  title="起始年月" v-model="item.Startdate">
+        <datetime  title="起始年月" v-model="item.Startdate" readonly>
             <div slot="title"><span class="req">*</span>起始年月</div>
         </datetime>
-        <datetime  title="截止年月" v-model="item.Enddate">
+        <datetime  title="截止年月" v-model="item.Enddate" readonly>
             <div slot="title"><span class="req">*</span>截止年月</div>
         </datetime>
-        <x-input title="学校" v-model="item.Schoolname" text-align="right">
+        <x-input title="学校" v-model="item.Schoolname" text-align="right" :disabled="true">
             <div slot="label"><span class="req">*</span>学校</div>
         </x-input>  
-        <x-input title="院系" v-model="item.College" text-align="right">
+        <x-input title="院系" v-model="item.College" text-align="right" :disabled="true">
             <div slot="label"><span class="req">*</span>院系</div>
         </x-input>  
-        <x-input title="专业" v-model="item.Major" text-align="right">
+        <x-input title="专业" v-model="item.Major" text-align="right" :disabled="true">
             <div slot="label"><span class="req">*</span>专业</div></x-input>  
-        <x-input title="学历" v-model="item.Education" text-align="right">
+        <x-input title="学历" v-model="item.Education" text-align="right" :disabled="true">
             <div slot="label"><span class="req">*</span>学历</div>
         </x-input> 
     </group>

@@ -248,6 +248,34 @@ class UserOpt {
     //
     //提交审核
     //
+    // confirmCherk(data) {
+    //   console.log("提交审核data",data);
+    //   return new Promise((resolve, reject) => {
+    //     CheckProgressModel.create({
+    //       user:data.id,
+    //       checkState:num,
+    //       checkText:data.checkText
+    //     }).then(() =>{
+    //       console.log(num)
+    //       UserModel.findByIdAndUpdate(data.id,{
+    //         $set: {
+    //           checkState: num,//提交
+    //         }
+    //       }).then( bb =>{
+    //         console.log("======",bb);
+            
+    //         resolve(bb);
+    //       }).catch(() => {
+    //         reject('fail');
+    //       });
+          
+    //     }).catch(() => {
+    //       reject('fail');
+    //     });
+    //   });
+    // }
+
+
     confirmCherk(data){
       var a =new Promise((resolve, reject) => {
         CheckProgressModel.create({
@@ -255,23 +283,22 @@ class UserOpt {
           checkState:data.checkState,
           checkText:data.checkText
         }).then(aa =>{
-          UserModel.findByIdAndUpdate(data.id,{
-            $set: {
-              checkState: 1,//提交
-            }
-          }).then( bb =>{
-            resolve(bb);
+          console.log("aa",aa)
+          resolve(aa);
+          // UserModel.findByIdAndUpdate(data.id,{
+          //   $set: {
+          //     checkState: data.checkState,//提交
+          //   }
+          // }).then( bb =>{
+          //   resolve(bb);
           }).catch(() => {
             reject('fail');
           });
-          
-        }).catch(() => {
-          reject('fail');
-        });
      });
 
      var b =new Promise((resolve, reject) => {
-      UserModel.findOneAndUpdate({checkState:data.checkState}).then(bb =>{
+      UserModel.findByIdAndUpdate(data.id,{checkState:data.checkState}).then(bb =>{
+        console.log("bb",bb)
         resolve(bb);
       }).catch(() => {
         reject('fail');

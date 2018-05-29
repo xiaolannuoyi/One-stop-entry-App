@@ -198,7 +198,8 @@ export default {
         this.$vux.loading.show({
                 text: 'Loading'
             })
-       ServiceManager.confirmCherk(this.UserInfo._id).then(data => {
+        let checkState = 1;
+       ServiceManager.confirmCherk(this.UserInfo._id,checkState,null).then(data => {
         console.log(data);
           this.$vux.loading.hide()        
         if (data.data.code == 200) {

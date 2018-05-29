@@ -2,29 +2,29 @@
   <div>
       <!-- 基本信息 -->
       <group title="基本信息" label-width="5.5em" label-margin-right="2em" label-align="justify">
-      <x-input title="身份ID" v-model="preBaseInfo.idCard"  :required="true" text-align="right" :max="18">
+      <x-input title="身份ID" v-model="preBaseInfo.idCard"   text-align="right" :disabled="true" :max="18">
           <div slot="label"><span class="req">*</span>身份ID</div>
       </x-input>
-      <x-input title="移动电话" v-model="preBaseInfo.tel" :required="true"  text-align="right">
+      <x-input title="移动电话" v-model="preBaseInfo.tel"   :disabled="true" text-align="right">
           <div slot="label"><span class="req">*</span>移动电话</div>
       </x-input> 
-      <x-input title="电子邮件" v-model="preBaseInfo.email" :required="true"  text-align="right">
+      <x-input title="电子邮件" v-model="preBaseInfo.email"    :disabled="true" text-align="right">
           <div slot="label"><span class="req">*</span>电子邮件</div>
       </x-input>     
-      <popup-picker title="性别" v-model="preBaseInfo.sex" :data="preSelector.sex" :columns="2" show-name>
+      <popup-picker title="性别" v-model="preBaseInfo.sex" :data="preSelector.sex" :columns="2" show-name :disabled="true">
           <div slot="title"><span class="req">*</span>性别</div>
       </popup-picker>
-      <datetime v-model="preBaseInfo.birthDay">
+      <datetime v-model="preBaseInfo.birthDay" readonly >
           <div slot="title"><span class="req">*</span>生日</div>
       </datetime>
-      <popup-picker title="民族" v-model="preBaseInfo.nation" :data="preSelector.nation" :columns="4" show-name>
+      <popup-picker title="民族" v-model="preBaseInfo.nation" :data="preSelector.nation" :columns="4" show-name :disabled="true">
           <div slot="title"><span class="req">*</span>民族</div>
       </popup-picker>
-      <popup-picker title="国籍" v-model="preBaseInfo.location" :data="preSelector.location" :columns="4" show-name>
+      <popup-picker title="国籍" v-model="preBaseInfo.location" :data="preSelector.location" :columns="4" show-name :disabled="true">
           <div slot="title"><span class="req">*</span>国籍</div>          
       </popup-picker>
 
-      <x-address title="籍贯" v-model="preBaseInfo.oriPlace" :list="address"  :required="true">
+      <x-address title="籍贯" v-model="preBaseInfo.oriPlace" :list="address"   :disabled="true">
           <template slot="title" slot-scope="props">
             <span :class="props.labelClass" :style="props.labelStyle" style="height:24px;">
             <span class="req" style="vertical-align:middle;">*</span>
@@ -32,27 +32,27 @@
             </span>
         </template>
       </x-address>
-      <popup-picker title="政治面貌" v-model="preBaseInfo.plocitical" :data="preSelector.plocitical" :columns="4" show-name>
+      <popup-picker title="政治面貌" v-model="preBaseInfo.plocitical" :disabled="true" :data="preSelector.plocitical" :columns="4" show-name>
           <div slot="title"><span class="req">*</span>政治面貌</div>                    
       </popup-picker>
-      <popup-picker title="婚姻状况" v-model="preBaseInfo.marital" :data="preSelector.marital" :columns="4" show-name>
+      <popup-picker title="婚姻状况" v-model="preBaseInfo.marital" :disabled="true" :data="preSelector.marital" :columns="4" show-name>
           <div slot="title"><span class="req">*</span>婚姻状况</div>                    
       </popup-picker>
-      <popup-picker title="最高学历" v-model="preBaseInfo.eduHighest" :data="preSelector.eduHighest" :columns="4" show-name>
+      <popup-picker title="最高学历" v-model="preBaseInfo.eduHighest" :disabled="true" :data="preSelector.eduHighest" :columns="4" show-name>
           <div slot="title"><span class="req">*</span>最高学历</div>                    
       </popup-picker>
  
-      <datetime  title="毕业日期" v-model="preBaseInfo.graduDate" >
+      <datetime  title="毕业日期" v-model="preBaseInfo.graduDate" readonly >
           <div slot="title"><span class="req">*</span>毕业日期</div>          
       </datetime>
-      <datetime  title="工作日期" v-model="preBaseInfo.workDate" >
+      <datetime  title="工作日期" v-model="preBaseInfo.workDate" readonly>
           <div slot="title"><span class="req">*</span>工作日期</div>          
       </datetime>
-      <popup-picker title="背景调查" v-model="preBaseInfo.bgSurvey" :data="preSelector.bgSurvey" :columns="2" show-name>
+      <popup-picker title="背景调查" v-model="preBaseInfo.bgSurvey" :disabled="true" :data="preSelector.bgSurvey" :columns="2" show-name>
           <div slot="title"><span class="req">*</span>背景调查</div>                    
       </popup-picker>
-      <!-- <selector title="背景调查" v-model="preBaseInfo.bgSurvey" :options="preSelector.bgSurvey" direction="rtl" :required="true"></selector> -->
-      <x-address title="现住址" v-model="preBaseInfo.nowAdress" :list="address"  :required="true">
+      <!-- <selector title="背景调查" v-model="preBaseInfo.bgSurvey" :options="preSelector.bgSurvey" direction="rtl" ></selector> -->
+      <x-address title="现住址" v-model="preBaseInfo.nowAdress" :disabled="true" :list="address"  >
           <template slot="title" slot-scope="props">
             <span :class="props.labelClass" :style="props.labelStyle" style="height:24px;">
             <span class="req" style="vertical-align:middle;">*</span>
@@ -60,20 +60,20 @@
             </span>
         </template> 
       </x-address>
-      <popup-picker title="身体状况" v-model="preBaseInfo.bodyState" :data="preSelector.bodyState" :columns="2" show-name>
+      <popup-picker title="身体状况" v-model="preBaseInfo.bodyState" :disabled="true" :data="preSelector.bodyState" :columns="2" show-name>
           <div slot="title"><span class="req">*</span>身体状况</div>                    
       </popup-picker>
-      <popup-picker title="既往病史" v-model="preBaseInfo.medical" :data="preSelector.medical" :columns="2" show-name>
+      <popup-picker title="既往病史" v-model="preBaseInfo.medical" :disabled="true" :data="preSelector.medical" :columns="2" show-name>
           <div slot="title"><span class="req">*</span>既往病史</div>                    
       </popup-picker>
-      <popup-picker title="重大疾病以及遗传病" v-model="preBaseInfo.hered" :data="preSelector.hered" :columns="2" show-name>
+      <popup-picker title="重大疾病以及遗传病" v-model="preBaseInfo.hered" :disabled="true" :data="preSelector.hered" :columns="2" show-name>
           <div slot="title"><span class="req">*</span>重大疾病以及遗传病</div>                    
       </popup-picker>
 
-      <popup-picker title="户口性质" v-model="preBaseInfo.hkType" :data="preSelector.hkType" :columns="2" show-name>
+      <popup-picker title="户口性质" v-model="preBaseInfo.hkType" :disabled="true" :data="preSelector.hkType" :columns="2" show-name>
           <div slot="title"><span class="req">*</span>户口性质</div>          
       </popup-picker>      
-      <x-address title="户口所在地" v-model="preBaseInfo.hkAdress" :list="address"  :required="true">
+      <x-address title="户口所在地" v-model="preBaseInfo.hkAdress" :disabled="true" :list="address"  >
           <template slot="title" slot-scope="props">
             <span :class="props.labelClass" :style="props.labelStyle" style="height:24px;">
             <span class="req" style="vertical-align:middle;">*</span>
@@ -81,51 +81,51 @@
             </span>
         </template>                   
       </x-address>
-      <popup-picker title="是否缴纳过社保" v-model="preBaseInfo.secuRi" :data="preSelector.secuRi" :columns="2" show-name>
+      <popup-picker title="是否缴纳过社保" v-model="preBaseInfo.secuRi" :disabled="true" :data="preSelector.secuRi" :columns="2" show-name>
           <div slot="title"><span class="req">*</span>是否缴纳过社保</div>                    
       </popup-picker>
-      <popup-picker title="缴纳社保地区" v-model="preBaseInfo.secuArea" :data="preSelector.secuArea" :columns="2" show-name>
+      <popup-picker title="缴纳社保地区" v-model="preBaseInfo.secuArea" :disabled="true" :data="preSelector.secuArea" :columns="2" show-name>
           <div slot="title"><span class="req">*</span>缴纳社保地区</div>                    
       </popup-picker>
 
-      <x-input title="紧急联系人" v-model="preBaseInfo.urgentPeo" :required="true" text-align="right">
+      <x-input title="紧急联系人" v-model="preBaseInfo.urgentPeo" :disabled="true"  text-align="right">
       </x-input>
-      <x-input title="紧急联系方式" v-model="preBaseInfo.urgentTel" :required="true" text-align="right">
+      <x-input title="紧急联系方式" v-model="preBaseInfo.urgentTel" :disabled="true"  text-align="right">
       </x-input>
     </group>
     <!-- 银行卡信息 -->
-    <group title="银行卡信息--" label-width="5.5em" label-margin-right="2em" label-align="justify">
-      <x-input title="账户名" v-model="ZSbankcard.sPfaccount" type="text"  :required="true" text-align="right">
+    <group title="银行卡信息--" label-width="5.5em" label-margin-right="2em"  label-align="justify">
+      <x-input title="账户名" v-model="ZSbankcard.sPfaccount" type="text" :disabled="true"  text-align="right">
           <div slot="label"><span class="req">*</span>账户名</div>
       </x-input>
-      <x-input title="身份证号码" v-model="ZSbankcard.sPfid" type="number" :required="true" text-align="right">
+      <x-input title="身份证号码" v-model="ZSbankcard.sPfid" type="number" :disabled="true"  text-align="right">
           <div slot="label"><span class="req">*</span>身份证号码</div>          
       </x-input>
-      <x-input title="卡号" v-model="ZSbankcard.sPfcardNum" type="number" :min="16" :required="true" text-align="right">
+      <x-input title="卡号" v-model="ZSbankcard.sPfcardNum" type="number" :disabled="true" :min="16"  text-align="right">
           <div slot="label"><span class="req">*</span>卡号</div>          
       </x-input>
-      <x-input title="开户行名称" v-model="ZSbankcard.sPfopenban" type="text" :required="true" text-align="right">
+      <x-input title="开户行名称" v-model="ZSbankcard.sPfopenban" type="text" :disabled="true"  text-align="right">
           <div slot="label"><span class="req">*</span>开户行名称</div>          
       </x-input>
-      <x-input title="开户城市" v-model="ZSbankcard.sPfopCity" type="text" :required="true" text-align="right">
+      <x-input title="开户城市" v-model="ZSbankcard.sPfopCity" type="text" :disabled="true"  text-align="right">
           <div slot="label"><span class="req">*</span>开户城市</div>          
       </x-input>
     </group>
     <!-- 图片信息 -->
     <group title="银行卡信息--招商银行" label-width="5.5em" label-margin-right="2em" label-align="justify">
-      <x-input title="账户名" v-model="ZSbankcard.sPfaccount" type="text"  :required="true" text-align="right">
+      <x-input title="账户名" v-model="ZSbankcard.sPfaccount" type="text" :disabled="true"  text-align="right">
           <div slot="label"><span class="req">*</span>账户名</div>
       </x-input>
-      <x-input title="身份证号码" v-model="ZSbankcard.sPfid" type="number" :required="true" text-align="right">
+      <x-input title="身份证号码" v-model="ZSbankcard.sPfid" type="number" :disabled="true"  text-align="right">
           <div slot="label"><span class="req">*</span>身份证号码</div>          
       </x-input>
-      <x-input title="卡号" v-model="ZSbankcard.sPfcardNum" type="number" :min="16" :required="true" text-align="right">
+      <x-input title="卡号" v-model="ZSbankcard.sPfcardNum" type="number" :disabled="true" :min="16"  text-align="right">
           <div slot="label"><span class="req">*</span>卡号</div>          
       </x-input>
-      <x-input title="开户行名称" v-model="ZSbankcard.sPfopenban" type="text" :required="true" text-align="right">
+      <x-input title="开户行名称" v-model="ZSbankcard.sPfopenban" type="text"  :disabled="true"  text-align="right">
           <div slot="label"><span class="req">*</span>开户行名称</div>          
       </x-input>
-      <x-input title="开户城市" v-model="ZSbankcard.sPfopCity" type="text" :required="true" text-align="right">
+      <x-input title="开户城市" v-model="ZSbankcard.sPfopCity" type="text" :disabled="true"  text-align="right">
           <div slot="label"><span class="req">*</span>开户城市</div>          
       </x-input>
     </group>
@@ -216,7 +216,11 @@ export default {
                     this.img= this.usercheckData[this.userid][7];
 
                 }else{
-
+                    this.$vux.toast.show({
+                        text: "请求失败",
+                        type: "warn"
+                    });
+                  this.$router.replace("/home/message");
                 }
             })
         },

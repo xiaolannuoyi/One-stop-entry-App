@@ -56,9 +56,15 @@ export default {
         }
     },
     methods:{
-      //审核通过 4
+      //审核通过 3
        comfirm(){
           let id = this.$route.params.id;
+          let start = id.lastIndexOf(':');
+          if(start!== -1){
+            id= id.slice(start+1);
+            console.log("start",start)
+          }
+          console.log("id",id)
           let checkState = 3
           this.$vux.loading.show({
                 text: 'Loading'
@@ -71,6 +77,7 @@ export default {
                     text: '提交成功',
                     type: 'success'
                   });
+                  this.$router.replace("/home/message");                  
                 }else{
                   this.$vux.toast.show({
                     text: '提交失败，请重试',
@@ -82,6 +89,12 @@ export default {
         //反馈
         comfirmMesg(){
           let id = this.$route.params.id;
+          let start = id.lastIndexOf(':');
+          if(start!== -1){
+            id= id.slice(start+1);
+            console.log("start",start)
+          }
+          console.log("id",id)
           let checkState = 2
           let checkText = this.backtext;
           this.$vux.loading.show({
@@ -95,6 +108,7 @@ export default {
                     text: '提交成功',
                     type: 'success'
                   });
+                  this.$router.replace("/home/message");
                 }else{
                   this.$vux.toast.show({
                     text: '提交失败，请重试',

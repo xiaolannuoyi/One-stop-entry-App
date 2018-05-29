@@ -120,8 +120,9 @@ class UserManager {
       });
     }
 
-    //修改offer状态
+    //修改审核状态
     async confirmCherk(ctx, next) {
+      console.log('审核数据============================',ctx.request.body)
       await UserOpt.confirmCherk(ctx.request.body).then(data => {
         console.log("修改offer状态",data)
         ctx.response.body = {

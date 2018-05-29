@@ -258,12 +258,12 @@ let servicesManager = {
         });
       },
 //------------提交审核--------
-confirmCherk(id) {
-  console.log("qianduan ",id)
+confirmCherk(id,checkState,checkText) {
+  console.log("================================manger====",id,checkState,checkText)
   return axios({
     method: 'post',
     url: '/user/confirmCherk',
-    data: {id}
+    data: {id,checkState,checkText}
   });
 },
 //---------查看审核状态

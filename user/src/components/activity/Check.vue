@@ -70,9 +70,12 @@ export default {
                 str = '审核通过并结束';
                 break;
           }
-          let start = result[i].date.indexOf('T')
-          let end = result[i].date.indexOf('.')
-          let time = result[i].date.substring(0,start) + " " + result[i].date.substring(start+1,end);
+          let date = new Date(result[i].date);
+          let time = date.toLocaleString();
+
+          // let start = result[i].date.indexOf('T')
+          // let end = result[i].date.indexOf('.')
+          // let time = result[i].date.substring(0,start) + " " + result[i].date.substring(start+1,end);
           arr.push({
             checkState: str,
             checkText: result[i].checkText,
